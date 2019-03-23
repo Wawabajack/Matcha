@@ -39,6 +39,9 @@
             case 11:
                 echo 'Adresse mail déjà utilisée<br/>';
                 break;
+            case 12:
+                echo 'Le compte est banni<br/>';
+                break;
 
         }
         return 1;

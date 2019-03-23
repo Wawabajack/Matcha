@@ -14,8 +14,16 @@
             if (passwordCheck($db, $_POST['usr'], $_POST['pwd']))
             {
                 $_SESSION['usr'] = getUserInfo($db, $_POST['usr']);
-                if ($_SESSION['usr']->inactive == 1) {
 
+	            if ($_SESSION['usr']->warnings > 2) {
+	               /** Banned account */
+
+	                $_SESSION['error'] = 12;
+		            unset($_SESSION['usr']);
+		            header('refresh:0;url=/index.php');
+	            }
+
+	            else if ($_SESSION['usr']->inactive == 1) {
                     /** Inactive account **/
 
                     $_SESSION['error'] = 10;
