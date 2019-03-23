@@ -42,6 +42,19 @@
             case 12:
                 echo 'Le compte est banni<br/>';
                 break;
+            case 400:
+                echo 'Bad Request<br/>';
+                break;
+            case 401:
+                echo 'Unauthorized<br/>';
+                break;
+            case 403:
+                echo 'Forbidden<br/>';
+                break;
+            case 404:
+                echo 'Not Found<br/>';
+                break;
+
 
         }
         return 1;
