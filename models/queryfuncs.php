@@ -19,6 +19,15 @@
         return $user;
     }
 
+	function getUserKey($db, $key) {
+		$sql = "SELECT `username` from `users` WHERE `mail_key` = :mkey";
+		$res = $db->prepare($sql);
+		$res->bindParam(':mkey', $key);
+		$res->execute();
+		$user = $res->fetch(PDO::FETCH_OBJ);
+		return $user;
+	}
+
     function addUser($db, $username, $name, $surname, $mail, $pwd, $mailKey) {
         $sql = "INSERT INTO `users` (`username`, `name`, `surname`, `mail`, `password`, `warnings`, `mail_key`, `admin`, `inactive`)
                 VALUES (:usr, :nom, :surname, :mail, :pwd, '0', :mail_key, '0', '1')";
@@ -30,5 +39,12 @@
         $res->bindParam(':pwd', $pwd);
         $res->bindParam(':mail_key', $mailKey);
         $res->execute();
+    }
+
+    function activateUser($db, $username) {
+    	$sql = "UPDATE `users` SET inactive = 0 WHERE username = :usr";
+    	$res = $db->prepare($sql);
+    	$res->bindParam(':usr', $username);
+    	$res->execute();
     }
 ?>

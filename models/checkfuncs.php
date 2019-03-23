@@ -24,6 +24,15 @@
         return $err;
     }
 
+    function keyCheck($db, $userKey) {
+        if (filter_var($userKey, FILTER_SANITIZE_URL) != $userKey)
+            return 0;
+         $user = getUserKey($db, $userKey)->username;
+        $key = getUserInfo($db, $user);
+        if (isset($key) && $key == $userKey)
+            return $user;
+        return 0;
+    }
 
     function strCheck($usr) {
         if (filter_var($usr, FILTER_SANITIZE_SPECIAL_CHARS) !== $usr)
