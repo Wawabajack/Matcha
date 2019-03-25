@@ -32,10 +32,8 @@
 
     /** Register welcome message **/
 
-    if (isset($_SESSION['register'])) {
-        if ($_SESSION['register'] == 'success')
-            echo $regSuccess;
-    }
+    if (isset($_SESSION['register']) && $_SESSION['register'] == 'success')
+        echo $regSuccess;
 
     /**  Errors handler **/
 
