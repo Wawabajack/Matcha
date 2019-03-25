@@ -49,11 +49,19 @@
     }
 
     function getUserProfile($db, $uid) {
-		$sql = "SELECT * FROM `profiles` WHERE `uid` = :uid";
+		$sql = "SELECT * FROM `profiles` WHERE `id` = :uid";
 	    $res = $db->prepare($sql);
 	    $res->bindParam(':uid', $uid);
 	    $res->execute();
 	    $user = $res->fetch(PDO::FETCH_OBJ);
 	    return $user;
     }
+	function getUserPrefs($db, $uid) {
+		$sql = "SELECT * FROM `preferences` WHERE `id` = :uid";
+		$res = $db->prepare($sql);
+		$res->bindParam(':uid', $uid);
+		$res->execute();
+		$user = $res->fetch(PDO::FETCH_OBJ);
+		return $user;
+	}
 ?>

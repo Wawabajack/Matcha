@@ -5,15 +5,14 @@
         DROP TABLE IF EXISTS `users`;
         CREATE TABLE `users` (
         `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-        `uid` int(11) NOT NULL AUTO_INCREMENT,
         `username` varchar(64) NOT NULL UNIQUE,
         `name` varchar(64) NOT NULL,
         `surname` varchar(64) NOT NULL,
         `mail` varchar(64) NOT NULL UNIQUE,
         `password` varchar(64) NOT NULL,
         `warnings` int(11) NOT NULL,
-        `mail_key` varchar(64) NOT NULL,
-        `admin` int(11) NOT NULL,
+        `mail_key` varchar(64),
+        `admin` int(11),
         `inactive` int(11) NOT NULL
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 		if (!isset($db))
@@ -30,7 +29,6 @@
 		$sql = "DROP TABLE IF EXISTS `profiles`;
         CREATE TABLE `profiles` (
         `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-        `uid` int(11) NOT NULL UNIQUE AUTO_INCREMENT,
         `gender` varchar(64) NOT NULL,
         `birthdate` date NOT NULL,
         `popularity` int(11) NOT NULL,
@@ -54,7 +52,6 @@
 		$sql = "DROP TABLE IF EXISTS `preferences`;
             CREATE TABLE `preferences` (
             `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-            `uid` int(11) NOT NULL UNIQUE AUTO_INCREMENT,
             `notifs` int(11) NOT NULL,
             `gender` varchar(64) NOT NULL,
             `age_min` int(11) NOT NULL,

@@ -14,6 +14,12 @@
             if (passwordCheck($db, $_POST['usr'], $_POST['pwd']))
             {
                 $_SESSION['usr'] = getUserInfo($db, $_POST['usr']);
+                $profile = getUserProfile($db, $_SESSION['usr']->id);
+                $prefs = getUserPrefs($db, $_SESSION['usr']->id);
+                if (isset($profile->id))
+                	$_SESSION['profile'] = $profile;
+                if (isset($prefs->id))
+                	$_SESSION['prefs'] = $prefs;
 
 	            if ($_SESSION['usr']->warnings > 2) {
 	               /** Banned account */

@@ -51,6 +51,10 @@
     /** User is logged **/
 
     else {
+
+        if (!isset($_SESSION['profile']))
+            echo $createProfileBtn;
+
         echo $delogBtn;
     }
 

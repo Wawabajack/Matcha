@@ -27,7 +27,7 @@
     function keyCheck($db, $userKey) {
         if (filter_var($userKey, FILTER_SANITIZE_URL) != $userKey)
             return 0;
-         $user = getUserKey($db, $userKey)->uid;
+         $user = getUserKey($db, $userKey)->id;
         $key = getUserInfo($db, $user);
         if (isset($key) && $key == $userKey)
             return $user;
@@ -60,6 +60,6 @@
         return(lenCheck($db, $post));
     }
 
-    /**             TODO: SQL REQ FUNCTIONS                    **/
+    /**             TODO: SQL REQ FUNCTIONS                   **/
 
 ?>
