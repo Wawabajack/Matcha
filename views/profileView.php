@@ -21,3 +21,4 @@
 	$surname = 'Prénom: ' . $_SESSION['usr']->surname . '<br/>';
 	$mail = 'Mail: ' . $_SESSION['usr']->mail . '<br/>';
 	}
+?>
