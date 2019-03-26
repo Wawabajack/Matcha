@@ -30,12 +30,9 @@
 
 	/** User isn't logged **/
 
-	if (!isset($_SESSION['usr']))
-		header('refresh:0;url=/pages/error401.html');
-
-	else {
-			$image = getUserProfile($db, $_SESSION['usr']->id)->img;
-
+	if (isset($_SESSION['usr']))
+	{
+	    $image = getUserProfile($db, $_SESSION['usr']->id)->img;
 		/**  Display frame and profile pic **/
 		echo  $startFrame . $image . $endFrame;
 		echo $username;
@@ -49,5 +46,7 @@
 		    echo '<a href="/pages/usercp.php">Editer mon profil</a>';
         }
 	}
+	else
+		header('refresh:0;url=/pages/error401.html');
 
 	?>
