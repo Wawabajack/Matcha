@@ -7,52 +7,52 @@
     function error($code) {
         switch($code) {
             case 1:
-                echo 'Nom d\'utilisateur inconnu<br/>';
+                echo '<script>var erreur = document.getElementById("notif"); erreur.style.display = "block"; erreur.innerHTML = "nom d\'utilisateur inconnu";</script>'; 
                 break;
             case 2:
-                echo 'Mot de passe incorrect<br/>';
+                echo '<script>var erreur = document.getElementById("notif"); erreur.style.display = "block"; erreur.innerHTML = "Mot de passe incorrect";</script>';
                 break;
             case 3:
-                echo 'Erreur lors du traitement de la requête<br/>';
+                echo '<script>var erreur = document.getElementById("notif"); erreur.style.display = "block"; erreur.innerHTML = "Erreur lors du traitement de la requête";</script>';
                 break;
             case 4:
-                echo 'Nom d\'utilisateur déjà pris<br/>';
+                echo '<script>var erreur = document.getElementById("notif"); erreur.style.display = "block"; erreur.innerHTML = "Nom d\'utilisateur déjà pris";</script>';
                 break;
             case 5:
-                echo 'Nom d\'utilisateur trop court (4 caractères minimum)<br/>';
+                echo '<script>var erreur = document.getElementById("notif"); erreur.style.display = "block"; erreur.innerHTML = "Nom d\'utilisateur trop court (4 caractères minimum)";</script>';
                 break;
             case 6:
-                echo 'Nom trop court<br/>';
+                echo '<script>var erreur = document.getElementById("notif"); erreur.style.display = "block"; erreur.innerHTML = "Nom trop court";</script>';
                 break;
             case 7:
-                echo 'Prénom trop court<br/>';
+                echo '<script>var erreur = document.getElementById("notif"); erreur.style.display = "block"; erreur.innerHTML = "Prénom trop court";</script>';
                 break;
             case 8:
-                echo 'Mot de passe non sécurisé (1 majuscule, 1 chiffre, 1 caractère spécial et 8 lettres minimum)<br/>';
-                break;
-            case 9: 
-                echo 'Nom d\'utilisateur invalide<br/>';
+                echo '<script>var erreur = document.getElementById("notif"); erreur.style.display = "block"; erreur.innerHTML = "Mot de passe non sécurisé (1 majuscule, 1 chiffre, 1 caractère spécial et 8 lettres minimum)";</script>';               
+                 break;
+            case 9:
+                echo '<script>var erreur = document.getElementById("notif"); erreur.style.display = "block"; erreur.innerHTML = "Nom d\'utilisateur invalide";</script>';   
                 break;
             case 10:
-                echo 'Compte inactif, merci de vérifier vos mails<br/>';
+                echo '<script>var erreur = document.getElementById("notif"); erreur.style.display = "block"; erreur.innerHTML = "Compte inactif, merci de vérifier vos mails";</script>';
                 break;
             case 11:
-                echo 'Adresse mail déjà utilisée<br/>';
+                echo '<script>var erreur = document.getElementById("notif"); erreur.style.display = "block"; erreur.innerHTML = "Adresse mail déjà utilisée";</script>';
                 break;
             case 12:
-                echo 'Le compte est banni<br/>';
+                echo '<script>var erreur = document.getElementById("notif"); erreur.style.display = "block"; erreur.innerHTML = "Le compte est banni";</script>';
                 break;
             case 400:
-                echo 'Bad Request<br/>';
+                echo '<script>var erreur = document.getElementById("notif"); erreur.style.display = "block"; erreur.innerHTML = "Bad Request<br/>";</script>';
                 break;
             case 401:
-                echo 'Unauthorized<br/>';
+                echo '<script>var erreur = document.getElementById("notif"); erreur.style.display = "block"; erreur.innerHTML = "Unauthorized";</script>';    
                 break;
             case 403:
-                echo 'Forbidden<br/>';
+                echo '<script>var erreur = document.getElementById("notif"); erreur.style.display = "block"; erreur.innerHTML = "Forbidden";</script>';
                 break;
             case 404:
-                echo 'Not Found<br/>';
+                echo '<script>var erreur = document.getElementById("notif"); erreur.style.display = "block"; erreur.innerHTML = "Not Found<br";</script>';
                 break;
 
 
