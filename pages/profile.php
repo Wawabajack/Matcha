@@ -45,7 +45,7 @@
 
 		else {
 		    /** Display user profile **/
-		    echo $gender . $age . $location;
+		    echo $name. $surname . $mail . $gender . $age . $location . $popScore;
 		    echo '<a href="/pages/usercp.php">Editer mon profil</a>';
         }
 	}
