@@ -45,10 +45,8 @@
 
 		else {
 		    /** Display user profile **/
-		    echo 'Genre: ' . $_SESSION['profile']->gender . '<br/>';
-			$birthDate = explode("-", $_SESSION['profile']->birthdate);
-			$age = (date("md", date("U", mktime(0, 0, 0, $birthDate[2], $birthDate[1], $birthDate[0]))) > date("md") ? ((date("Y")-$birthDate[0])-1):(date("Y")-$birthDate[0]));
-            echo 'Age: '. $age . '<br/>';
+		    echo $gender;
+		    echo $age;
 		    echo '<a href="/pages/usercp.php">Editer mon profil</a>';
         }
 	}
