@@ -52,7 +52,7 @@
 
     else {
 
-        if (!isset($_SESSION['profile']))
+        if (!isset($_SESSION['profile']->id))
             echo $createProfileBtn;
 
         echo $delogBtn;

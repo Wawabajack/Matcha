@@ -1,6 +1,7 @@
 <?php
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/views/profileView.php');
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/models/queryfuncs.php');
+	require_once($_SERVER["DOCUMENT_ROOT"] . '/models/miscfuncs.php');
 	if (!isset($_SESSION))
 		session_start();
 ?>
@@ -33,9 +34,23 @@
 		header('refresh:0;url=/pages/error401.html');
 
 	else {
+			$image = getUserProfile($db, $_SESSION['usr']->id)->img;
 
-		$image = getProfilePic($db, $_SESSION['usr']->id);
-		echo '<center><div id="frame"><img id="img" src="' . $image . '"></div></center>';
+		/**  Display frame and profile pic **/
+		echo  $startFrame . $image . $endFrame;
+		echo $username;
+
+		if (!isThere($db, 'uid', 'profiles', $_SESSION['usr']->id))
+		    echo '<a href="/pages/usercp.php">Créer mon profil</a>';
+
+		else {
+		    /** Display user profile **/
+		    echo 'Genre: ' . $_SESSION['profile']->gender . '<br/>';
+			$birthDate = explode("-", $_SESSION['profile']->birthdate);
+			$age = (date("md", date("U", mktime(0, 0, 0, $birthDate[2], $birthDate[1], $birthDate[0]))) > date("md") ? ((date("Y")-$birthDate[0])-1):(date("Y")-$birthDate[0]));
+            echo 'Age: '. $age . '<br/>';
+		    echo '<a href="/pages/usercp.php">Editer mon profil</a>';
+        }
 	}
 
 	?>
