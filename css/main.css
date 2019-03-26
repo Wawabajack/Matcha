@@ -23,7 +23,20 @@ body{
     background-color: rgba(0,0,0,0.5) !important;
 }
 
+.card2{
+    height: 420px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    font-family: 'Numans';
+    background-color: rgba(0,0,0,0.5) !important;
+}
+
 .card-header h3{
+    color: white;
+}
+
+.card2-header h3{
     color: white;
 }
 
@@ -80,4 +93,19 @@ input:focus{
 
 p {
     color: white;
+}
+
+#notif {
+    background-color : rgb(163, 112, 189);
+    display : none;
+    /*position: absolute;*/
+    z-index: 210;
+    left: 0;
+    right: 0;
+    height: 40;
+    color: #182988;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1.25rem;
+    padding-top: 5px;
 }
