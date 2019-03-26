@@ -34,7 +34,7 @@
 
 	else {
 
-		$image = getProfilePic($db, $_SESSION['usr']->id);
+		$image = getProfilePic($db, $_SESSION['usr']->uid);
 		echo '<center><div id="frame"><img src="' . $image . '"></div></center>';
 	}
 
