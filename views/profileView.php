@@ -2,6 +2,7 @@
 	if (!isset($_SESSION))
 		session_start();
 
+	if (isset($_SESSION['usr'])) {
 	/** Picture & Frame **/
 
 	$startFrame = '<center><div id="frame"><img id="img" src="';
@@ -19,3 +20,4 @@
 	$name = 'Nom: ' . $_SESSION['usr']->name . '<br/>';
 	$surname = 'Prénom: ' . $_SESSION['usr']->surname . '<br/>';
 	$mail = 'Mail: ' . $_SESSION['usr']->mail . '<br/>';
+	}
