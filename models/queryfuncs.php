@@ -66,7 +66,7 @@
 	}
 
 	function getProfilePic($db, $uid) {
-		$sql = "SELECT `img` FROM `profiles` WHERE `id` = :uid";
+		$sql = "SELECT `img` FROM `profiles` WHERE `uid` = :uid";
 		$res = $db->prepare($sql);
 		$res->bindParam(':uid', $uid);
 		$res->execute();
