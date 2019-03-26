@@ -1,6 +1,7 @@
 <?php
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/views/profileView.php');
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/models/queryfuncs.php');
+	require_once($_SERVER["DOCUMENT_ROOT"] . '/models/miscfuncs.php');
 	if (!isset($_SESSION))
 		session_start();
 ?>
@@ -33,9 +34,20 @@
 		header('refresh:0;url=/pages/error401.html');
 
 	else {
+			$image = getUserProfile($db, $_SESSION['usr']->id)->img;
 
-		$image = getProfilePic($db, $_SESSION['usr']->id);
-		echo '<center><div id="frame"><img id="img" src="' . $image . '"></div></center>';
+		/**  Display frame and profile pic **/
+		echo  $startFrame . $image . $endFrame;
+		echo $username;
+
+		if (!isThere($db, 'uid', 'profiles', $_SESSION['usr']->id))
+		    echo '<a href="/pages/usercp.php">Créer mon profil</a>';
+
+		else {
+		    /** Display user profile **/
+		    echo $name. $surname . $mail . $gender . $age . $location . $popScore;
+		    echo '<a href="/pages/usercp.php">Editer mon profil</a>';
+        }
 	}
 
 	?>

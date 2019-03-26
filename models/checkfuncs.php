@@ -5,9 +5,9 @@
 
     function lenCheck($db, $post) {
         $err = 0;
-        if (isThere($db, 'username', $post['username']))
+        if (isThere($db, 'username', 'users',$post['username']))
             $err = 4;
-        if (isThere($db, 'mail', $post['mail']))
+        if (isThere($db, 'mail', 'users', $post['mail']))
             $err = 11;
         if (strlen($post['username']) < 4)
             $err = 5;

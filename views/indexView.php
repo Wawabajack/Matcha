@@ -47,3 +47,5 @@
 
     $createProfileBtn = '<form method="post" action="/pages/profile.php">
         <input type="submit" value="Créer mon profil"></form>';
+	$profileBtn = '<form method="post" action="/pages/profile.php">
+        <input type="submit" value="Profil"></form>';

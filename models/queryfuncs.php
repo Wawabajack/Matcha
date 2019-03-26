@@ -1,8 +1,8 @@
 <?php
     require_once($_SERVER["DOCUMENT_ROOT"] .'/config/db_connect.php');
 
-    function isThere($db, $field, $value) {
-        $sql = "SELECT " . $field . " from `users` WHERE " . $field . " = :val";
+    function isThere($db, $field, $table, $value) {
+        $sql = "SELECT " . $field . " from ". $table ." WHERE " . $field . " = :val";
         $res = $db->prepare($sql);
         $res->bindParam(':val', $value);
         $res->execute();
@@ -65,12 +65,4 @@
 		return $user;
 	}
 
-	function getProfilePic($db, $uid) {
-		$sql = "SELECT `img` FROM `profiles` WHERE `uid` = :uid";
-		$res = $db->prepare($sql);
-		$res->bindParam(':uid', $uid);
-		$res->execute();
-		$pic = $res->fetch(PDO::FETCH_OBJ);
-		return $pic->img;
-	}
 ?>
