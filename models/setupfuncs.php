@@ -29,6 +29,8 @@
 		$sql = "DROP TABLE IF EXISTS `profiles`;
         CREATE TABLE `profiles` (
         `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        `uid` int(11) NOT NULL UNIQUE,
+        `img` varchar(64) NOT NULL,
         `gender` varchar(64) NOT NULL,
         `birthdate` date NOT NULL,
         `popularity` int(11) NOT NULL,
@@ -52,6 +54,7 @@
 		$sql = "DROP TABLE IF EXISTS `preferences`;
             CREATE TABLE `preferences` (
             `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+            `uid` int(11) NOT NULL UNIQUE,
             `notifs` int(11) NOT NULL,
             `gender` varchar(64) NOT NULL,
             `age_min` int(11) NOT NULL,

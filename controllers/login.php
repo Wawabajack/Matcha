@@ -36,9 +36,10 @@
                     unset($_SESSION['usr']);
                     header('refresh:0;url=/index.php');
                 }
-                else
-                	/** User is now logged in **/
-                	header('refresh:0;url=/index.php');
+                else {
+	                /** User is now logged in **/
+	                header('refresh:0;url=/index.php');
+                }
             }
             else {
             	    /** Invalid password **/

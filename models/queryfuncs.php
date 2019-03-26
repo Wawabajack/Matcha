@@ -64,4 +64,13 @@
 		$user = $res->fetch(PDO::FETCH_OBJ);
 		return $user;
 	}
+
+	function getProfilePic($db, $uid) {
+		$sql = "SELECT `img` FROM `profiles` WHERE `id` = :uid";
+		$res = $db->prepare($sql);
+		$res->bindParam(':uid', $uid);
+		$res->execute();
+		$pic = $res->fetch(PDO::FETCH_OBJ);
+		return $pic->img;
+	}
 ?>
