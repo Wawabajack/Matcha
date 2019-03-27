@@ -24,9 +24,7 @@
             // Sending confirmation mail
             mail($_POST['mail'], 'MatchaWeeb - Inscription', $mailContent, $head);
             unset($_SESSION['register']);
-            var_dump($mailContent);
-            var_dump($mailKey);
-            header('refresh:20;url=../index.php');
+            header('refresh:0;url=../index.php');
         }
     }
     else
