@@ -189,3 +189,155 @@ $profileV = '<div class="container emp-profile">
                 </div>
             </form>           
         </div>';
+
+$editprofileV = '<div class="container emp-profile">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img src="' . $image . '" alt=""/>
+                            <div class="file btn btn-lg btn-primary">
+                                Change Photo
+                                <input type="file" name="file"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5 contenteditable="true">' .
+                                        $username . '
+                                    </h5>
+                                    <h6 contenteditable="true">' .
+                                        $surname . '
+                                    </h6>
+                                    <p class="proile-rating">POPULARITY : <span>' . $popScore . '</span></p>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Favorite</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <a class="profile-edit-btn" href="../pages/profile.php">Finish</a><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                            <p>Photos</p>
+                            <a href="../index.php">Accueil</a><br/>
+                            <a href="">link2</a><br/>
+                            <a href="">link3</a>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Name</label>
+                                            </div>
+                                            <div class="col-md-6" contenteditable="true">
+                                                <p> ' . $name . '</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Genre</label>
+                                            </div>
+                                            <div class="col-md-6" contenteditable="true">
+                                                <p> ' . $gender . '</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6" contenteditable="true">
+                                                <p> ' . $mail .'</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Age</label>
+                                            </div>
+                                            <div class="col-md-6" contenteditable="true">
+                                                <p>' . $age . '</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Location</label>
+                                            </div>
+                                            <div class="col-md-6" contenteditable="true">
+                                                <p>' . $location . '</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>looking for</label>
+                                            </div>
+                                            <div class="col-md-6" contenteditable="true">
+                                                <p>' . $lfgender . '</p>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Games</label>
+                                            </div>
+                                            <div class="col-md-6" contenteditable="true">
+                                                <p>AOE</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Music</label>
+                                            </div>
+                                            <div class="col-md-6" contenteditable="true">
+                                                <p>Cool</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Animes</label>
+                                            </div>
+                                            <div class="col-md-6" contenteditable="true"> 
+                                                <p>ok</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Mangas</label>
+                                            </div>
+                                            <div class="col-md-6" contenteditable="true">
+                                                <p>plein</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Films</label>
+                                            </div>
+                                            <div class="col-md-6" contenteditable="true">
+                                                <p>padidée</p>
+                                            </div>
+                                        </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Your Bio</label><br/>
+                                        <div contenteditable="true" >
+                                            <p>Wéwéwé j ai fiait des trucs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>           
+        </div>';
