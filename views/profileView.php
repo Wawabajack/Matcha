@@ -56,14 +56,14 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" href="/pages/usercp.php">
+                        <a class="profile-edit-btn" href="../usercp.php">Edit profil</a><br/>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-work">
                             <p>Photos</p>
-                            <a href="">link</a><br/>
+                            <a href="../index.php">Accueil</a><br/>
                             <a href="">link2</a><br/>
                             <a href="">link3</a>
                         </div>
@@ -123,7 +123,7 @@
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Game</label>
+                                                <label>Games</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>AOE</p>
@@ -131,15 +131,15 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Musique</label>
+                                                <label>Music</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Cool/p>
+                                                <p>Cool</p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Anime</label>
+                                                <label>Animes</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>ok</p>
@@ -147,7 +147,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Manga</label>
+                                                <label>Mangas</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>plein</p>
@@ -155,7 +155,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Film</label>
+                                                <label>Films</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>padidée</p>
