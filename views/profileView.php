@@ -190,8 +190,11 @@ $profileV = '<div class="container emp-profile">
             </form>           
         </div>';
 
+
+			// USERCP
+
 $editprofileV = '<div class="container emp-profile">
-            <form method="post">
+            <form method="post" action="../controllers/useredit.php">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
@@ -222,8 +225,8 @@ $editprofileV = '<div class="container emp-profile">
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <a class="profile-edit-btn" href="../pages/profile.php">Finish</a><br/>
-                    </div>
+                        <input type="submit" class="profile-edit-btn">Finish</input><br/>
+                    </div>	
                 </div>
                 <div class="row">
                     <div class="col-md-4">
@@ -242,7 +245,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Name</label>
                                             </div>
                                             <div class="col-md-6" contenteditable="true">
-                                                <p> ' . $name . '</p>
+                                                <textarea name="name"> ' . substr_replace($name, "", -5) . '</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -250,7 +253,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Genre</label>
                                             </div>
                                             <div class="col-md-6" contenteditable="true">
-                                                <p> ' . $gender . '</p>
+                                                <textarea name="gender" > ' . substr_replace($gender, "", -5) . '</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -258,7 +261,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6" contenteditable="true">
-                                                <p> ' . $mail .'</p>
+                                                <textarea name="mail"> ' . substr_replace($mail, "", -5) .'</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -266,7 +269,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Age</label>
                                             </div>
                                             <div class="col-md-6" contenteditable="true">
-                                                <p>' . $age . '</p>
+                                                <textarea name="age">' . substr_replace($age, "", -5) . '</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -274,7 +277,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Location</label>
                                             </div>
                                             <div class="col-md-6" contenteditable="true">
-                                                <p>' . $location . '</p>
+                                                <textarea name="location">' . substr_replace($location, "", -5) . '</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -282,7 +285,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>looking for</label>
                                             </div>
                                             <div class="col-md-6" contenteditable="true">
-                                                <p>' . $lfgender . '</p>
+                                                <textarea name="lf">' . substr_replace($lfgender, "", -5) . '</textarea>
                                             </div>
                                         </div>
                             </div>

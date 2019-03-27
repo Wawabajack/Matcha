@@ -11,5 +11,3 @@
 	}
 	else
 		header('refresh:0;url=../pages/error400.html');
-
-
