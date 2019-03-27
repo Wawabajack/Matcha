@@ -1,5 +1,4 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . '/pages/profile.php');
 	if (!isset($_SESSION))
 		session_start();
 
@@ -23,13 +22,21 @@
 	$surname = '' . $_SESSION['usr']->surname . '<br/>';
     $mail = '' . $_SESSION['usr']->mail . '<br/>';
 	}
+
+	function checkEcho($txt)
+    {
+        if (isset($_SESSION['profile']->id))
+            echo $txt;
+        else
+            echo "";
+    }
 ?>
 <div class="container emp-profile">
             <form method="post">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
-                            <img src="<?php  echo($_SESSION['profile']->img); ?>" alt=""/>
+                            <img src="<?php  checkEcho($_SESSION['profile']->img); ?>" alt=""/>
                             <div class="file btn btn-lg btn-primary">
                                 Change Photo
                                 <input type="file" name="file"/>
@@ -44,7 +51,7 @@
                                     <h6>
                                         <?php echo($surname); ?>   
                                     </h6>
-                                    <p class="proile-rating">POPULARITY : <span><?php echo($popScore); ?></span></p>
+                                    <p class="proile-rating">POPULARITY : <span><?php checkEcho($popScore); ?></span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
@@ -84,7 +91,7 @@
                                                 <label>Genre</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p> <?php echo($gender); ?></p>
+                                                <p> <?php checkEcho($gender); ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -108,7 +115,7 @@
                                                 <label>Location</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo($location); ?></p>
+                                                <p><?php checkEcho($location); ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -134,7 +141,7 @@
                                                 <label>Musique</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Cool/p>
+                                                <p>Cool</p>
                                             </div>
                                         </div>
                                         <div class="row">
