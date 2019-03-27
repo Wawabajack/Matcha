@@ -16,8 +16,6 @@
         $surname = '' . $_SESSION['usr']->surname . '<br/>';
         $mail = '' . $_SESSION['usr']->mail . '<br/>';
 	}
-	else
-	    $username = $name = $surname = $mail = "";
 
 	/** Profile infos **/
 
@@ -29,24 +27,25 @@
 	    $age = ''. $diff . ' ans' . '<br/>';
 	    $location = $_SESSION['profile']->city . ', ' . $_SESSION['profile']->region . ', ' . $_SESSION['profile']->country . '<br/>';
 	    $popScore = '' . $_SESSION['profile']->popularity . '<br/>';
+	    $image = $_SESSION['profile']->img;
     }
-    else
-        $gender = $birthDate = $age = $location = $popScore = "";
+    else {
+	    $gender = $birthDate = $age = $location = $image = $popScore = "";
+        $image = "/img/401.png";
+    }
 
-	if (isset($_SESSION['preferences'])) {
-	    $lfgender = $_SESSION['preferences']->gender;
+	if (isset($_SESSION['prefs'])) {
+	    $lfgender = $_SESSION['prefs']->gender;
     }
 	else
 	    $lfgender = "";
 
-?>
-
-<div class="container emp-profile">
+$profileV = '<div class="container emp-profile">
             <form method="post">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
-                            <img src="<?php  echo($_SESSION['profile']->img); ?>" alt=""/>
+                            <img src="' . $image . '" alt=""/>
                             <div class="file btn btn-lg btn-primary">
                                 Change Photo
                                 <input type="file" name="file"/>
@@ -55,13 +54,13 @@
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
-                                    <h5>
-                                       <?php echo($username); ?>
+                                    <h5>' .
+                                       $username . '
                                     </h5>
-                                    <h6>
-                                        <?php echo($surname); ?>   
+                                    <h6>' .
+                                        $surname . '
                                     </h6>
-                                    <p class="proile-rating">POPULARITY : <span><?php echo($popScore); ?></span></p>
+                                    <p class="proile-rating">POPULARITY : <span>' . $popScore . '</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
@@ -73,7 +72,7 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <a class="profile-edit-btn" href="../usercp.php">Edit profil</a><br/>
+                        <a class="profile-edit-btn" href="../pages/usercp.php">Edit profil</a><br/>
                     </div>
                 </div>
                 <div class="row">
@@ -93,7 +92,7 @@
                                                 <label>Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p> <?php echo($name); ?></p>
+                                                <p> ' . $name . '</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -101,7 +100,7 @@
                                                 <label>Genre</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p> <?php echo($gender); ?></p>
+                                                <p> ' . $gender . '</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -109,7 +108,7 @@
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p> <?php echo($mail); ?></p>
+                                                <p> ' . $mail .'</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -117,7 +116,7 @@
                                                 <label>Age</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p> <?php echo($age); ?></p>
+                                                <p>' . $age . '</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -125,7 +124,7 @@
                                                 <label>Location</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo($location); ?></p>
+                                                <p>' . $location . '</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -133,7 +132,7 @@
                                                 <label>looking for</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo($lfgender) ?></p>
+                                                <p>' . $lfgender . '</p>
                                             </div>
                                         </div>
                             </div>
@@ -189,4 +188,4 @@
                     </div>
                 </div>
             </form>           
-        </div>
+        </div>';

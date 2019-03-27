@@ -32,20 +32,7 @@
 	/** User isn't logged **/
 
 	if (isset($_SESSION['usr']))
-	{
-		/**  Display frame and profile pic **/
-		/** echo  $startFrame . $_SESSION['profile']->img . $endFrame; **/
-		/** echo $username; **/
-
-		if (!isThere($db, 'uid', 'profiles', $_SESSION['usr']->id))
-		    echo '<a href="/pages/usercp.php">Créer mon profil</a>';
-
-		else {
-		    /** Display user profile **/
-		    /** echo $name. $surname . $mail . $gender . $age . $location . $popScore; **/
-		    /** echo '<a href="/pages/usercp.php">Editer mon profil</a>'; **/
-        }
-	}
+		echo $profileV;
 	else
 		header('refresh:0;url=/pages/error401.html');
 

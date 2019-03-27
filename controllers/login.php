@@ -54,7 +54,7 @@
         }
     }
     else
-	    header('refresh:0;url=../pages/error401.html', TRUE, 401);
+	    header('refresh:0;url=../pages/error401.html');
 
 
 
