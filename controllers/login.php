@@ -13,7 +13,7 @@
 
             if (passwordCheck($db, $_POST['usr'], $_POST['pwd']))
             {
-                $_SESSION['usr'] = getUserInfo($db, $_POST['usr']);
+                $_SESSION['usr'] = loadUserInfo($db, $_POST['usr']);
                 $profile = getUserProfile($db, $_SESSION['usr']->id);
                 $prefs = getUserPrefs($db, $_SESSION['usr']->id);
                 if (isset($profile->id))

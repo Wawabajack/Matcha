@@ -27,10 +27,10 @@
     function keyCheck($db, $userKey) {
         if (filter_var($userKey, FILTER_SANITIZE_URL) != $userKey)
             return 0;
-         $user = getUserKey($db, $userKey)->id;
-        $key = getUserInfo($db, $user);
+        $user = getUserKey($db, $userKey)->id;
+        $key = getUserInfo($db, $user)->mail_key;
         if (isset($key) && $key == $userKey)
-            return $user;
+            return 1;
         return 0;
     }
 
@@ -41,7 +41,7 @@
     }
 
     function passwordCheck($db, $usr, $pwd) {
-        $hashedPass = getUserInfo($db, $usr)->password;
+        $hashedPass = loadUserInfo($db, $usr)->password;
         if (!password_verify($pwd, $hashedPass))
             return 0;
         return 1;

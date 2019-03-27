@@ -10,17 +10,26 @@
         return $user;
     }
 
-    function getUserInfo($db, $username) {
-        $sql = "SELECT * from `users` WHERE `username` = :usr";
+    function getUserInfo($db, $uid) {
+        $sql = "SELECT * from `users` WHERE `id` = :uid";
         $res = $db->prepare($sql);
-        $res->bindParam(':usr', $username);
+        $res->bindParam(':uid', $uid);
         $res->execute();
         $user = $res->fetch(PDO::FETCH_OBJ);
         return $user;
     }
 
+	function loadUserInfo($db, $usr) {
+		$sql = "SELECT * from `users` WHERE `username` = :usr";
+		$res = $db->prepare($sql);
+		$res->bindParam(':usr', $usr);
+		$res->execute();
+		$user = $res->fetch(PDO::FETCH_OBJ);
+		return $user;
+	}
+
 	function getUserKey($db, $key) {
-		$sql = "SELECT `username` from `users` WHERE `mail_key` = :mkey";
+		$sql = "SELECT `id` from `users` WHERE `mail_key` = :mkey";
 		$res = $db->prepare($sql);
 		$res->bindParam(':mkey', $key);
 		$res->execute();
@@ -42,7 +51,7 @@
     }
 
     function activateUser($db, $uid) {
-    	$sql = "UPDATE `users` SET inactive = 0 WHERE `uid` = :uid";
+    	$sql = "UPDATE `users` SET inactive = 0 WHERE `id` = :uid";
     	$res = $db->prepare($sql);
     	$res->bindParam(':uid', $uid);
     	$res->execute();
