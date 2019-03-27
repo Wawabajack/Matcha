@@ -278,10 +278,10 @@ $editprofileV = '<div class="container emp-profile">
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6" contenteditable="true">
+                                            <div class="col-md-6">
                                                 <label>looking for</label>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-6" contenteditable="true">
                                                 <p>' . $lfgender . '</p>
                                             </div>
                                         </div>
