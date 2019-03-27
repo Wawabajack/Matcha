@@ -225,7 +225,7 @@ $editprofileV = '<div class="container emp-profile">
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn">Finish</input><br/>
+                        <input type="submit" class="profile-edit-btn" value="Finish"></input><br/>
                     </div>	
                 </div>
                 <div class="row">
