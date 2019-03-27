@@ -207,12 +207,12 @@ $editprofileV = '<div class="container emp-profile">
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
-                                    <h5 contenteditable="true">' .
-                                        $username . '
-                                    </h5>
-                                    <h6 contenteditable="true">' .
-                                        $surname . '
-                                    </h6>
+                                    <textarea name="username" contenteditable="true">' .
+										substr_replace($username, "", -14) . '
+                                    </textarea>
+                                    <textarea name="surname" contenteditable="true">' .
+										substr_replace($surname, "", -5) . '
+                                    </textarea>
                                     <p class="proile-rating">POPULARITY : <span>' . $popScore . '</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
