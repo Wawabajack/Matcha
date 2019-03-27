@@ -33,18 +33,17 @@
 
 	if (isset($_SESSION['usr']))
 	{
-	    $image = getUserProfile($db, $_SESSION['usr']->id)->img;
 		/**  Display frame and profile pic **/
-		echo  $startFrame . $image . $endFrame;
-		echo $username;
+		/** echo  $startFrame . $_SESSION['profile']->img . $endFrame; **/
+		/** echo $username; **/
 
 		if (!isThere($db, 'uid', 'profiles', $_SESSION['usr']->id))
 		    echo '<a href="/pages/usercp.php">Créer mon profil</a>';
 
 		else {
 		    /** Display user profile **/
-		    echo $name. $surname . $mail . $gender . $age . $location . $popScore;
-		    echo '<a href="/pages/usercp.php">Editer mon profil</a>';
+		    /** echo $name. $surname . $mail . $gender . $age . $location . $popScore; **/
+		    /** echo '<a href="/pages/usercp.php">Editer mon profil</a>'; **/
         }
 	}
 	else
