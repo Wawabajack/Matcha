@@ -1,42 +1,52 @@
 <?php
 	if (!isset($_SESSION))
 		session_start();
-
-	if (isset($_SESSION['usr'])) {
-
-        /** Picture & Frame **/
+	require_once($_SERVER["DOCUMENT_ROOT"] . '/config/db_connect.php');
+	/** Picture & Frame **/
 
 	$startFrame = '<center><div id="frame"><img id="img" src="';
 	$endFrame = '"></div></center><br/>';
 
 	/** User infos **/
 
-	$username = '' . ucfirst($_SESSION['usr']->username) . '</center><br/>';
-	$gender = '' . $_SESSION['profile']->gender . '<br/>';
-	$birthDate = explode("-", $_SESSION['profile']->birthdate);
-	$diff = (date("md", date("U", mktime(0, 0, 0, $birthDate[2], $birthDate[1], $birthDate[0]))) > date("md") ? ((date("Y")-$birthDate[0])-1):(date("Y")-$birthDate[0]));
-	$age = ''. $diff . ' ans' . '<br/>';
-	$location = $_SESSION['profile']->city . ', ' . $_SESSION['profile']->region . ', ' . $_SESSION['profile']->country . '<br/>';
-	$popScore = '' . $_SESSION['profile']->popularity . '<br/>';
-	$name = '' . $_SESSION['usr']->name . '<br/>';
-	$surname = '' . $_SESSION['usr']->surname . '<br/>';
-    $mail = '' . $_SESSION['usr']->mail . '<br/>';
-	}
+	if (isset($_SESSION['usr'])) {
 
-	function checkEcho($txt)
-    {
-        if (isset($_SESSION['profile']->id))
-            echo $txt;
-        else
-            echo "";
+        $username = '' . ucfirst($_SESSION['usr']->username) . '</center><br/>';
+        $name = '' . $_SESSION['usr']->name . '<br/>';
+        $surname = '' . $_SESSION['usr']->surname . '<br/>';
+        $mail = '' . $_SESSION['usr']->mail . '<br/>';
+	}
+	else
+	    $username = $name = $surname = $mail = "";
+
+	/** Profile infos **/
+
+	if (isset($_SESSION['profile'])) {
+
+	    $gender = '' . $_SESSION['profile']->gender . '<br/>';
+	    $birthDate = explode("-", $_SESSION['profile']->birthdate);
+	    $diff = (date("md", date("U", mktime(0, 0, 0, $birthDate[2], $birthDate[1], $birthDate[0]))) > date("md") ? ((date("Y")-$birthDate[0])-1):(date("Y")-$birthDate[0]));
+	    $age = ''. $diff . ' ans' . '<br/>';
+	    $location = $_SESSION['profile']->city . ', ' . $_SESSION['profile']->region . ', ' . $_SESSION['profile']->country . '<br/>';
+	    $popScore = '' . $_SESSION['profile']->popularity . '<br/>';
     }
+    else
+        $gender = $birthDate = $age = $location = $popScore = "";
+
+	if (isset($_SESSION['preferences'])) {
+	    $lfgender = $_SESSION['preferences']->gender;
+    }
+	else
+	    $lfgender = "";
+
 ?>
+
 <div class="container emp-profile">
             <form method="post">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
-                            <img src="<?php  checkEcho($_SESSION['profile']->img); ?>" alt=""/>
+                            <img src="<?php  echo($_SESSION['profile']->img); ?>" alt=""/>
                             <div class="file btn btn-lg btn-primary">
                                 Change Photo
                                 <input type="file" name="file"/>
@@ -51,7 +61,7 @@
                                     <h6>
                                         <?php echo($surname); ?>   
                                     </h6>
-                                    <p class="proile-rating">POPULARITY : <span><?php checkEcho($popScore); ?></span></p>
+                                    <p class="proile-rating">POPULARITY : <span><?php echo($popScore); ?></span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
@@ -91,7 +101,7 @@
                                                 <label>Genre</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p> <?php checkEcho($gender); ?></p>
+                                                <p> <?php echo($gender); ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -115,7 +125,7 @@
                                                 <label>Location</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php checkEcho($location); ?></p>
+                                                <p><?php echo($location); ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -123,7 +133,7 @@
                                                 <label>looking for</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Weeeeeb</p>
+                                                <p><?php echo($lfgender) ?></p>
                                             </div>
                                         </div>
                             </div>
