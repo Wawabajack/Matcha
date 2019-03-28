@@ -207,10 +207,10 @@ $editprofileV = '<div class="container emp-profile">
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
-                                    <textarea style="border: none" name="username" contenteditable="true">' .
+                                    <textarea style="border: none" name="username">' .
 										substr_replace($username, "", -14) . '
                                     </textarea>
-                                    <textarea style="border: none"0 name="surname" contenteditable="true">' .
+                                    <textarea style="border: none"0 name="surname">' .
 										substr_replace($surname, "", -5) . '
                                     </textarea>
                                     <p class="proile-rating">POPULARITY : <span>' . $popScore . '</span></p>
@@ -244,7 +244,7 @@ $editprofileV = '<div class="container emp-profile">
                                             <div class="col-md-6">
                                                 <label>Name</label>
                                             </div>
-                                            <div class="col-md-6" contenteditable="true">
+                                            <div class="col-md-6">
                                                 <textarea style="border: none" name="name"> ' . substr_replace($name, "", -5) . '</textarea>
                                             </div>
                                         </div>
@@ -252,7 +252,7 @@ $editprofileV = '<div class="container emp-profile">
                                             <div class="col-md-6">
                                                 <label>Genre</label>
                                             </div>
-                                            <div class="col-md-6" contenteditable="true">
+                                            <div class="col-md-6">
                                                 <textarea style="border: none" name="gender" > ' . substr_replace($gender, "", -5) . '</textarea>
                                             </div>
                                         </div>
@@ -260,7 +260,7 @@ $editprofileV = '<div class="container emp-profile">
                                             <div class="col-md-6">
                                                 <label>Email</label>
                                             </div>
-                                            <div class="col-md-6" contenteditable="true">
+                                            <div class="col-md-6">
                                                 <textarea  style="border: none" name="mail"> ' . substr_replace($mail, "", -5) .'</textarea>
                                             </div>
                                         </div>
@@ -268,7 +268,7 @@ $editprofileV = '<div class="container emp-profile">
                                             <div class="col-md-6">
                                                 <label>Age</label>
                                             </div>
-                                            <div class="col-md-6" contenteditable="true">
+                                            <div class="col-md-6">
                                                 <textarea style="border: none" name="birth">' . substr_replace($age, "", -5) . '</textarea>
                                             </div>
                                         </div>
@@ -276,7 +276,7 @@ $editprofileV = '<div class="container emp-profile">
                                             <div class="col-md-6">
                                                 <label>Location</label>
                                             </div>
-                                            <div class="col-md-6" contenteditable="true">
+                                            <div class="col-md-6">
                                                 <textarea style="border: none" name="location">' . substr_replace($location, "", -5) . '</textarea>
                                             </div>
                                         </div>
@@ -284,7 +284,7 @@ $editprofileV = '<div class="container emp-profile">
                                             <div class="col-md-6">
                                                 <label>looking for</label>
                                             </div>
-                                            <div class="col-md-6" contenteditable="true">
+                                            <div class="col-md-6">
                                                 <textarea style="border: none" name="lf">' . substr_replace($lfgender, "", -5) . '</textarea>
                                             </div>
                                         </div>
@@ -294,7 +294,7 @@ $editprofileV = '<div class="container emp-profile">
                                             <div class="col-md-6">
                                                 <label>Games</label>
                                             </div>
-                                            <div class="col-md-6" contenteditable="true">
+                                            <div class="col-md-6">
                                                 <p>AOE</p>
                                             </div>
                                         </div>
@@ -302,7 +302,7 @@ $editprofileV = '<div class="container emp-profile">
                                             <div class="col-md-6">
                                                 <label>Music</label>
                                             </div>
-                                            <div class="col-md-6" contenteditable="true">
+                                            <div class="col-md-6">
                                                 <p>Cool</p>
                                             </div>
                                         </div>
@@ -310,7 +310,7 @@ $editprofileV = '<div class="container emp-profile">
                                             <div class="col-md-6">
                                                 <label>Animes</label>
                                             </div>
-                                            <div class="col-md-6" contenteditable="true"> 
+                                            <div class="col-md-6"> 
                                                 <p>ok</p>
                                             </div>
                                         </div>
@@ -318,7 +318,7 @@ $editprofileV = '<div class="container emp-profile">
                                             <div class="col-md-6">
                                                 <label>Mangas</label>
                                             </div>
-                                            <div class="col-md-6" contenteditable="true">
+                                            <div class="col-md-6">
                                                 <p>plein</p>
                                             </div>
                                         </div>
@@ -326,14 +326,14 @@ $editprofileV = '<div class="container emp-profile">
                                             <div class="col-md-6">
                                                 <label>Films</label>
                                             </div>
-                                            <div class="col-md-6" contenteditable="true">
+                                            <div class="col-md-6">
                                                 <p>padidée</p>
                                             </div>
                                         </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label>Your Bio</label><br/>
-                                        <div contenteditable="true" >
+                                        <div>
                                             <p>Wéwéwé j ai fiait des trucs</p>
                                         </div>
                                     </div>
@@ -354,7 +354,7 @@ $match = '<div class="profile">
                 <div class="info">
                     <div class="title">
                         <h6>
-                            <a href="".$username>'.  $username .'</a>
+                            <a href="".$username>' . $username . '</a>
                         </h6>
                     </div>
                     <div class="desc"> 

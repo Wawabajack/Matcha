@@ -25,16 +25,32 @@
     }
 
     function isValid($field, $val) {
-        if ($field == "")
+        // $_POST[value] empty
+        if ($val == "")
             return 1;
+        // classic str check
+        if ($field == "username" ||$field == "surname" || $field == "name" || $field == "location" && ctype_alpha($field))
+            return 1;
+        // mail check
         else if ($field == "mail" && filter_var($val, FILTER_VALIDATE_EMAIL))
             return 1;
+        // birthdate check
         else if ($field == "birth" && $arr = explode('-', $val)) {
             foreach($arr as &$val)
                 $val = (int)$val;
             if (isset($arr[0]) && isset($arr[1]) && isset($arr[2]) && checkdate($arr[1], $arr[0], $arr[2]))
-                return 0;
-            return 1;
+                return 1;
+        }
+        // gender check
+        else if ($field == "gender") {
+            $c = substr(ucfirst($val), 0, 1);
+            if ($c == "M" || $c == "N" || $c == "F")
+                return 1;
+        }
+        // lf check
+        else if ($field == "lf") {
+            if (!filter_var($val, HTML_SPECIALCHARS) && strlen($val) < 241)
+                return 1;
         }
         return 0;
     }
