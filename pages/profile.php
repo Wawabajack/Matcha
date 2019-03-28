@@ -37,7 +37,8 @@
 /** User isn't logged **/
 
 if (isset($_SESSION['usr'])){
-	echo  $menu;
+	echo $menu;
+	echo $home;
 	echo $delogBtn;
 	echo $profileV;
 }

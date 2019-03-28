@@ -36,12 +36,12 @@
 	/** User isn't logged **/
 
 	if (isset($_SESSION['usr'])){
-		echo  $menu;
+		echo $menu;
+		echo $home;
+		echo $profil;
 		echo $delogBtn;
 		echo $editprofileV;
 	}
 	else
 		header('refresh:0;url=/pages/error401.html');
-
-
 ?>

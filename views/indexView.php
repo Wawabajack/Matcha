@@ -49,4 +49,9 @@
         <input class="btntop" type="submit" value=" Créer mon profil "></form></li>';
 	$profileBtn = '<li><form method="post" action="/pages/profile.php">
         <input class="btntop" type="submit" value=" Profil "></form></li>';
-	$menu = '<div id="nav-a"><ul>';
+    $home = '<li><form method="post" action="/index.php">
+        <input class="btntop" type="submit" value=" Home "></form></li>';
+    $profil = '<li><form method="post" action="/pages/profile.php">
+        <input class="btntop" type="submit" value=" Profile "></form></li>';
+    $menu = '<div id="nav-a"><ul>';
+    

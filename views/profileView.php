@@ -242,7 +242,7 @@ $editprofileV = '<div class="container emp-profile">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Name</label>
+                                                <label>Name (1-11 characters)</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <textarea style="border: none" name="name"> ' . substr_replace($name, "", -5) . '</textarea>
@@ -250,7 +250,7 @@ $editprofileV = '<div class="container emp-profile">
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Genre</label>
+                                                <label>Genre (M / F / N)</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <textarea style="border: none" name="gender" > ' . substr_replace($gender, "", -5) . '</textarea>
@@ -258,7 +258,7 @@ $editprofileV = '<div class="container emp-profile">
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Email</label>
+                                                <label>Email (example@gmail.com) </label>
                                             </div>
                                             <div class="col-md-6">
                                                 <textarea  style="border: none" name="mail"> ' . substr_replace($mail, "", -5) .'</textarea>
@@ -266,7 +266,7 @@ $editprofileV = '<div class="container emp-profile">
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Age</label>
+                                                <label>Birthdate (01/01/1900)</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <textarea style="border: none" name="birth">' . substr_replace($age, "", -5) . '</textarea>
@@ -274,7 +274,7 @@ $editprofileV = '<div class="container emp-profile">
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Location</label>
+                                                <label>City (1-50 characters)</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <textarea style="border: none" name="location">' . substr_replace($location, "", -5) . '</textarea>
