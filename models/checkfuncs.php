@@ -101,6 +101,7 @@
                 $post[$val] = trim($post[$val]);
                 if (!isValid($val, $post[$val]))
                     return 0;
+                echo 'checking $_POST[' . $val . '] : ' . $post[$val] . isValid($val, $post[$val]) . '<br/>';
             }
         }
         return (1);
