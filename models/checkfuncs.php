@@ -94,17 +94,25 @@
         return(lenCheck($db, $post));
     }
 
-    function checkUserEdit($db, $post) {
+    function checkUserEdit($post) {
         $arr = array("username", "surname", "name", "gender", "mail", "birth", "location", "lf");
-        foreach ($arr as $val) {
-            if (isset($post[$val])) {
-                $post[$val] = trim($post[$val]);
-                //if (!isValid($val, $post[$val]))
-                  //  return 0;
-                echo 'checking $_POST[' . $val . '] : ' . $post[$val] . isValid($val, $post[$val]) . '<br/>';
-            }
-        }
+        foreach ($arr as $val)
+            if (isset($post[$val]) && $post[$val] = trim($post[$val]))
+                if (!isValid($val, $post[$val]))
+                    return 0;
+                //echo 'checking $_POST[' . $val . '] : ' . $post[$val] . isValid($val, $post[$val]) . '<br/>';
         return (1);
+    }
+
+    function updateField($key, $val) {
+        if ($key == "username")
+            usrnameUpdate($db, $value); // fonction a coder
+
+    }
+
+    function profileUpdate($db, $elems) {
+        foreach($elems as $key => $val)
+            updateField($key, $val);
     }
 
     /**             TODO: SQL REQ FUNCTIONS                   **/

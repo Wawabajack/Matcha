@@ -3,17 +3,20 @@
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/models/checkfuncs.php');
 	if (!isset($_SESSION))
 		session_start();
-	var_dump($_POST);
-	echo '<br/><br/>';
+
 	$arr = array("username", "surname", "name", "gender", "mail", "birth", "location", "lf");
-	$elem = 0;
-	foreach ($arr as $val)
-		if (isset($_POST[$val]) && trim($_POST[$val]) && !empty($_POST[$val]))
-			$elem++;
-	if ($elem)
-		var_dump(checkUserEdit($db, $_POST));
-	else
-		header('refresh:0;url=/pages/profile.php');
-
-
+	$elems = array();
+	foreach ($arr as $val) {
+		$post = trim($_POST[$val]);
+		if (isset($_POST[$val]) && !empty($post))
+			$elems[$val] = $post;
+	}
+	if (isset($elems) && checkUserEdit($post)) {
 		/** Traiter le form post **/
+		var_dump($elems);
+		profileUpdate($db, $elems);
+	}
+	else
+		header('refresh:20;url=/pages/profile.php');
+
+
