@@ -3,7 +3,8 @@
         session_start();
     require_once('views/indexView.php');
     require_once('models/miscfuncs.php');
-    require_once('views/ProfileView.php')
+    if (isset($_SESSION['usr']->id))
+        require_once('views/ProfileView.php');
 ?>
 
 <html>
@@ -56,6 +57,9 @@
 
     /** User is logged **/
 
+
+
+
     else {
         echo '<div id="nav-a">';
         echo '<ul>';
@@ -78,13 +82,16 @@
     if (isset($_POST['logout'])) {
         logout(); }
     
-    $i = 1;
-    echo ' <div class="container mini-profile">';
-    while($i <= 10){
-        $i++;
+    if (isset($_SESSION['usr']->id)) {
+        $i = 1;
+        echo ' <div class="container mini-profile">';
+        while($i <= 10){
+            $i++;
         echo $match;
+        }
+        echo '</div>';
     }
-    echo '</div>';
+    
 ?>
 </body>
 </html>
