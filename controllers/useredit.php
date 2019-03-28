@@ -9,7 +9,7 @@
 		|| isset($_POST['gender']) || isset($_POST['mail']) || isset($_POST['age'])
 		|| isset($_POST['location']) || isset($_POST['lf']))
 	{
-		checkUserEdit($db, $_POST);
+		var_dump(checkUserEdit($db, $_POST));
 	}
 
 

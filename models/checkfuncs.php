@@ -24,6 +24,21 @@
         return $err;
     }
 
+    function isValid($field, $val) {
+        if ($field == "")
+            return 1;
+        else if ($field == "mail" && filter_var($val, FILTER_VALIDATE_EMAIL))
+            return 1;
+        else if ($field == "birth" && $arr = explode('-', $val)) {
+            foreach($arr as &$val)
+                $val = (int)$val;
+            if (isset($arr[0]) && isset($arr[1]) && isset($arr[2]) && checkdate($arr[1], $arr[0], $arr[2]))
+                return 0;
+            return 1;
+        }
+        return 0;
+    }
+
     function keyCheck($db, $userKey) {
         if (filter_var($userKey, FILTER_SANITIZE_URL) != $userKey)
             return 0;
@@ -60,14 +75,14 @@
     }
 
     function checkUserEdit($db, $post) {
-        $arr = array("username", "surname", "name", "mail", "gender", "mail", "age", "location", "lf");
+        $arr = array("username", "surname", "name", "gender", "mail", "birth", "location", "lf");
         foreach ($arr as $val) {
             if (isset($post[$val])) {
                 $post[$val] = trim($post[$val]);
-                $res[$val] = $post[$val];
+                echo 'checking $_POST[' . $val . '] : ' . $post[$val] . isValid($val, $post[$val]) . '<br/>';
             }
         }
-        var_dump($res);
+        return (1);
     }
 
     /**             TODO: SQL REQ FUNCTIONS                   **/
