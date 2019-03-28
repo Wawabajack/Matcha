@@ -29,17 +29,19 @@
 
 <?php
 
-    echo $menu;
-if (!isset($_SESSION['profile']->id))
-	echo $createProfileBtn;
-else
-	echo $profileBtn;
-echo $delogBtn;
+	if (isset($_POST['logout'])) {
+		header('refresh:0;url=/index.php?logout=1');
+	}
 
-if (isset($_POST['logout']))
-    logout();
+	/** User isn't logged **/
 
-if (isset($_SESSION['usr']))
-    echo $editprofileV;
+	if (isset($_SESSION['usr'])){
+		echo  $menu;
+		echo $delogBtn;
+		echo $editprofileV;
+	}
+	else
+		header('refresh:0;url=/pages/error401.html');
+
 
 ?>
