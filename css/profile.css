@@ -4,6 +4,11 @@
     height: 150px;
 }
 
+.hdr {
+    color: white;
+    font-family: Numans;
+}
+
 #img {
     width:100%;
     position: relative;
@@ -180,4 +185,19 @@ img {
     border-radius: 0.5rem;
     border: none;
     padding-right: 3%;
+}
+
+#notif {
+    background-color : rgb(163, 112, 189);
+    display : none;
+    /*position: absolute;*/
+    z-index: 210;
+    left: 0;
+    right: 0;
+    height: 40;
+    color: #182988;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1.25rem;
+    padding-top: 5px;
 }
