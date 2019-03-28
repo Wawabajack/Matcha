@@ -159,3 +159,25 @@ img {
     color: black;
 }
 
+/***** top bar **********/
+
+ul {
+    display: inline;
+    position: fixed;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+}
+li { 
+    background-color: transparent;  
+    margin-top: 3%; 
+}
+
+.btntop{
+    background-color: white;
+    color: rgb(160, 20, 137);
+    border-radius: 0.5rem;
+    border: none;
+    padding-right: 3%;
+}

@@ -57,13 +57,20 @@
     /** User is logged **/
 
     else {
-
-        if (!isset($_SESSION['profile']->id))
+        echo '<ul>';
+        echo '<li>';
+        if (!isset($_SESSION['profile']->id)){
             echo $createProfileBtn;
-        else
+            echo '</li>';
+        }
+        else{
             echo $profileBtn;
-
+            echo '</li>';
+        }
+        echo '<li>';
         echo $delogBtn;
+        echo '</li>';
+        echo '</ul>';
     }
 
     if (isset($_POST['logout'])) {

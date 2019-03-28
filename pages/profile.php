@@ -2,6 +2,7 @@
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/views/profileView.php');
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/models/queryfuncs.php');
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/models/miscfuncs.php');
+	require_once($_SERVER["DOCUMENT_ROOT"] . '/views/indexView.php');
 	if (!isset($_SESSION))
 		session_start();
 ?>
@@ -28,15 +29,28 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <?php
 
+echo '<ul>';
+echo '<li>';
+if (!isset($_SESSION['profile']->id)){
+	echo $createProfileBtn;
+	echo '</li>';
+}
+else{
+	echo $profileBtn;
+	echo '</li>';
+}
+echo '<li>';
+echo $delogBtn;
+echo '</li>';
+echo '</ul>';
 
-	/** User isn't logged **/
+/** User isn't logged **/
 
-	if (isset($_SESSION['usr']))
-		echo $profileV;
-	else
-		header('refresh:0;url=/pages/error401.html');
-
-	?>
+if (isset($_SESSION['usr']))
+	echo $profileV;
+else
+	header('refresh:0;url=/pages/error401.html');
+?>
 
 
 

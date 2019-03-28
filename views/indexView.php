@@ -40,12 +40,12 @@
 
     $delogBtn = '
     <form method="post" action="">
-        <input type="submit" value="Logout" name="logout">
+        <input class="btntop" type="submit" value=" Logout " name="logout">
     </form>';
 
     $regSuccess = '<p><b>Compte créé avec succès ! Merci de vérifier vos mails !</b></p>';
 
     $createProfileBtn = '<form method="post" action="/pages/profile.php">
-        <input type="submit" value="Créer mon profil"></form>';
+        <input class="btntop" type="submit" value=" Créer mon profil "></form>';
 	$profileBtn = '<form method="post" action="/pages/profile.php">
-        <input type="submit" value="Profil"></form>';
+        <input class="btntop" type="submit" value=" Profil "></form>';
