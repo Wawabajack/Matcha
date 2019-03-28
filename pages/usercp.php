@@ -44,6 +44,9 @@ echo '</li>';
 echo '</ul>';
 echo '</div>';
 
+if (isset($_POST['logout'])) {
+	logout(); }
+
 if (isset($_SESSION['usr']))
 		echo $editprofileV;
 

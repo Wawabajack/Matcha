@@ -46,6 +46,9 @@ echo '</li>';
 echo '</ul>';
 echo '</div>';
 
+if (isset($_POST['logout'])) {
+	logout(); }
+
 /** User isn't logged **/
 
 if (isset($_SESSION['usr']))
