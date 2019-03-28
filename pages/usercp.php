@@ -1,6 +1,7 @@
 <?php
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/views/profileView.php');
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/views/indexView.php');
+
 	if (!isset($_SESSION))
 		session_start();
 ?>
@@ -28,17 +29,17 @@
 
 <?php
 
+    echo $menu;
 if (!isset($_SESSION['profile']->id))
 	echo $createProfileBtn;
 else
 	echo $profileBtn;
 echo $delogBtn;
 
-if (isset($_POST['logout'])) {
-	header('refresh:0;url=/index.php');
-    logout(); }
+if (isset($_POST['logout']))
+    logout();
 
 if (isset($_SESSION['usr']))
-		echo $editprofileV;
+    echo $editprofileV;
 
 ?>
