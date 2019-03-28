@@ -47,8 +47,7 @@
         return 1;
     }
 
-    function postRegCheck($db, $post)
-    {
+    function postRegCheck($db, $post){
         $arr = array("username", "name", "surname", "mail");
         foreach ($arr as $val) {
             if (!isset($post[$val]) || !strCheck($post[$val])) {
@@ -58,6 +57,17 @@
             $post[$val] = trim($post[$val]);
         }
         return(lenCheck($db, $post));
+    }
+
+    function checkUserEdit($db, $post) {
+        $arr = array("username", "surname", "name", "mail", "gender", "mail", "age", "location", "lf");
+        foreach ($arr as $val) {
+            if (isset($post[$val])) {
+                $post[$val] = trim($post[$val]);
+                $res[$val] = $post[$val];
+            }
+        }
+        var_dump($res);
     }
 
     /**             TODO: SQL REQ FUNCTIONS                   **/
