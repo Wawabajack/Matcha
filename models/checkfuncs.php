@@ -9,17 +9,17 @@
             $err = 4;
         if (isThere($db, 'mail', 'users', $post['mail']))
             $err = 11;
-        if (strlen($post['username']) < 4)
+        if (strlen($post['username']) < 4 || strlen($post['username']) > 10)
             $err = 5;
         if (!ctype_alnum($post['username']))
             $err = 9;
-        if (strlen($post['name']) < 2)
+        if (strlen($post['name']) < 2 || strlen($post['name']) > 10)
             $err = 6;
-        if (strlen($post['surname']) < 2)
+        if (strlen($post['surname']) < 2 || strlen($post['surname']) > 10)
             $err = 7;
         if (strlen($post['pwd']) < 7 || ctype_digit($post['pwd'])
-            || ctype_alpha($post['pwd'])
-            || ctype_lower($post['pwd']) || ctype_alnum($post['pwd']))
+            || ctype_alpha($post['pwd']) || ctype_lower($post['pwd'])
+            || ctype_alnum($post['pwd']) || strlen($post['pwd']) > 30)
             $err = 8;
         return $err;
     }
@@ -29,8 +29,12 @@
         if ($val == "")
             return 1;
         // classic str check
-        if ($field == "username" ||$field == "surname" || $field == "name" || $field == "location" && ctype_alpha($field))
-            return 1;
+        if ($field == "username" || $field == "surname" || $field == "name" || $field == "location" && ctype_alpha($field)){
+            if ($field !== "location" && strlen($field) > 10)
+                return 1;
+            else if ($field == "location" && strlen($field) > 50)
+                return 0;
+        }
         // mail check
         else if ($field == "mail" && filter_var($val, FILTER_VALIDATE_EMAIL))
             return 1;
