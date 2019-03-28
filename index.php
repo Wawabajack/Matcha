@@ -3,6 +3,7 @@
         session_start();
     require_once('views/indexView.php');
     require_once('models/miscfuncs.php');
+    require_once('views/ProfileView.php')
 ?>
 
 <html>
@@ -10,6 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
     <meta content="Index" name="MatchaWeeb">
     <link href="css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/profile.css" rel="stylesheet" type="text/css">
+
 
     <!------------ Bootstrap includes ------------>
 
@@ -65,7 +68,14 @@
 
     if (isset($_POST['logout'])) {
         logout(); }
-
+    
+    $i = 1;
+    echo ' <div class="container mini-profile">';
+    while($i <= 10){
+        $i++;
+        echo $match;
+    }
+    echo '</div>';
 ?>
 </body>
 </html>
