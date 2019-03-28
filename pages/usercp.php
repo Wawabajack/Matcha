@@ -1,5 +1,6 @@
 <?php
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/views/profileView.php');
+	require_once($_SERVER["DOCUMENT_ROOT"] . '/views/indexView.php');
 	if (!isset($_SESSION))
 		session_start();
 ?>
@@ -26,6 +27,22 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <?php
+echo '<div id="nav-a">';
+echo '<ul>';
+echo '<li>';
+if (!isset($_SESSION['profile']->id)){
+	echo $createProfileBtn;
+	echo '</li>';
+}
+else{
+	echo $profileBtn;
+	echo '</li>';
+}
+echo '<li>';
+echo $delogBtn;
+echo '</li>';
+echo '</ul>';
+echo '</div>';
 
 if (isset($_SESSION['usr']))
 		echo $editprofileV;

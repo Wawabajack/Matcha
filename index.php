@@ -57,6 +57,7 @@
     /** User is logged **/
 
     else {
+        echo '<div id="nav-a">';
         echo '<ul>';
         echo '<li>';
         if (!isset($_SESSION['profile']->id)){
@@ -71,6 +72,7 @@
         echo $delogBtn;
         echo '</li>';
         echo '</ul>';
+        echo '</div>';
     }
 
     if (isset($_POST['logout'])) {
