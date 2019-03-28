@@ -5,13 +5,15 @@
 		session_start();
 	var_dump($_POST);
 	echo '<br/><br/>';
-	if (isset($_POST['username']) || isset($_POST['surname']) || isset($_POST['name'])
-		|| isset($_POST['gender']) || isset($_POST['mail']) || isset($_POST['age'])
-		|| isset($_POST['location']) || isset($_POST['lf']))
-	{
+	$arr = array("username", "surname", "name", "gender", "mail", "birth", "location", "lf");
+	$elem = 0;
+	foreach ($arr as $val)
+		if (isset($_POST[$val]) && trim($_POST[$val]) && !empty($_POST[$val]))
+			$elem++;
+	if ($elem)
 		var_dump(checkUserEdit($db, $_POST));
-	}
-
+	else
+		header('refresh:0;url=/pages/profile.php');
 
 
 		/** Traiter le form post **/
