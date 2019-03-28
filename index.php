@@ -57,26 +57,15 @@
 
     /** User is logged **/
 
-
-
-
     else {
-        echo '<div id="nav-a">';
-        echo '<ul>';
-        echo '<li>';
-        if (!isset($_SESSION['profile']->id)){
+
+        echo $menu;
+        if (!isset($_SESSION['profile']->id))
             echo $createProfileBtn;
-            echo '</li>';
-        }
-        else{
+        else
             echo $profileBtn;
-            echo '</li>';
-        }
-        echo '<li>';
         echo $delogBtn;
-        echo '</li>';
-        echo '</ul>';
-        echo '</div>';
+
     }
 
     if (isset($_POST['logout'])) {

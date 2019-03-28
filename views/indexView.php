@@ -39,13 +39,14 @@
     </div>';
 
     $delogBtn = '
-    <form method="post" action="">
+    <li><form method="post" action="">
         <input class="btntop" type="submit" value=" Logout " name="logout">
-    </form>';
+    </form></li></ul></div>';
 
     $regSuccess = '<p><b>Compte créé avec succès ! Merci de vérifier vos mails !</b></p>';
 
-    $createProfileBtn = '<form method="post" action="/pages/profile.php">
-        <input class="btntop" type="submit" value=" Créer mon profil "></form>';
-	$profileBtn = '<form method="post" action="/pages/profile.php">
-        <input class="btntop" type="submit" value=" Profil "></form>';
+    $createProfileBtn = '<li><form method="post" action="/pages/profile.php">
+        <input class="btntop" type="submit" value=" Créer mon profil "></form></li>';
+	$profileBtn = '<li><form method="post" action="/pages/profile.php">
+        <input class="btntop" type="submit" value=" Profil "></form></li>';
+	$menu = '<div id="nav-a"><ul>';
