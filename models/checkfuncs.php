@@ -99,7 +99,8 @@
         foreach ($arr as $val) {
             if (isset($post[$val])) {
                 $post[$val] = trim($post[$val]);
-                echo 'checking $_POST[' . $val . '] : ' . $post[$val] . isValid($val, $post[$val]) . '<br/>';
+                if (!isValid($val, $post[$val]))
+                    return 0;
             }
         }
         return (1);
