@@ -29,17 +29,17 @@
         if ($val == "")
             return 1;
         // classic str check
-        if ($field == "username" || $field == "surname" || $field == "name" || $field == "location" && ctype_alpha($field)){
-            if ($field !== "location" && strlen($field) > 10)
+        if ($field == "username" || $field == "surname" || $field == "name" || $field == "location" && ctype_alpha($val)){
+            if ($field != "location" && strlen($val) < 11)
                 return 1;
-            else if ($field == "location" && strlen($field) > 50)
-                return 0;
+            else if ($field == "location" && strlen($val) < 51)
+                return 1;
         }
         // mail check
         else if ($field == "mail" && filter_var($val, FILTER_VALIDATE_EMAIL))
             return 1;
         // birthdate check
-        else if ($field == "birth" && $arr = explode('-', $val)) {
+        else if ($field == "birth" && DateTime::createFromFormat('d/m/Y', $val) && $arr = explode('/', $val)) {
             foreach($arr as &$val)
                 $val = (int)$val;
             if (isset($arr[0]) && isset($arr[1]) && isset($arr[2]) && checkdate($arr[1], $arr[0], $arr[2]))
