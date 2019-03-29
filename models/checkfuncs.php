@@ -104,18 +104,26 @@
         return ($post);
     }
 
-    function profileUpdate($db, $elems, $uid) {
-        $table = "users";
+
+    function createProfile($db, $uid) {
+        $sql = "INSERT INTO `profiles` (`uid`) VALUES (:uid)";
+        $res = $db->prepare($sql);
+        $res->bindParam(':uid', $uid);
+        $res->execute();
+    }
+
+    function profileUpdate($db, $elems, $uid)
+    {
         if (!isThere($db, 'id', 'profiles', $uid))
             createProfile($db, $uid);
-        foreach($elems as $key => $val)
-        {
+        foreach ($elems as $key => $val) {
+            $table = "users";
             if ($key == "gender" || $key == "birthdate")
                 $table = "profiles";
-            fieldUpdate($db, $val, $uid, $key, $table);
-
+            if ($key != "file")
+                fieldUpdate($db, $val, $uid, $key, $table);
         }
-
+    }
     /**             TODO: SQL REQ FUNCTIONS                   **/
 
 ?>
