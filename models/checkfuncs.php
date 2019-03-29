@@ -29,12 +29,11 @@
         if ($val == "")
             return 1;
         // classic str check
-        if ($field == "username" || $field == "surname" || $field == "name" || $field == "location" && ctype_alpha($val)){
-            if ($field != "location" && strlen($val) < 11)
-                return 1;
-            else if ($field == "location" && strlen($val) < 51)
-                return 1;
-        }
+        if ($field == "username" || $field == "surname" || $field == "name" && ctype_alpha($val) && strlen($val) < 11)
+            return 1;
+        // location check
+        else if ($field == "location" && strlen($val) < 51 && filter_var($val, FILTER_SANITIZE_STRING))
+            return 1;
         // mail check
         else if ($field == "mail" && filter_var($val, FILTER_VALIDATE_EMAIL))
             return 1;
@@ -53,7 +52,8 @@
         }
         // lf check
         else if ($field == "lf") {
-            if (!filter_var($val, HTML_SPECIALCHARS) && strlen($val) < 241)
+            $c = substr(ucfirst($val), 0, 1);
+            if ($c == "M" || $c == "N" || $c == "F")
                 return 1;
         }
         return 0;
@@ -95,7 +95,7 @@
     }
 
     function checkUserEdit($post) {
-        $arr = array("username", "surname", "name", "gender", "mail", "birth", "location", "lf");
+        $arr = array("username", "surname", "name", "gender", "mail", "birth", "location");
         foreach ($arr as $val)
             if (isset($post[$val]) && $post[$val] = trim($post[$val]))
                 if (!isValid($val, $post[$val]))
@@ -104,23 +104,17 @@
         return ($post);
     }
 
-
-    function createProfile($db, $uid) {
-        $sql = "INSERT INTO `profiles` (`uid`) VALUES (:uid)";
-        $res = $db->prepare($sql);
-        $res->bindParam(':uid', $uid);
-        $res->execute();
-    }
-
     function profileUpdate($db, $elems, $uid)
     {
-        if (!isThere($db, 'id', 'profiles', $uid))
+        $prefs = isThere($db, 'id', 'preferences', $uid, '*');
+        $profile = isThere($db, 'id', 'profiles', $uid, '*');
+        if (!isset($profile['id']))
             createProfile($db, $uid);
         foreach ($elems as $key => $val) {
             $table = "users";
             if ($key == "gender" || $key == "birthdate")
                 $table = "profiles";
-            if ($key != "file")
+            if ($key != "file" && $key != "location" && $key != "lf")
                 fieldUpdate($db, $val, $uid, $key, $table);
         }
     }

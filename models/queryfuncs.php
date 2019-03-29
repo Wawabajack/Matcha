@@ -1,8 +1,8 @@
 <?php
     require_once($_SERVER["DOCUMENT_ROOT"] .'/config/db_connect.php');
 
-    function isThere($db, $field, $table, $value) {
-        $sql = "SELECT " . $field . " from ". $table ." WHERE " . $field . " = :val";
+    function isThere($db, $field, $table, $value, $select) {
+    	$sql = "SELECT " . $select . " from ". $table ." WHERE " . $field . " = :val";
         $res = $db->prepare($sql);
         $res->bindParam(':val', $value);
         $res->execute();
@@ -35,6 +35,13 @@
 		$res->execute();
 		$user = $res->fetch(PDO::FETCH_OBJ);
 		return $user;
+	}
+
+	function createProfile($db, $uid) {
+		$sql = "INSERT INTO `profiles` (`uid`) VALUES (:uid)";
+		$res = $db->prepare($sql);
+		$res->bindParam(':uid', $uid);
+		$res->execute();
 	}
 
     function addUser($db, $username, $name, $surname, $mail, $pwd, $mailKey) {

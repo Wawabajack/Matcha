@@ -7,7 +7,7 @@
     require_once($_SERVER["DOCUMENT_ROOT"] . '/models/miscfuncs.php');
 
     if (isset($_POST['usr']) && isset($_POST['pwd'])) {
-        if (strCheck($_POST['usr']) && isThere($db, 'username', 'users', $_POST['usr'])) {
+        if (strCheck($_POST['usr']) && isThere($db, 'username', 'users', $_POST['usr'], 'username')) {
 
             /**     Str check ->  existing user ? ->  Retrieve user infos      **/
 

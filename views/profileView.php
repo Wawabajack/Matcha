@@ -63,10 +63,10 @@
                                     <p class="proile-rating">POPULARITY : <span>' . $popScore . '</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Profil</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Préference</a>
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Préferences</a>
                                 </li>
                             </ul>
                         </div>
@@ -128,6 +128,9 @@
                                             </div>
                                         </div>
                                         <div class="row">
+                                        	<div class="col-md-6">
+                                        		<label>Looking for: </label>
+                                       		</div>	
                                             <div class="col-md-6">
                                                 <p>' . $lfgender . '</p>
                                             </div>
@@ -209,10 +212,10 @@ $editprofileV = '<div class="container emp-profile">
                                     <p class="proile-rating">POPULARITY : <span>' . $popScore . '</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Profil</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Préference</a>
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Préférences</a>
                                 </li>
                             </ul>
                         </div>
@@ -274,7 +277,9 @@ $editprofileV = '<div class="container emp-profile">
                                             </div>
                                         </div>
                                         <div class="row">
-                    
+                                        	<div class="col-md-6">
+                                        		<label>Looking for: </label>
+                                       		</div>	
                                             <div class="col-md-6">
                                                 <textarea style="resize: none; border: none; " name="lf">' . substr_replace($lfgender, "", -5) . '</textarea>
                                             </div>
@@ -286,7 +291,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Games</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="game"></textarea></textarea>
+                                                <textarea style="resize: none; border: none; " name=""></textarea></textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -294,7 +299,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Music</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="music"></textarea></textarea>
+                                                <textarea style="resize: none; border: none; " name=""></textarea></textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -302,7 +307,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Animes</label>
                                             </div>
                                             <div class="col-md-6"> 
-                                                <textarea style="resize: none; border: none; " name="anime"></textarea></textarea>
+                                                <textarea style="resize: none; border: none; " name=""></textarea></textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -310,7 +315,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Mangas</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="manga"></textarea></textarea>
+                                                <textarea style="resize: none; border: none; " name=""></textarea></textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -318,7 +323,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Films</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="film"></textarea></textarea>
+                                                <textarea style="resize: none; border: none; " name=""></textarea></textarea>
                                             </div>
                                         </div>
                                 <div class="row">
