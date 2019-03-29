@@ -129,9 +129,6 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>looking for</label>
-                                            </div>
-                                            <div class="col-md-6">
                                                 <p>' . $lfgender . '</p>
                                             </div>
                                         </div>
@@ -277,9 +274,7 @@ $editprofileV = '<div class="container emp-profile">
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <label>looking for</label>
-                                            </div>
+                    
                                             <div class="col-md-6">
                                                 <textarea style="resize: none; border: none; " name="lf">' . substr_replace($lfgender, "", -5) . '</textarea>
                                             </div>
