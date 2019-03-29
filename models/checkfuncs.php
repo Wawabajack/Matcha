@@ -105,9 +105,16 @@
     }
 
     function profileUpdate($db, $elems, $uid) {
+        $table = "users";
+        if (!isThere($db, 'id', 'profiles', $uid))
+            createProfile($db, $uid);
         foreach($elems as $key => $val)
-            fieldUpdate($db, $val, $uid, $key);
-    }
+        {
+            if ($key == "gender" || $key == "birthdate")
+                $table = "profiles";
+            fieldUpdate($db, $val, $uid, $key, $table);
+
+        }
 
     /**             TODO: SQL REQ FUNCTIONS                   **/
 

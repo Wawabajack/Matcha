@@ -10,8 +10,8 @@
 	{
 		$trimmed = checkUserEdit($_POST);
 		profileUpdate($db, $trimmed, $_SESSION['usr']->id);
+		header('refresh:0;url=/pages/profile.php');
 	}
-
 	else
-		header('refresh:20;url=/pages/profile.php');
+		header('refresh:0;url=/pages/profile.php');
 

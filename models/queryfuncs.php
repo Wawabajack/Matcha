@@ -75,8 +75,8 @@
 		return $user;
 	}
 
-	function fieldUpdate($db, $val, $uid, $field) {
-    	$sql = "UPDATE `users` SET `" . $field . "` = :val WHERE `id` = :uid";
+	function fieldUpdate($db, $val, $uid, $field, $table) {
+    	$sql = "UPDATE `" . $table . "` SET `" . $field . "` = :val WHERE `id` = :uid";
 		$res = $db->prepare($sql);
 		$res->bindParam(':val', $val);
 		$res->bindParam(':uid', $uid);
