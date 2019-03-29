@@ -4,19 +4,14 @@
 	if (!isset($_SESSION))
 		session_start();
 
-	$arr = array("username", "surname", "name", "gender", "mail", "birth", "location", "lf");
-	$elems = array();
-	foreach ($arr as $val) {
-		$post = trim($_POST[$val]);
-		if (isset($_POST[$val]) && !empty($post))
-			$elems[$val] = $post;
+	if ((isset($_POST['username']) || isset($_POST['surname']) || isset($_POST['name'])
+		|| isset($_POST['gender']) || isset($_POST['mail']) || isset($_POST['age'])
+		|| isset($_POST['location']) || isset($_POST['lf'])) && checkUserEdit($_POST))
+	{
+		$trimmed = checkUserEdit($_POST);
+		profileUpdate($db, $trimmed);
 	}
-	if (isset($elems) && checkUserEdit($post)) {
-		/** Traiter le form post **/
-		var_dump($elems);
-		profileUpdate($db, $elems);
-	}
+
 	else
 		header('refresh:20;url=/pages/profile.php');
-
 
