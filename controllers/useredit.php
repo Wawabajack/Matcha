@@ -4,12 +4,12 @@
 	if (!isset($_SESSION))
 		session_start();
 
-	if ((isset($_POST['username']) || isset($_POST['surname']) || isset($_POST['name'])
+	if (isset($_SESSION['usr']) && ((isset($_POST['username']) || isset($_POST['surname']) || isset($_POST['name'])
 		|| isset($_POST['gender']) || isset($_POST['mail']) || isset($_POST['age'])
-		|| isset($_POST['location']) || isset($_POST['lf'])) && checkUserEdit($_POST))
+		|| isset($_POST['location']) || isset($_POST['lf'])) && checkUserEdit($_POST)))
 	{
 		$trimmed = checkUserEdit($_POST);
-		profileUpdate($db, $trimmed);
+		profileUpdate($db, $trimmed, $_SESSION['usr']->id);
 	}
 
 	else

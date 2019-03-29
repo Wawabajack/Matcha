@@ -101,18 +101,12 @@
                 if (!isValid($val, $post[$val]))
                     return 0;
                 //echo 'checking $_POST[' . $val . '] : ' . $post[$val] . isValid($val, $post[$val]) . '<br/>';
-        return (1);
+        return ($post);
     }
 
-    function updateField($key, $val) {
-        if ($key == "username")
-            usrnameUpdate($db, $value); // fonction a coder
-
-    }
-
-    function profileUpdate($db, $elems) {
+    function profileUpdate($db, $elems, $uid) {
         foreach($elems as $key => $val)
-            updateField($key, $val);
+            fieldUpdate($db, $val, $uid, $key);
     }
 
     /**             TODO: SQL REQ FUNCTIONS                   **/

@@ -65,7 +65,8 @@
 	    $user = $res->fetch(PDO::FETCH_OBJ);
 	    return $user;
     }
-	function getUserPrefs($db, $uid) {
+
+    function getUserPrefs($db, $uid) {
 		$sql = "SELECT * FROM `preferences` WHERE `id` = :uid";
 		$res = $db->prepare($sql);
 		$res->bindParam(':uid', $uid);
@@ -73,5 +74,13 @@
 		$user = $res->fetch(PDO::FETCH_OBJ);
 		return $user;
 	}
+
+	function fieldUpdate($db, $val, $uid, $field) {
+    	$sql = "UPDATE `users` SET `" . $field . "` = :val WHERE `id` = :uid";
+		$res = $db->prepare($sql);
+		$res->bindParam(':val', $val);
+		$res->bindParam(':uid', $uid);
+		$res->execute();
+    }
 
 ?>
