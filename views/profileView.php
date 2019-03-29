@@ -207,10 +207,10 @@ $editprofileV = '<div class="container emp-profile">
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
-                                    <textarea style="border: none" name="username">' .
+                                    <textarea style="resize: none; border: none; " name="username">' .
 										substr_replace($username, "", -14) . '
                                     </textarea>
-                                    <textarea style="border: none"0 name="surname">' .
+                                    <textarea style="resize: none; border: none; "0 name="surname">' .
 										substr_replace($surname, "", -5) . '
                                     </textarea>
                                     <p class="proile-rating">POPULARITY : <span>' . $popScore . '</span></p>
@@ -245,7 +245,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Name (1-11 characters)</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea style="border: none" name="name"> ' . substr_replace($name, "", -5) . '</textarea>
+                                                <textarea style="resize: none; border: none; " name="name"> ' . substr_replace($name, "", -5) . '</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -253,7 +253,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Genre (M / F / N)</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea style="border: none" name="gender" > ' . substr_replace($gender, "", -5) . '</textarea>
+                                                <textarea style="resize: none; border: none; " name="gender" > ' . substr_replace($gender, "", -5) . '</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -261,7 +261,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Email (example@gmail.com) </label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea  style="border: none" name="mail"> ' . substr_replace($mail, "", -5) .'</textarea>
+                                                <textarea  style="resize: none; border: none; " name="mail"> ' . substr_replace($mail, "", -5) .'</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -269,7 +269,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Birthdate (01/01/1900)</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea style="border: none" name="birth">' . substr_replace($age, "", -5) . '</textarea>
+                                                <textarea style="resize: none; border: none; " name="birth">' . substr_replace($age, "", -5) . '</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -277,7 +277,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>City (1-50 characters)</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea style="border: none" name="location">' . substr_replace($location, "", -5) . '</textarea>
+                                                <textarea style="resize: none; border: none; " name="location">' . substr_replace($location, "", -5) . '</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -285,7 +285,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>looking for</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea style="border: none" name="lf">' . substr_replace($lfgender, "", -5) . '</textarea>
+                                                <textarea style="resize: none; border: none; " name="lf">' . substr_replace($lfgender, "", -5) . '</textarea>
                                             </div>
                                         </div>
                             </div>
@@ -295,7 +295,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Games</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>AOE</p>
+                                                <textarea style="resize: none; border: none; " name="game"></textarea></textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -303,7 +303,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Music</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Cool</p>
+                                                <textarea style="resize: none; border: none; " name="music"></textarea></textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -311,7 +311,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Animes</label>
                                             </div>
                                             <div class="col-md-6"> 
-                                                <p>ok</p>
+                                                <textarea style="resize: none; border: none; " name="anime"></textarea></textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -319,7 +319,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Mangas</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>plein</p>
+                                                <textarea style="resize: none; border: none; " name="manga"></textarea></textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -327,14 +327,14 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Films</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>padidée</p>
+                                                <textarea style="resize: none; border: none; " name="film"></textarea></textarea>
                                             </div>
                                         </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label>Your Bio</label><br/>
                                         <div>
-                                            <p>Wéwéwé j ai fiait des trucs</p>
+                                            <textarea style="resize: none; border: none; " name="Bio"></textarea></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -344,6 +344,8 @@ $editprofileV = '<div class="container emp-profile">
                 </div>
             </form>           
         </div>';
+
+/****************  a bouger plus tard pour l'algo de march   **************************/
 
 $match = '<div class="profile">
                 <div class="profileheader">
