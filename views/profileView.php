@@ -265,7 +265,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Birthdate (01/01/1900)</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="birth">' . substr_replace($age, "", -5) . '</textarea>
+                                                <textarea style="resize: none; border: none; " name="birthdate">' . substr_replace($age, "", -5) . '</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
