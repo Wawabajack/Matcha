@@ -66,7 +66,7 @@
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Favorite</a>
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Préference</a>
                                 </li>
                             </ul>
                         </div>
@@ -178,10 +178,6 @@
                                             </div>
                                         </div>
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Your Bio</label><br/>
-                                        <p>Wéwéwé j ai fiait des trucs</p>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -219,7 +215,7 @@ $editprofileV = '<div class="container emp-profile">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Favorite</a>
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Préference</a>
                                 </li>
                             </ul>
                         </div>
@@ -332,10 +328,6 @@ $editprofileV = '<div class="container emp-profile">
                                         </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label>Your Bio</label><br/>
-                                        <div>
-                                            <textarea style="resize: none; border: none; " name="Bio"></textarea></textarea>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
