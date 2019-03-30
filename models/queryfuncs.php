@@ -62,6 +62,11 @@
     	$res = $db->prepare($sql);
     	$res->bindParam(':uid', $uid);
     	$res->execute();
+	    $sql = "UPDATE `users` SET mail_key = 0 WHERE `id` = :uid";
+	    $res = $db->prepare($sql);
+	    $res->bindParam(':uid', $uid);
+	    $res->execute();
+
     }
 
     function getUserProfile($db, $uid) {
@@ -83,6 +88,8 @@
 	}
 
 	function fieldUpdate($db, $val, $uid, $field, $table) {
+    	if ($field== "username" && isThere($db, 'username', 'users', $val, 'username'))
+    		return 0;
     	$sql = "UPDATE `" . $table . "` SET `" . $field . "` = :val WHERE `id` = :uid";
 		$res = $db->prepare($sql);
 		$res->bindParam(':val', $val);

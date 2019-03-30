@@ -22,10 +22,12 @@
 	if (isset($_SESSION['profile'])) {
 
 	    $gender = '' . $_SESSION['profile']->gender . '<br/>';
+		if ($_SESSION['profile']->birthdate == "0000-00-00")
+			$_SESSION['profile']->birthdate = "1999-01-01";
 	    $birthDate = explode("-", $_SESSION['profile']->birthdate);
 	    $diff = (date("md", date("U", mktime(0, 0, 0, $birthDate[2], $birthDate[1], $birthDate[0]))) > date("md") ? ((date("Y")-$birthDate[0])-1):(date("Y")-$birthDate[0]));
 	    $age = ''. $diff . ' ans' . '<br/>';
-	    $location = $_SESSION['profile']->city . ', ' . $_SESSION['profile']->region . ', ' . $_SESSION['profile']->country . '<br/>';
+	    $location = $_SESSION['profile']->city . ' ' . $_SESSION['profile']->region . ' ' . $_SESSION['profile']->country . '<br/>';
 	    $popScore = '' . $_SESSION['profile']->popularity . '<br/>';
 	    $image = $_SESSION['profile']->img;
     }
@@ -46,10 +48,6 @@
                     <div class="col-md-4">
                         <div class="profile-img">
                             <img src="' . $image . '" alt=""/>
-                            <div class="file btn btn-lg btn-primary">
-                                Change Photo
-                                <input type="file" name="file"/>
-                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -66,7 +64,7 @@
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Profil</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Préferences</a>
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Bio</a>
                                 </li>
                             </ul>
                         </div>
@@ -139,46 +137,20 @@
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Games</label>
+                                                <label>Intéressé par</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>AOE</p>
+                                                <p>H</p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Music</label>
+                                                <label>Bio</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>Cool</p>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Animes</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>ok</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Mangas</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>plein</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Films</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>padidée</p>
-                                            </div>
-                                        </div>
-                                <div class="row">
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -215,7 +187,7 @@ $editprofileV = '<div class="container emp-profile">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Profil</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Préférences</a>
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Bio</a>
                                 </li>
                             </ul>
                         </div>
@@ -238,39 +210,39 @@ $editprofileV = '<div class="container emp-profile">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Name (1-11 characters)</label>
+                                                <label>Nom</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="name"> ' . substr_replace($name, "", -5) . '</textarea>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Genre (M / F / N)</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="gender" > ' . substr_replace($gender, "", -5) . '</textarea>
+                                                <textarea style="resize: none; border: none; " name="name" placeholder="20 lettres max."> ' . substr_replace($name, "", -5) . '</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Email (example@gmail.com) </label>
+                                                <label>Genre</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea  style="resize: none; border: none; " name="mail"> ' . substr_replace($mail, "", -5) .'</textarea>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Birthdate (01/01/1900)</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="birthdate">' . substr_replace($age, "", -5) . '</textarea>
+                                                <textarea style="resize: none; border: none; " name="gender" placeholder="M / F / N"> ' . substr_replace($gender, "", -5) . '</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>City (1-50 characters)</label>
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <textarea  style="resize: none; border: none; " name="mail" placeholder="exemple@gmail.com"> ' . substr_replace($mail, "", -5) .'</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Date de naissance</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <textarea style="resize: none; border: none; " name="birthdate" placeholder="JJ/MM/AAAA">' . substr_replace($age, "", -5) . '</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Ville</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <textarea style="resize: none; border: none; " name="location">' . substr_replace($location, "", -5) . '</textarea>
@@ -278,7 +250,7 @@ $editprofileV = '<div class="container emp-profile">
                                         </div>
                                         <div class="row">
                                         	<div class="col-md-6">
-                                        		<label>Looking for: </label>
+                                        		<label>Intéressé par: </label>
                                        		</div>	
                                             <div class="col-md-6">
                                                 <textarea style="resize: none; border: none; " name="lf">' . substr_replace($lfgender, "", -5) . '</textarea>
@@ -288,48 +260,9 @@ $editprofileV = '<div class="container emp-profile">
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Games</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name=""></textarea></textarea>
+                                                <textarea style="resize: none; border: none; " name="" placeholder="Mes centres d\'intérêt..."></textarea></textarea>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Music</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name=""></textarea></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Animes</label>
-                                            </div>
-                                            <div class="col-md-6"> 
-                                                <textarea style="resize: none; border: none; " name=""></textarea></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Mangas</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name=""></textarea></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Films</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name=""></textarea></textarea>
-                                            </div>
-                                        </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -348,7 +281,7 @@ $match = '<div class="profile">
                 <div class="info">
                     <div class="title">
                         <h6>
-                            <a href="".$username>' . $username . '</a>
+                            <a href="" . $username>' . $username . '</a>
                         </h6>
                     </div>
                     <div class="desc"> 
