@@ -9,13 +9,13 @@
             $err = 4;
         if (isThere($db, 'mail', 'users', $post['mail'], 'mail'))
             $err = 11;
-        if (strlen($post['username']) < 4 || strlen($post['username']) > 20)
+        if (strlen($post['username']) < 4 || strlen($post['username']) > 10)
             $err = 5;
         if (!ctype_alnum($post['username']))
             $err = 9;
-        if (strlen($post['name']) < 2 || strlen($post['name']) > 20)
+        if (strlen($post['name']) < 2 || strlen($post['name']) > 10)
             $err = 6;
-        if (strlen($post['surname']) < 2 || strlen($post['surname']) > 20)
+        if (strlen($post['surname']) < 2 || strlen($post['surname']) > 10)
             $err = 7;
         if (strlen($post['pwd']) < 7 || ctype_digit($post['pwd'])
             || ctype_alpha($post['pwd']) || ctype_lower($post['pwd'])
