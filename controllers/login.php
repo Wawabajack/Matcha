@@ -8,7 +8,8 @@
 
     if (isset($_POST['usr']) && isset($_POST['pwd'])) {
     	$_POST['usr'] =  ucfirst(strtolower($_POST['usr']));
-        if (strCheck($_POST['usr']) && isThere($db, 'username', 'users',$_POST['usr'], 'username')) {
+    	$there = isThere($db, 'username', 'users',$_POST['usr'], 'id');
+        if (strCheck($_POST['usr']) && isset($there->id)) {
 
             /**     Str check ->  existing user ? ->  Retrieve user infos      **/
 

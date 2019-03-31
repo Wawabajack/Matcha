@@ -55,7 +55,7 @@
             CREATE TABLE `preferences` (
             `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
             `uid` int(11) NOT NULL UNIQUE,
-            `notifs` int(11) NOT NULL,
+            `bio` MEDIUMTEXT NOT NULL,
             `gender` varchar(64) NOT NULL,
             `age_min` int(11) NOT NULL,
             `age_max` int(11) NOT NULL

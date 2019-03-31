@@ -39,21 +39,16 @@
             return 1;
         // birthdate check
         else if ($field == "birthdate" && DateTime::createFromFormat('d/m/Y', $val) && $arr = explode('/', $val)) {
-            foreach($arr as $val)
+            foreach($arr as &$val)
                 $val = (int)$val;
             if (isset($arr[0]) && isset($arr[1]) && isset($arr[2]) && checkdate($arr[1], $arr[0], $arr[2]) && $val = array($arr))
                 return 1;
         }
         // gender check
-        else if ($field == "gender" && ctype_alpha($val)) {
+        else if (($field == "gender"  || $field == "lf") && ctype_alpha($val)) {
             $val = substr(ucfirst($val), 0, 1);
-            if ($val == "M" || $val == "N" || $val == "F")
-                return 1;
-        }
-        // lf check
-        else if ($field == "lf" && ctype_alpha($val)) {
-            $val = substr(ucfirst($val), 0, 1);
-            if ($val == "M" || $val == "N" || $val == "F")
+            $val == "M" ? $val = "H" : $val;
+            if ($val == "H" || $val == "N" || $val == "F")
                 return 1;
         }
         return 0;
@@ -96,37 +91,44 @@
     }
 
     function checkUserEdit(&$post) {
-        $arr = array("username", "surname", "name", "gender", "mail", "birthdate", "location");
+        $arr = array("username", "surname", "name", "gender", "mail", "birthdate", "location", "lf");
         foreach ($arr as $val) {
             if (isset($post[$val]) && $post[$val] = trim($post[$val]))
                 if (!isValid($val, $post[$val]))
                     $post[$val] = ""; //echo 'problem with ' . $post[$val] . ' = ' . $val . '<br/>';                        /*  Debug   */
-            //echo 'checking $_POST[' . $val . '] : ' . $post[$val] . isValid($val, $post[$val]) . '<br/>';         /*          */
+                //echo 'checking $_POST[' . $val . '] : ' . $post[$val] . isValid($val, $post[$val]) . '<br/>';         /*          */
         }
         return $post;
     }
 
     function profileUpdate($db, $elems, $uid)
     {
-        $prefs = isThere($db, 'id', 'preferences', $uid, '*');
-        $profile = isThere($db, 'id', 'profiles', $uid, '*');
-        if (!isset($profile['id']))
+        $prefs = isThere($db, "uid", "preferences", $uid, "*");
+        $profile = isThere($db, 'uid', 'profiles', $uid, '*');
+        if (!isset($profile->id))
             createProfile($db, $uid);
-        if (!isset($prefs['id']))
+        if (!isset($prefs->id))
             createPrefs($db, $uid);
         foreach ($elems as $key => $val) {
+            //echo $key . ': ' . $val . '<br/>';
             /* Tables selector */
             $table = "users";
             if ($key == "gender" || $key == "birthdate")
                 $table = "profiles";
             if ($key == "lf")
-                $table = "preferences" && $key = "gender";
+            {
+                $table = "preferences";
+                $key = "gender";
+            }
             if ($key == "birthdate" && $val)
-                $val = $val[0][2] . '-' . $val[0][1] . '-' . $val[0][0];
-            if (($key == "username" || $key == "mail") && isThere($db, $key, 'users', $val, $key))
+            {
+                $arr = explode('/', $val);
+                $val = $arr[2] . '-' . $arr[1] . '-' . $arr[0];
+            }
+            if (($key == "username" || $key == "mail") && isThere($db, $key, 'users', $val, $key)->$key)
                 $val = "";
             if ($key != "file" && $key != "location" && $val != "")
-               fieldUpdate($db, $val, $uid, $key, $table);
+                echo 'updating ' . $val .': ' . fieldUpdate($db, $val, $uid, $key, $table);
         }
         return 1;
     }

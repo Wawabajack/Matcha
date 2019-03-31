@@ -3,10 +3,10 @@
 
     function isThere($db, $field, $table, $value, $select) {
     	$sql = "SELECT " . $select . " from ". $table ." WHERE " . $field . " = :val";
-        $res = $db->prepare($sql);
+    	$res = $db->prepare($sql);
         $res->bindParam(':val', $value);
         $res->execute();
-        $user = $res->fetch(PDO::FETCH_ASSOC);
+        $user = $res->fetch(PDO::FETCH_OBJ);
         return $user;
     }
 
@@ -38,7 +38,7 @@
 	}
 
 	function createProfile($db, $uid) {
-		$sql = "INSERT INTO `profiles` (`uid`) VALUES (:uid)";
+		$sql = "INSERT INTO `profiles` (`uid`, `img`) VALUES (:uid, '/img/404.png')";
 		$res = $db->prepare($sql);
 		$res->bindParam(':uid', $uid);
 		$res->execute();
@@ -95,12 +95,18 @@
 	}
 
 	function fieldUpdate($db, $val, $uid, $field, $table) {
-
-    	$sql = "UPDATE `" . $table . "` SET `" . $field . "` = :val WHERE `id` = :uid";
-		$res = $db->prepare($sql);
+    	if ($table == "users")
+    		$id = "`id`";
+    	else
+    		$id = "`uid`";
+    	$sql = "UPDATE `" . $table . "` SET `" . $field . "` = :val WHERE " . $id . " = :uid";
+    	$res = $db->prepare($sql);
 		$res->bindParam(':val', $val);
 		$res->bindParam(':uid', $uid);
 		$res->execute();
+		$sql = "UPDATE `" . $table . "` SET `" . $field . "` = " . $val . " WHERE " . $id . " = " . $uid;
+		echo $sql . '<br/>';
+		return 1;
     }
 
 ?>

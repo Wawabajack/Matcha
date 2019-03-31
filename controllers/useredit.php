@@ -9,15 +9,15 @@
 		|| isset($_POST['location']) || isset($_POST['lf'])) && profileUpdate($db, checkUserEdit($_POST), $_SESSION['usr']->id))) // Checking infos then pushing profile infos to database
 	{
 
+		var_dump(checkUserEdit($_POST));
 		// Reloading session
 		$_SESSION['usr'] = getUserInfo($db, $_SESSION['usr']->id);
 		$profile = getUserProfile($db, $_SESSION['usr']->id);
 		$prefs = getUserPrefs($db, $_SESSION['usr']->id);
-		if (isset($profile->id))
-			$_SESSION['profile'] = $profile;
-		if (isset($prefs->id))
+		if (isset($prefs->uid))
 			$_SESSION['prefs'] = $prefs;
-		header('refresh:0;url=/pages/profile.php');
+		var_dump($profile);
+		//header('refresh:0;url=/pages/profile.php');
 	}
 	else
 		header('refresh:0;url=/pages/profile.php');

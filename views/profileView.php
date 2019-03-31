@@ -20,7 +20,6 @@
 	/** Profile infos **/
 
 	if (isset($_SESSION['profile'])) {
-
 	    $gender = '' . $_SESSION['profile']->gender . '<br/>';
 		if ($_SESSION['profile']->birthdate == "0000-00-00")
 			$_SESSION['profile']->birthdate = "1970-01-01";
@@ -30,12 +29,14 @@
 	    $age = $interval->y;
 	    $birth = explode('-', $_SESSION['profile']->birthdate);
 		$birth = $birth[1] . '/' . $birth[2] . '/' . $birth[0];
-	    $location = $_SESSION['profile']->city . ' ' . $_SESSION['profile']->region . ' ' . $_SESSION['profile']->country . '<br/>';
+		$location = "";
+		if ($_SESSION['profile']->country != "")
+	        $location = $_SESSION['profile']->city . ' ' . $_SESSION['profile']->region . ' ' . $_SESSION['profile']->country . '<br/>';
 	    $popScore = '' . $_SESSION['profile']->popularity . '<br/>';
 	    $image = $_SESSION['profile']->img;
     }
     else {
-	    $gender = $birthDate = $age = $location = $image = $popScore = "";
+	    $gender = $birthDate = $age = $location = $image = $popScore = $birth = "";
         $image = "/img/401.png";
     }
 
@@ -213,7 +214,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Genre</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="gender" placeholder="M / F / N">' . substr_replace($gender, "", -5) . '</textarea>
+                                                <textarea style="resize: none; border: none; " name="gender" placeholder="M / F / N">' . $gender . '</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -245,7 +246,7 @@ $editprofileV = '<div class="container emp-profile">
                                         		<label>Intéressé(e) par: </label>
                                        		</div>	
                                             <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="lf">' . substr_replace($lfgender, "", -5) . '</textarea>
+                                                <textarea style="resize: none; border: none; " name="lf">' . $lfgender . '</textarea>
                                             </div>
                                         </div>
                             </div>
