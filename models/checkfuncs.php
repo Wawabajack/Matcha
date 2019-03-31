@@ -24,12 +24,12 @@
         return $err;
     }
 
-    function isValid($field, $val) {
+    function isValid($field, &$val) {
         // $_POST[value] empty
         if ($val == "")
             return 1;
         // classic str check
-        if ($field == "username" || $field == "surname" || $field == "name" && ctype_alpha($val) && strlen($val) < 11)
+        if (($field == "username" || $field == "surname" || $field == "name") && ctype_alpha($val) && strlen($val) < 11)
             return 1;
         // location check
         else if ($field == "location" && strlen($val) < 51 && filter_var($val, FILTER_SANITIZE_STRING))
@@ -46,14 +46,14 @@
         }
         // gender check
         else if ($field == "gender" && ctype_alpha($val)) {
-            $c = substr(ucfirst($val), 0, 1);
-            if ($c == "M" || $c == "N" || $c == "F")
+            $val = substr(ucfirst($val), 0, 1);
+            if ($val == "M" || $val == "N" || $val == "F")
                 return 1;
         }
         // lf check
         else if ($field == "lf" && ctype_alpha($val)) {
-            $c = substr(ucfirst($val), 0, 1);
-            if ($c == "M" || $c == "N" || $c == "F")
+            $val = substr(ucfirst($val), 0, 1);
+            if ($val == "M" || $val == "N" || $val == "F")
                 return 1;
         }
         return 0;
