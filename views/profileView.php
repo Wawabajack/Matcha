@@ -25,7 +25,7 @@
 		if ($_SESSION['profile']->birthdate == "0000-00-00")
 			$_SESSION['profile']->birthdate = "1999-01-01";
 	    $birthDate = explode("-", $_SESSION['profile']->birthdate);
-	    $diff = (date("md", date("U", mktime(0, 0, 0, $birthDate[2], $birthDate[1], $birthDate[0]))) > date("md") ? ((date("Y")-$birthDate[0])-1):(date("Y")-$birthDate[0]));
+	    $diff = (date("md", date("U", mktime(0, 0, 0, $birthDate[2], $birthDate[1], $birthDate[0]+1))) > date("md") ? ((date("Y")-$birthDate[0])-1):(date("Y")-$birthDate[0]));
 	    $age = ''. $diff . ' ans' . '<br/>';
 	    $location = $_SESSION['profile']->city . ' ' . $_SESSION['profile']->region . ' ' . $_SESSION['profile']->country . '<br/>';
 	    $popScore = '' . $_SESSION['profile']->popularity . '<br/>';
@@ -202,7 +202,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Nom</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="name" placeholder="20 lettres max."> ' . substr_replace($name, "", -5) . '</textarea>
+                                                <textarea style="resize: none; border: none; " name="name" placeholder="20 lettres max.">' . substr_replace($name, "", -5) . '</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -210,7 +210,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Genre</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="gender" placeholder="M / F / N"> ' . substr_replace($gender, "", -5) . '</textarea>
+                                                <textarea style="resize: none; border: none; " name="gender" placeholder="M / F / N">' . substr_replace($gender, "", -5) . '</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -218,7 +218,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea  style="resize: none; border: none; " name="mail" placeholder="exemple@gmail.com"> ' . substr_replace($mail, "", -5) .'</textarea>
+                                                <textarea  style="resize: none; border: none; " name="mail" placeholder="exemple@gmail.com">' . substr_replace($mail, "", -5) .'</textarea>
                                             </div>
                                         </div>
                                         <div class="row">

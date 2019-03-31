@@ -38,10 +38,14 @@
         else if ($field == "mail" && filter_var($val, FILTER_VALIDATE_EMAIL))
             return 1;
         // birthdate check
-        else if ($field == "birth" && DateTime::createFromFormat('d/m/Y', $val) && $arr = explode('/', $val)) {
-            foreach($arr as &$val)
+        else if ($field == "birthdate" && strchr($val, 'ans')) {
+            $val = "";
+            return 1;
+        }
+        else if ($field == "birthdate" && DateTime::createFromFormat('d/m/Y', $val) && $arr = explode('/', $val)) {
+            foreach($arr as $val)
                 $val = (int)$val;
-            if (isset($arr[0]) && isset($arr[1]) && isset($arr[2]) && checkdate($arr[1], $arr[0], $arr[2]))
+            if (isset($arr[0]) && isset($arr[1]) && isset($arr[2]) && checkdate($arr[1], $arr[0], $arr[2]) && $val = array($arr))
                 return 1;
         }
         // gender check
@@ -96,12 +100,14 @@
     }
 
     function checkUserEdit($post) {
-        $arr = array("username", "surname", "name", "gender", "mail", "birth", "location");
+        $arr = array("username", "surname", "name", "gender", "mail", "birthdate", "location");
         foreach ($arr as $val) {
             if (isset($post[$val]) && $post[$val] = trim($post[$val]))
                 if (!isValid($val, $post[$val]))
-                    return 0;
-        }       //echo 'checking $_POST[' . $val . '] : ' . $post[$val] . isValid($val, $post[$val]) . '<br/>';
+                    return 0; //echo 'problem with ' . $post[$val] . ' = ' . $val . '<br/>';                        /*  Debug   */
+            //echo 'checking $_POST[' . $val . '] : ' . $post[$val] . isValid($val, $post[$val]) . '<br/>';         /*          */
+        }
+
         return ($post);
     }
 
@@ -115,6 +121,8 @@
             $table = "users";
             if ($key == "gender" || $key == "birthdate")
                 $table = "profiles";
+            if ($key == "birthdate" && $val)
+                $val = $val[0][2] . $val[0][1] . $val[0][0];
             if ($key != "file" && $key != "location" && $key != "lf" && $val != "")
                 fieldUpdate($db, $val, $uid, $key, $table);
         }

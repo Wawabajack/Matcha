@@ -20,8 +20,8 @@
 			$_SESSION['profile'] = $profile;
 		if (isset($prefs->id))
 			$_SESSION['prefs'] = $prefs;
-		header('refresh:0;url=/pages/profile.php');
+		//header('refresh:0;url=/pages/profile.php');
 	}
-	else
-		header('refresh:0;url=/pages/profile.php');
+	//else
+		//header('refresh:0;url=/pages/profile.php');
 
