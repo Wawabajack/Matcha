@@ -127,7 +127,7 @@
                                         </div>
                                         <div class="row">
                                         	<div class="col-md-6">
-                                        		<label>Looking for: </label>
+                                        		<label>Intéressé(e) par: </label>
                                        		</div>	
                                             <div class="col-md-6">
                                                 <p>' . $lfgender . '</p>
@@ -137,18 +137,7 @@
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Intéressé par</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>H</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Bio</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Cool</p>
+                                                <label>Jeune serviette connectée avec processeur de gestion du séchage cherche semblable pour s\'occuper de son fils gant de toilette</label>
                                             </div>
                                         </div>
                             </div>
