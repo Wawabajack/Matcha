@@ -23,10 +23,13 @@
 
 	    $gender = '' . $_SESSION['profile']->gender . '<br/>';
 		if ($_SESSION['profile']->birthdate == "0000-00-00")
-			$_SESSION['profile']->birthdate = "1999-01-01";
-	    $birthDate = explode("-", $_SESSION['profile']->birthdate);
-	    $diff = (date("md", date("U", mktime(0, 0, 0, $birthDate[2], $birthDate[1], $birthDate[0]+1))) > date("md") ? ((date("Y")-$birthDate[0])-1):(date("Y")-$birthDate[0]));
-	    $age = ''. $diff . ' ans' . '<br/>';
+			$_SESSION['profile']->birthdate = "1970-01-01";
+		$date = new DateTime($_SESSION['profile']->birthdate);
+		$now = new DateTime();
+		$interval = $now->diff($date);
+	    $age = $interval->y;
+	    $birth = explode('-', $_SESSION['profile']->birthdate);
+		$birth = $birth[1] . '/' . $birth[2] . '/' . $birth[0];
 	    $location = $_SESSION['profile']->city . ' ' . $_SESSION['profile']->region . ' ' . $_SESSION['profile']->country . '<br/>';
 	    $popScore = '' . $_SESSION['profile']->popularity . '<br/>';
 	    $image = $_SESSION['profile']->img;
@@ -226,7 +229,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Date de naissance</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="birthdate" placeholder="JJ/MM/AAAA">' . $birthDate[2] . '/' . $birthDate[1] . '/' . $birthDate[0] . '</textarea>
+                                                <textarea style="resize: none; border: none; " name="birthdate" placeholder="JJ/MM/AAAA">' . $birth . '</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
