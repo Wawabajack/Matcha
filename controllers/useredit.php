@@ -6,11 +6,8 @@
 
 	if (isset($_SESSION['usr']) && ((isset($_POST['username']) || isset($_POST['surname']) || isset($_POST['name'])
 		|| isset($_POST['gender']) || isset($_POST['mail']) || isset($_POST['age'])
-		|| isset($_POST['location']) || isset($_POST['lf'])) && checkUserEdit($_POST)))
+		|| isset($_POST['location']) || isset($_POST['lf'])) && profileUpdate($db, checkUserEdit($_POST), $_SESSION['usr']->id))) // Checking infos then pushing profile infos to database
 	{
-		// Pushing profile infos to database
-		$trimmed = checkUserEdit($_POST);
-		profileUpdate($db, $trimmed, $_SESSION['usr']->id);
 
 		// Reloading session
 		$_SESSION['usr'] = getUserInfo($db, $_SESSION['usr']->id);
@@ -20,8 +17,8 @@
 			$_SESSION['profile'] = $profile;
 		if (isset($prefs->id))
 			$_SESSION['prefs'] = $prefs;
-		//header('refresh:0;url=/pages/profile.php');
+		header('refresh:0;url=/pages/profile.php');
 	}
-	//else
-		//header('refresh:0;url=/pages/profile.php');
+	else
+		header('refresh:0;url=/pages/profile.php');
 

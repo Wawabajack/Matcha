@@ -44,6 +44,13 @@
 		$res->execute();
 	}
 
+	function createPrefs($db, $uid) {
+		$sql = "INSERT INTO `preferences` (`uid`) VALUES (:uid)";
+		$res = $db->prepare($sql);
+		$res->bindParam(':uid', $uid);
+		$res->execute();
+	}
+
     function addUser($db, $username, $name, $surname, $mail, $pwd, $mailKey) {
         $sql = "INSERT INTO `users` (`username`, `name`, `surname`, `mail`, `password`, `warnings`, `mail_key`, `admin`, `inactive`)
                 VALUES (:usr, :nom, :surname, :mail, :pwd, '0', :mail_key, '0', '1')";
@@ -88,8 +95,7 @@
 	}
 
 	function fieldUpdate($db, $val, $uid, $field, $table) {
-    	if ($field == "username" && isThere($db, 'username', 'users', $val, 'username'))
-    		return 0;
+
     	$sql = "UPDATE `" . $table . "` SET `" . $field . "` = :val WHERE `id` = :uid";
 		$res = $db->prepare($sql);
 		$res->bindParam(':val', $val);

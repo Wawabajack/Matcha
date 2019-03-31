@@ -38,10 +38,6 @@
         else if ($field == "mail" && filter_var($val, FILTER_VALIDATE_EMAIL))
             return 1;
         // birthdate check
-        else if ($field == "birthdate" && strchr($val, 'ans')) {
-            $val = "";
-            return 1;
-        }
         else if ($field == "birthdate" && DateTime::createFromFormat('d/m/Y', $val) && $arr = explode('/', $val)) {
             foreach($arr as $val)
                 $val = (int)$val;
@@ -99,16 +95,15 @@
         return(lenCheck($db, $post));
     }
 
-    function checkUserEdit($post) {
+    function checkUserEdit(&$post) {
         $arr = array("username", "surname", "name", "gender", "mail", "birthdate", "location");
         foreach ($arr as $val) {
             if (isset($post[$val]) && $post[$val] = trim($post[$val]))
                 if (!isValid($val, $post[$val]))
-                    return 0; //echo 'problem with ' . $post[$val] . ' = ' . $val . '<br/>';                        /*  Debug   */
+                    $post[$val] = ""; //echo 'problem with ' . $post[$val] . ' = ' . $val . '<br/>';                        /*  Debug   */
             //echo 'checking $_POST[' . $val . '] : ' . $post[$val] . isValid($val, $post[$val]) . '<br/>';         /*          */
         }
-
-        return ($post);
+        return $post;
     }
 
     function profileUpdate($db, $elems, $uid)
@@ -117,15 +112,23 @@
         $profile = isThere($db, 'id', 'profiles', $uid, '*');
         if (!isset($profile['id']))
             createProfile($db, $uid);
+        if (!isset($prefs['id']))
+            createPrefs($db, $uid);
         foreach ($elems as $key => $val) {
+            /* Tables selector */
             $table = "users";
             if ($key == "gender" || $key == "birthdate")
                 $table = "profiles";
+            if ($key == "lf")
+                $table = "preferences" && $key = "gender";
             if ($key == "birthdate" && $val)
-                $val = $val[0][2] . $val[0][1] . $val[0][0];
-            if ($key != "file" && $key != "location" && $key != "lf" && $val != "")
-                fieldUpdate($db, $val, $uid, $key, $table);
+                $val = $val[0][2] . '-' . $val[0][1] . '-' . $val[0][0];
+            if (($key == "username" || $key == "mail") && isThere($db, $key, 'users', $val, $key))
+                $val = "";
+            if ($key != "file" && $key != "location" && $val != "")
+               fieldUpdate($db, $val, $uid, $key, $table);
         }
+        return 1;
     }
     /**             TODO: SQL REQ FUNCTIONS                   **/
 

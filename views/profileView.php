@@ -119,7 +119,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Location</label>
+                                                <label>Ville</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>' . $location . '</p>
@@ -226,7 +226,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Date de naissance</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="birthdate" placeholder="JJ/MM/AAAA">' . substr_replace($age, "", -5) . '</textarea>
+                                                <textarea style="resize: none; border: none; " name="birthdate" placeholder="JJ/MM/AAAA">' . $birthDate[2] . '/' . $birthDate[1] . '/' . $birthDate[0] . '</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -239,7 +239,7 @@ $editprofileV = '<div class="container emp-profile">
                                         </div>
                                         <div class="row">
                                         	<div class="col-md-6">
-                                        		<label>Intéressé par: </label>
+                                        		<label>Intéressé(e) par: </label>
                                        		</div>	
                                             <div class="col-md-6">
                                                 <textarea style="resize: none; border: none; " name="lf">' . substr_replace($lfgender, "", -5) . '</textarea>
