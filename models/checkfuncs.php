@@ -115,20 +115,18 @@
             $table = "users";
             if ($key == "gender" || $key == "birthdate")
                 $table = "profiles";
-            if ($key == "lf")
-            {
+            if ($key == "lf") {
                 $table = "preferences";
                 $key = "gender";
             }
-            if ($key == "birthdate" && $val)
-            {
+            if ($key == "birthdate" && $val) {
                 $arr = explode('/', $val);
                 $val = $arr[2] . '-' . $arr[1] . '-' . $arr[0];
             }
             if (($key == "username" || $key == "mail") && isThere($db, $key, 'users', $val, $key)->$key)
                 $val = "";
             if ($key != "file" && $key != "location" && $val != "")
-                echo 'updating ' . $val .': ' . fieldUpdate($db, $val, $uid, $key, $table);
+                fieldUpdate($db, $val, $uid, $key, $table); // echo 'updating ' . $val .': ' .
         }
         return 1;
     }
