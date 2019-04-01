@@ -32,7 +32,7 @@
         if (($field == "username" || ($field == "surname" && $val = ucfirst(strtolower($val))) || ($field == "name" && $val = strtoupper($val))) && ctype_alpha($val) && strlen($val) < 11)
             return 1;
         // location check
-        else if ($field == "location" && strlen($val) < 51 && filter_var($val, FILTER_SANITIZE_STRING))
+        else if ($field == "location" && strlen($val) < 51 && filter_var($val, FILTER_SANITIZE_SPECIAL_CHARS))
             return 1;
         //bio check
         else if ($field == "bio" && strlen($val) < 1000 && filter_var($val, FILTER_SANITIZE_SPECIAL_CHARS))
