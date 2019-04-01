@@ -4,7 +4,7 @@
 	if (!isset($_SESSION))
 		session_start();
 	if (isset($_SESSION['usr']))
-	require_once($_SERVER["DOCUMENT_ROOT"] . '/views/profileView.php');
+	    require_once($_SERVER["DOCUMENT_ROOT"] . '/views/profileView.php');
 ?>
 
 <html>

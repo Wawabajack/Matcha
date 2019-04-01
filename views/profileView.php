@@ -20,7 +20,7 @@
 	/** Profile infos **/
 
 	if (isset($_SESSION['profile'])) {
-	    $gender = '' . $_SESSION['profile']->gender . '<br/>';
+	    $gender = $_SESSION['profile']->gender;
 		if ($_SESSION['profile']->birthdate == "0000-00-00")
 			$_SESSION['profile']->birthdate = "1970-01-01";
 		$date = new DateTime($_SESSION['profile']->birthdate);
@@ -30,8 +30,8 @@
 	    $birth = explode('-', $_SESSION['profile']->birthdate);
 		$birth = $birth[1] . '/' . $birth[2] . '/' . $birth[0];
 		$location = "";
-		if ($_SESSION['profile']->country != "")
-	        $location = $_SESSION['profile']->city . ' ' . $_SESSION['profile']->region . ' ' . $_SESSION['profile']->country . '<br/>';
+		if ($_SESSION['profile']->city != "")
+	        $location = $_SESSION['profile']->city;
 	    $popScore = '' . $_SESSION['profile']->popularity . '<br/>';
 	    $image = $_SESSION['profile']->img;
     }
@@ -42,10 +42,10 @@
 
 	if (isset($_SESSION['prefs'])) {
 	    $lfgender = $_SESSION['prefs']->gender;
+		$bio = $_SESSION['prefs']->bio;
     }
 	else
-	    $lfgender = "";
-
+	    $lfgender = $bio = "";
     $profileV = '<div class="container emp-profile">
             <form method="post">
                 <div class="row">
@@ -141,7 +141,7 @@
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Jeune serviette connectée avec processeur de gestion du séchage cherche semblable pour s\'occuper de son fils gant de toilette</label>
+                                                <label>' . $bio . '</label>
                                             </div>
                                         </div>
                             </div>
@@ -238,7 +238,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Ville</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="location">' . substr_replace($location, "", -5) . '</textarea>
+                                                <textarea style="resize: none; border: none; " name="location">' . $location . '</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -253,7 +253,7 @@ $editprofileV = '<div class="container emp-profile">
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="" placeholder="Mes centres d\'intérêt..."></textarea></textarea>
+                                                <textarea style="resize: none; border: none; " name="bio" placeholder="Mes centres d\'intérêt..."></textarea>
                                             </div>
                                         </div>
                             </div>
