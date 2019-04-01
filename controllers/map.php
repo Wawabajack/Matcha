@@ -26,7 +26,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)){
   $newnode = $parnode->appendChild($node);
   $newnode->setAttribute("id",$row['id']);
   $newnode->setAttribute("name",$row['name']);
-  $newnode->setAttribute("address", $row['address']);
+  //$newnode->setAttribute("address", $row['address']);
   $newnode->setAttribute("lat", $row['lat']);
   $newnode->setAttribute("lng", $row['lng']);
 }

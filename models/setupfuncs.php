@@ -25,6 +25,25 @@
 		return 0;
 	}
 
+	function create_markers_table($db) {
+		$sql = "DROP TABLE IF EXISTS `markers`;
+        CREATE TABLE `markers` (
+        `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        `uid` int(11) NOT NULL UNIQUE,
+        `name` varchar(64) NOT NULL,
+		`lat` float(10,6) NOT NULL,
+		`ing` float(10,6) NOT NULL,
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+		if (!isset($db))
+			echo 'Erreur lors de la création de la table des markers, veuillez vérifier la connection avec le serveur SQL' . '<br/>';
+		else {
+			$res = $db->prepare($sql);
+			$res->execute();
+			return 1;
+		}
+		return 0;
+	}
+
 	function create_profiles_table($db) {
 		$sql = "DROP TABLE IF EXISTS `profiles`;
         CREATE TABLE `profiles` (
