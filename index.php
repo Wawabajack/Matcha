@@ -3,6 +3,7 @@
         session_start();
     require_once('views/indexView.php');
     require_once('models/miscfuncs.php');
+    require_once('views/mapView.php');
     if (isset($_SESSION['usr']->id))
         require_once('views/ProfileView.php');
 ?>
@@ -13,6 +14,7 @@
     <meta content="Index" name="MatchaWeeb">
     <link href="/css/profile.css" rel="stylesheet" type="text/css">
     <link href="/css/main.css" rel="stylesheet" type="text/css">
+
 
 
     <!------------ Bootstrap includes ------------>
@@ -71,6 +73,7 @@
     
     if (isset($_SESSION['usr']->id)) {
         $i = 1;
+        echo $map;
         echo ' <div class="container mini-profile">';
         while($i <= 10){
             $i++;

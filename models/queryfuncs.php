@@ -83,7 +83,16 @@
 	    $res->execute();
 	    $user = $res->fetch(PDO::FETCH_OBJ);
 	    return $user;
-    }
+	}
+	
+	function getUsermap($db) {
+		$sql = "SELECT * FROM markers WHERE 1";
+		$res = $db->prepare($sql);
+		//$res->bindParam(':uid', $uid);
+		$res->execute();
+		//$user = $res->fetch(PDO::FETCH_OBJ);
+		return $res;
+	}
 
     function getUserPrefs($db, $uid) {
 		$sql = "SELECT * FROM `preferences` WHERE `id` = :uid";
