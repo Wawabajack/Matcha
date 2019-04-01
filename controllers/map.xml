@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <markers>
-  <marker id="1" name="Love Fish" lat="-33.861034" lng="151.171936"/>
-  <marker id="3" name="Hunter Gatherer" lat="-33.840282" lng="151.207474"/>
+  <marker id="3" name="Hunter Gatherer" lat="45.738194" lng="4.817760"/>
   <marker id="4" name="The Potting Shed" lat="-33.910751" lng="151.194168"/>
   <marker id="5" name="Nomad" lat="-33.879917" lng="151.210449"/>
   <marker id="6" name="Three Blue Ducks" lat="-33.906357" lng="151.263763"/>
