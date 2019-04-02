@@ -74,8 +74,9 @@
     
     if (isset($_SESSION['usr']->id)) {
         $i = 1;
-        echo $map;
-        echo ' <div class="container mini-profile">';
+        //echo $map;
+        //echo $map2;
+        echo '<div class="container mini-profile">';
         while($i <= 10){
             $i++;
         echo $match;

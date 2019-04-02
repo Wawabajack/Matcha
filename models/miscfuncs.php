@@ -131,6 +131,5 @@
         //$dom->saveXML(); // put string in test1
         $dom->save('map.xml'); // save as file
         }
-       ?>
 ?>
 
