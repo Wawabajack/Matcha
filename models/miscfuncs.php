@@ -1,6 +1,6 @@
 <?php
     require_once($_SERVER["DOCUMENT_ROOT"] . '/config/db_connect.php');
-    require_once ('queryfuncs.php');
+    require_once('queryfuncs.php');
     if (!isset($_SESSION))
         session_start();
 
@@ -76,5 +76,61 @@
         return implode('', $pieces);
     }
 
+    function ip_details($ip) {
+        $json = file_get_contents("http://ipinfo.io/{$ip}/geo");
+        $details = json_decode($json, true);
+        return $details;
+    }
+
+    function getClientIP(){
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+          $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+          $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+          $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        //var_dump($ip);
+        if($ip == "172.18.0.1")
+            $ip = "185.15.27.37";
+        //var_dump($ip);
+        return $ip;
+    }
+
+    function getloc($db){
+        $ipaddress = getClientIP();
+        $details = ip_details($ipaddress);
+        //echo $details['loc'];
+        list($lat, $lng) = explode(",", $details['loc']);
+        //echo "lat =  $lat ";
+        //echo "lng =  $lng ";
+        $uid = 1;
+        locupdate($db, $uid, $lat, $lng);
+    }
+
+    function sendpos($db){
+        $dom = new DOMDocument("1.0");
+        $node = $dom->createElement("markers");
+        $parnode = $dom->appendChild($node);
+        $result = getUsermap($db);
+        //var_dump($result);
+        
+        // Iterate through the rows, adding XML nodes for each
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)){
+          // Add to XML document node
+          $node = $dom->createElement("marker");
+          $newnode = $parnode->appendChild($node);
+          $newnode->setAttribute("id",$row['id']);
+          $newnode->setAttribute("name",$row['name']);
+          //$newnode->setAttribute("address", $row['address']);
+          $newnode->setAttribute("lat", $row['lat']);
+          $newnode->setAttribute("lng", $row['lng']);
+        }
+        //echo $dom->saveXML();
+        //$dom->formatOutput = true; 
+        //$dom->saveXML(); // put string in test1
+        $dom->save('map.xml'); // save as file
+        }
+       ?>
 ?>
 

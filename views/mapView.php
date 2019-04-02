@@ -42,7 +42,7 @@ $map = '<div class="mapcadre">
         var infoWindow = new google.maps.InfoWindow;
 
           // Change this depending on the name of your PHP or XML file
-          downloadUrl("./controllers/map.xml", function(data) {
+          downloadUrl("./map.xml", function(data) {
             var xml = data.responseXML;
             var markers = xml.documentElement.getElementsByTagName("marker");
             Array.prototype.forEach.call(markers, function(markerElem) {

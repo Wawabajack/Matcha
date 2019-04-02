@@ -117,14 +117,13 @@
 		//       -- echo $sql;
 		return 1;
     }
-	/*
-	function locupdate($db, $uid) {
-		$sql = "UPDATE 'marker' SET 'lat' = $lat, 'lng' = $lng WHERE uid = $uid
+	
+	function locupdate($db, $uid, $lat, $lng) {
+		$sql = "UPDATE `markers` SET `lat` = $lat, `lng` = $lng WHERE $uid = `uid`";
 		$res = $db->prepare($sql);
 		$res->bindParam(':uid', $uid);
 		$res->execute();
-		$user = $res->fetch(PDO::FETCH_OBJ);
-		return $user;
+		return 1;
 	}
-	*/
+	
 ?>

@@ -65,7 +65,8 @@
         echo $menu;
         echo $profileBtn;
         echo $delogBtn;
-
+        sendpos($db);
+        getloc($db);
     }
 
     if (isset($_POST['logout']) || (isset($_GET['logout']) && $_GET['logout'] == "1"))
