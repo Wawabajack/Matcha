@@ -77,7 +77,7 @@
     }
 
     function getUserProfile($db, $uid) {
-		$sql = "SELECT * FROM `profiles` WHERE `id` = :uid";
+		$sql = "SELECT * FROM `profiles` WHERE `uid` = :uid";
 	    $res = $db->prepare($sql);
 	    $res->bindParam(':uid', $uid);
 	    $res->execute();
@@ -95,7 +95,7 @@
 	}
 
     function getUserPrefs($db, $uid) {
-		$sql = "SELECT * FROM `preferences` WHERE `id` = :uid";
+		$sql = "SELECT * FROM `preferences` WHERE `uid` = :uid";
 		$res = $db->prepare($sql);
 		$res->bindParam(':uid', $uid);
 		$res->execute();
@@ -113,8 +113,8 @@
 		$res->bindParam(':val', $val);
 		$res->bindParam(':uid', $uid);
 		$res->execute();
-		$sql = "UPDATE `" . $table . "` SET `" . $field . "` = " . $val . " WHERE " . $id . " = " . $uid;
-		echo $sql . '<br/>';
+		// DEBUG -- $sql = "UPDATE `" . $table . "` SET `" . $field . "` = " . $val . " WHERE " . $id . " = " . $uid;
+		//       -- echo $sql;
 		return 1;
     }
 	/*

@@ -32,7 +32,10 @@
         if (($field == "username" || ($field == "surname" && $val = ucfirst(strtolower($val))) || ($field == "name" && $val = strtoupper($val))) && ctype_alpha($val) && strlen($val) < 11)
             return 1;
         // location check
-        else if ($field == "location" && strlen($val) < 51 && filter_var($val, FILTER_SANITIZE_STRING))
+        else if ($field == "location" && strlen($val) < 51 && filter_var($val, FILTER_SANITIZE_SPECIAL_CHARS))
+            return 1;
+        //bio check
+        else if ($field == "bio" && strlen($val) < 1000 && filter_var($val, FILTER_SANITIZE_SPECIAL_CHARS))
             return 1;
         // mail check
         else if ($field == "mail" && filter_var($val, FILTER_VALIDATE_EMAIL))
@@ -91,12 +94,14 @@
     }
 
     function checkUserEdit(&$post) {
-        $arr = array("username", "surname", "name", "gender", "mail", "birthdate", "location", "lf");
+        $arr = array("username", "surname", "name", "gender", "mail", "birthdate", "location", "lf", "bio");
         foreach ($arr as $val) {
-            if (isset($post[$val]) && $post[$val] = trim($post[$val]))
+            if (isset($post[$val]) && $post[$val] = trim($post[$val])) {
+                echo 'checking $_POST[' . $val . '] : ' . $post[$val] . isValid($val, $post[$val]) . '<br/>';
                 if (!isValid($val, $post[$val]))
                     $post[$val] = ""; //echo 'problem with ' . $post[$val] . ' = ' . $val . '<br/>';                        /*  Debug   */
-                //echo 'checking $_POST[' . $val . '] : ' . $post[$val] . isValid($val, $post[$val]) . '<br/>';         /*          */
+                                                                                                                            /*          */
+            }
         }
         return $post;
     }
@@ -113,22 +118,27 @@
             //echo $key . ': ' . $val . '<br/>';
             /* Tables selector */
             $table = "users";
-            if ($key == "gender" || $key == "birthdate")
+            if ($key == "gender" || $key == "birthdate" || $key == "location") {
                 $table = "profiles";
-            if ($key == "lf")
-            {
-                $table = "preferences";
-                $key = "gender";
+                if ($key == "location")
+                    $key = "city";
             }
-            if ($key == "birthdate" && $val)
-            {
+            if ($key == "lf" || $key == "bio") {
+                $table = "preferences";
+                if ($key == "lf")
+                    $key = "gender";
+            }
+            if ($key == "birthdate" && $val) {
                 $arr = explode('/', $val);
                 $val = $arr[2] . '-' . $arr[1] . '-' . $arr[0];
             }
-            if (($key == "username" || $key == "mail") && isThere($db, $key, 'users', $val, $key)->$key)
-                $val = "";
-            if ($key != "file" && $key != "location" && $val != "")
-                echo 'updating ' . $val .': ' . fieldUpdate($db, $val, $uid, $key, $table);
+            if ($key == "username" || $key == "mail"){
+                $there = isThere($db, $key, 'users', $val, $key);
+                if (isset($there->$key))
+                    $val = "";
+            }
+            if ($key != "file" && $val != "")
+                fieldUpdate($db, $val, $uid, $key, $table); // echo 'updating ' . $val .': ' .
         }
         return 1;
     }
