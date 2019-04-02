@@ -35,7 +35,8 @@
 	    $image = $_SESSION['profile']->img;
     }
     else {
-	    $gender = $birthDate = $age = $location = $image = $popScore = $birth = "";
+	    $gender = "N";
+	    $birthDate = $age = $location = $image = $popScore = $birth = "";
         $image = "/img/401.png";
     }
 
@@ -43,9 +44,11 @@
 	    $lfgender = $_SESSION['prefs']->gender;
 		$bio = $_SESSION['prefs']->bio;
     }
-	else
-	    $lfgender = $bio = "";
-    $profileV = '<div class="container emp-profile">
+	else {
+        $lfgender = "N";
+        $bio = "";
+    }
+	$profileV = '<div class="container emp-profile">
             <form method="post">
                 <div class="row">
                     <div class="col-md-4">
