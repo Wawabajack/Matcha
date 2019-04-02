@@ -7,7 +7,7 @@
     function error($code) {
         switch($code) {
             case 1:
-                echo '<script>var erreur = document.getElementById("notif"); erreur.style.display = "block"; erreur.innerHTML = "nom d\'utilisateur inconnu";</script>'; 
+                echo '<script>var erreur = document.getElementById("notif"); erreur.style.disp lay = "block"; erreur.innerHTML = "nom d\'utilisateur inconnu";</script>';
                 break;
             case 2:
                 echo '<script>var erreur = document.getElementById("notif"); erreur.style.display = "block"; erreur.innerHTML = "Mot de passe incorrect";</script>';
@@ -97,14 +97,13 @@
         return $ip;
     }
 
-    function getloc($db){
+    function getloc($db, $uid){
         $ipaddress = getClientIP();
         $details = ip_details($ipaddress);
         //echo $details['loc'];
         list($lat, $lng) = explode(",", $details['loc']);
         //echo "lat =  $lat ";
         //echo "lng =  $lng ";
-        $uid = 1;
         locupdate($db, $uid, $lat, $lng);
     }
 
@@ -130,6 +129,11 @@
         //$dom->formatOutput = true; 
         //$dom->saveXML(); // put string in test1
         $dom->save('map.xml'); // save as file
+        }
+
+        function mapInit($db, $uid) {
+            sendpos($db);
+            getloc($db, $uid);
         }
 ?>
 

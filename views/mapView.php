@@ -107,4 +107,5 @@
 
     </html>
 </div>
+
 <?php $map = ob_get_clean();?>

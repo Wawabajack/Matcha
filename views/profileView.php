@@ -15,7 +15,6 @@
         $name = '' . $_SESSION['usr']->name . '<br/>';
         $surname = '' . $_SESSION['usr']->surname . '<br/>';
         $mail = '' . $_SESSION['usr']->mail . '<br/>';
-	}
 
 	/** Profile infos **/
 
@@ -28,7 +27,7 @@
 		$interval = $now->diff($date);
 	    $age = $interval->y;
 	    $birth = explode('-', $_SESSION['profile']->birthdate);
-		$birth = $birth[1] . '/' . $birth[2] . '/' . $birth[0];
+		$birth = $birth[2] . '/' . $birth[1] . '/' . $birth[0];
 		$location = "";
 		if ($_SESSION['profile']->city != "")
 	        $location = $_SESSION['profile']->city;
@@ -294,3 +293,4 @@ $match = '<div class="profile">
                     </div>
                 </div>
             </div>';
+	}

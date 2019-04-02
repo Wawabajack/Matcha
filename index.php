@@ -65,8 +65,6 @@
         echo $menu;
         echo $profileBtn;
         echo $delogBtn;
-        sendpos($db);
-        getloc($db);
     }
 
     if (isset($_POST['logout']) || (isset($_GET['logout']) && $_GET['logout'] == "1"))
@@ -74,8 +72,7 @@
     
     if (isset($_SESSION['usr']->id)) {
         $i = 1;
-        //echo $map;
-        //echo $map2;
+        echo $map;
         echo '<div class="container mini-profile">';
         while($i <= 10){
             $i++;
