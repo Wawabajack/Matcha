@@ -56,7 +56,8 @@
         `city` varchar(64) NOT NULL,
         `region` varchar(64) NOT NULL,
         `country` varchar(64) NOT NULL,
-        `lastseen` datetime NOT NULL
+        `lastseen` datetime NOT NULL,
+        `online` int(11) NOT NULL
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 		if (!isset($db))
 			echo 'Erreur lors de la création de la table des profils, veuillez vérifier la connection avec le serveur SQL' . '<br/>';
