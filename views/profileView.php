@@ -142,7 +142,7 @@ $profileV = '<div class="container emp-profile">
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Jeune serviette connectée avec processeur de gestion du séchage cherche semblable pour s\'occuper de son fils gant de toilette</label>
+                                                <label>'. $bio .'</label>
                                             </div>
                                         </div>
                             </div>
@@ -253,7 +253,7 @@ $editprofileV = '<div class="container emp-profile">
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="" placeholder="Mes centres d\'intérêt..."></textarea></textarea>
+                                                <textarea style="resize: none; border: none; " name="bio" placeholder="Mes centres d\'intérêt..."></textarea>
                                             </div>
                                         </div>
                             </div>

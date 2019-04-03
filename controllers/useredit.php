@@ -6,7 +6,7 @@
 
 	if (isset($_SESSION['usr']) && ((isset($_POST['username']) || isset($_POST['surname']) || isset($_POST['name'])
 		|| isset($_POST['gender']) || isset($_POST['mail']) || isset($_POST['age'])
-		|| isset($_POST['location']) || isset($_POST['lf']) || isset($_POST['file'])) && profileUpdate($db, checkUserEdit($db, $_POST, $_FILES), $_SESSION['usr']->id))) // Checking infos then pushing profile infos to database
+		|| isset($_POST['location']) || isset($_POST['lf']) || isset($_POST['file']) || isset($_POST['bio'])) && profileUpdate($db, checkUserEdit($db, $_POST, $_FILES), $_SESSION['usr']->id))) // Checking infos then pushing profile infos to database
 	{
 		// Upload handler
 
