@@ -8,8 +8,11 @@
 		|| isset($_POST['gender']) || isset($_POST['mail']) || isset($_POST['age'])
 		|| isset($_POST['location']) || isset($_POST['lf'])) && profileUpdate($db, checkUserEdit($_POST), $_SESSION['usr']->id))) // Checking infos then pushing profile infos to database
 	{
+	    // Upload handler
+        checkImage($db, $_FILES);
+
 		// Reloading session
-		$_SESSION['usr'] = getUserInfo($db, $_SESSION['usr']->id);
+        $_SESSION['usr'] = getUserInfo($db, $_SESSION['usr']->id);
 		$profile = getUserProfile($db, $_SESSION['usr']->id);
 		$prefs = getUserPrefs($db, $_SESSION['usr']->id);
 		if (isset($prefs->uid))

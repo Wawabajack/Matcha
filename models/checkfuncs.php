@@ -2,7 +2,6 @@
     require_once($_SERVER["DOCUMENT_ROOT"] . '/config/db_connect.php');
     require_once ('queryfuncs.php');
 
-
     function lenCheck($db, $post) {
         $err = 0;
         if (isThere($db, 'username', 'users',$post['username'], 'username'))
@@ -104,6 +103,33 @@
             }
         }
         return $post;
+    }
+
+    function checkImage($db, $files) {
+        if (isset($files['file']) && isset($files['file']['type']) && substr($files['file']['type'], 0, 5) == "image"
+            && isset($files['file']['size']) && $files['file']['size'] < 3000000) {
+            if (isset($files['file']['error']) && $files['file']['error'] != 0)
+                return 0;
+            $try = file_get_contents($files['file']['tmp_name']);
+            $namefile = $files['file']['name'];
+            $i = 0;
+            a:
+            if (is_dir($_SERVER["DOCUMENT_ROOT"] . '/img/'. lcfirst($_SESSION['usr']->username))) {
+                if (file_exists($_SERVER["DOCUMENT_ROOT"] . '/img/' . lcfirst($_SESSION['usr']->username) . '/' . $namefile)) {
+                    $namefile = $i . $namefile;
+                    $i++;
+                    goto a;
+                }
+                file_put_contents($_SERVER["DOCUMENT_ROOT"] . '/img/'. lcfirst($_SESSION['usr']->username) . '/' . $namefile, $try);
+            }
+            else
+            {
+                mkdir($_SERVER["DOCUMENT_ROOT"] . '/img/'. lcfirst($_SESSION['usr']->username));
+                goto a;
+            }
+        }
+        fieldUpdate($db, '/img/' . lcfirst($_SESSION['usr']->username) . '/' . $namefile , $_SESSION['usr']->id, 'img', 'profiles');
+        return 1;
     }
 
     function profileUpdate($db, $elems, $uid)

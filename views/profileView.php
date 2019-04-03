@@ -49,7 +49,6 @@
         $bio = "";
     }
 	$profileV = '<div class="container emp-profile">
-            <form method="post">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
@@ -149,15 +148,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>           
+                </div>  
         </div>';
 
 
 			// USERCP
 
 $editprofileV = '<div class="container emp-profile">
-            <form method="post" action="../controllers/useredit.php">
+            <form method="post" action="../controllers/useredit.php" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
@@ -173,7 +171,7 @@ $editprofileV = '<div class="container emp-profile">
                                     <textarea style="resize: none; border: none; " name="username">' .
 										substr_replace($username, "", -14) . '
                                     </textarea>
-                                    <textarea style="resize: none; border: none; "0 name="surname">' .
+                                    <textarea style="resize: none; border: none; " name="surname">' .
 										substr_replace($surname, "", -5) . '
                                     </textarea>
                                     <p class="proile-rating">POPULARITY : <span>' . $popScore . '</span></p>
