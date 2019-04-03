@@ -61,7 +61,6 @@
     /** User is logged **/
 
     else {
-
         echo $menu;
         echo $profileBtn;
         echo $delogBtn;
@@ -73,6 +72,7 @@
     if (isset($_SESSION['usr']->id)) {
         $i = 1;
         echo $map;
+        echo $slider;
         echo '<div class="container mini-profile">';
         while($i <= 10){
             $i++;

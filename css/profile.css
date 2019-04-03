@@ -118,6 +118,8 @@ body{
 
 .mini-profile{
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
     /*flex-direction: row;*/
     padding: 3%;
@@ -186,7 +188,6 @@ img {
     color: rgb(160, 20, 137);
     border-radius: 0.5rem;
     border: none;
-    padding-right: 3%;
 }
 
 #notif {
@@ -203,3 +204,53 @@ img {
     font-size: 1.25rem;
     padding-top: 5px;
 }
+
+.slider {
+    -webkit-appearance: none;
+    display: block;
+    width: 80%;
+    height: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1.5%;
+    border-radius: 5px;   
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: rgb(163, 112, 189);
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: rgb(163, 112, 189);
+    cursor: pointer;
+  }
+
+  .research{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: transparent;
+    border-radius: 7px;
+    margin-top: 3%;      
+  }
+
+  .slidecontainer{
+      display: block; 
+      margin-left: auto;
+      margin-right: auto;
+
+  }

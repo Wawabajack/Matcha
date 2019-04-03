@@ -17,8 +17,8 @@
             html,
             body {
                 height: 100%;
-                margin: 10;
-                padding: 10;
+                /*margin: 10;*/
+                /*padding: 10;*/
             }
         </style>
     </head>
