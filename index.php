@@ -65,10 +65,13 @@
         echo $menu;
         echo $profileBtn;
         echo $delogBtn;
+<<<<<<< HEAD
         /* transfrme la db en xml pour l envoyer a la map */
         sendpos($db);
         /* recupere la loc via l ip */
         getloc($db);
+=======
+>>>>>>> 7a6e589e1ed7712ddf7d75fcb0ab2185eac47871
     }
 
     if (isset($_POST['logout']) || (isset($_GET['logout']) && $_GET['logout'] == "1"))
@@ -77,7 +80,10 @@
     if (isset($_SESSION['usr']->id)) {
         $i = 1;
         echo $map;
+<<<<<<< HEAD
         //echo $map2;
+=======
+>>>>>>> 7a6e589e1ed7712ddf7d75fcb0ab2185eac47871
         echo '<div class="container mini-profile">';
         while($i <= 10){
             $i++;

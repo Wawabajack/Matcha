@@ -16,12 +16,6 @@
             if (passwordCheck($db, $_POST['usr'], $_POST['pwd']))
             {
                 $_SESSION['usr'] = loadUserInfo($db, $_POST['usr']);
-                $profile = getUserProfile($db, $_SESSION['usr']->id);
-                $prefs = getUserPrefs($db, $_SESSION['usr']->id);
-                if (isset($profile->id))
-                	$_SESSION['profile'] = $profile;
-                if (isset($prefs->id))
-                	$_SESSION['prefs'] = $prefs;
 
 	            if ($_SESSION['usr']->warnings > 2) {
 	               /** Banned account */
@@ -40,6 +34,13 @@
                 }
                 else {
 	                /** User is now logged in **/
+                    $profile = getUserProfile($db, $_SESSION['usr']->id);
+                    $prefs = getUserPrefs($db, $_SESSION['usr']->id);
+                    if (isset($profile->id))
+                        $_SESSION['profile'] = $profile;
+                    if (isset($prefs->id))
+                        $_SESSION['prefs'] = $prefs;
+                    mapInit($db, $_SESSION['usr']->id);
 	                header('refresh:0;url=/index.php');
                 }
             }

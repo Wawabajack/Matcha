@@ -97,7 +97,7 @@
         $arr = array("username", "surname", "name", "gender", "mail", "birthdate", "location", "lf", "bio");
         foreach ($arr as $val) {
             if (isset($post[$val]) && $post[$val] = trim($post[$val])) {
-                echo 'checking $_POST[' . $val . '] : ' . $post[$val] . isValid($val, $post[$val]) . '<br/>';
+                //echo 'checking $_POST[' . $val . '] : ' . $post[$val] . isValid($val, $post[$val]) . '<br/>';
                 if (!isValid($val, $post[$val]))
                     $post[$val] = ""; //echo 'problem with ' . $post[$val] . ' = ' . $val . '<br/>';                        /*  Debug   */
                                                                                                                             /*          */

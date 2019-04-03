@@ -15,7 +15,6 @@
         $name = '' . $_SESSION['usr']->name . '<br/>';
         $surname = '' . $_SESSION['usr']->surname . '<br/>';
         $mail = '' . $_SESSION['usr']->mail . '<br/>';
-	}
 
 	/** Profile infos **/
 
@@ -28,7 +27,7 @@
 		$interval = $now->diff($date);
 	    $age = $interval->y;
 	    $birth = explode('-', $_SESSION['profile']->birthdate);
-		$birth = $birth[1] . '/' . $birth[2] . '/' . $birth[0];
+		$birth = $birth[2] . '/' . $birth[1] . '/' . $birth[0];
 		$location = "";
 		if ($_SESSION['profile']->city != "")
 	        $location = $_SESSION['profile']->city;
@@ -36,7 +35,8 @@
 	    $image = $_SESSION['profile']->img;
     }
     else {
-	    $gender = $birthDate = $age = $location = $image = $popScore = $birth = "";
+	    $gender = "N";
+	    $birthDate = $age = $location = $image = $popScore = $birth = "";
         $image = "/img/401.png";
     }
 
@@ -44,9 +44,11 @@
 	    $lfgender = $_SESSION['prefs']->gender;
 		$bio = $_SESSION['prefs']->bio;
     }
-	else
-	    $lfgender = $bio = "";
-    $profileV = '<div class="container emp-profile">
+	else {
+        $lfgender = "N";
+        $bio = "";
+    }
+	$profileV = '<div class="container emp-profile">
             <form method="post">
                 <div class="row">
                     <div class="col-md-4">
@@ -294,3 +296,4 @@ $match = '<div class="profile">
                     </div>
                 </div>
             </div>';
+	}

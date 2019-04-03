@@ -38,14 +38,14 @@
 	}
 
 	function createProfile($db, $uid) {
-		$sql = "INSERT INTO `profiles` (`uid`, `img`) VALUES (:uid, '/img/404.png')";
+		$sql = "INSERT INTO `profiles` (`uid`, `img`, `gender`) VALUES (:uid, '/img/404.png', 'N')";
 		$res = $db->prepare($sql);
 		$res->bindParam(':uid', $uid);
 		$res->execute();
 	}
 
 	function createPrefs($db, $uid) {
-		$sql = "INSERT INTO `preferences` (`uid`) VALUES (:uid)";
+		$sql = "INSERT INTO `preferences` (`uid`, `gender`) VALUES (:uid, 'N')";
 		$res = $db->prepare($sql);
 		$res->bindParam(':uid', $uid);
 		$res->execute();
@@ -86,7 +86,7 @@
 	}
 	
 	function getUsermap($db) {
-		$sql = "SELECT * FROM markers WHERE 1";
+		$sql = "SELECT * FROM markers";
 		$res = $db->prepare($sql);
 		//$res->bindParam(':uid', $uid);
 		$res->execute();
