@@ -8,7 +8,7 @@
 		|| isset($_POST['gender']) || isset($_POST['mail']) || isset($_POST['age'])
 		|| isset($_POST['location']) || isset($_POST['lf'])) && profileUpdate($db, checkUserEdit($_POST), $_SESSION['usr']->id))) // Checking infos then pushing profile infos to database
 	{
-	    // Upload handler
+		// Upload handler
         checkImage($db, $_FILES);
 
 		// Reloading session

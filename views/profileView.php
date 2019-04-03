@@ -49,7 +49,6 @@ if (isset($_SESSION['prefs'])) {
    }
    
 $profileV = '<div class="container emp-profile">
-            <form method="post">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
@@ -149,15 +148,14 @@ $profileV = '<div class="container emp-profile">
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>           
+                </div>       
         </div>';
 
 
 // USERCP
 
 $editprofileV = '<div class="container emp-profile">
-            <form method="post" action="../controllers/useredit.php">
+            <form method="post" action="../controllers/useredit.php" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
