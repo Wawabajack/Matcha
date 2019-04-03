@@ -262,24 +262,30 @@ $editprofileV = '<div class="container emp-profile">
         </div>';
 
 $slider = '
-
-<div class="""slidecontainer">
+<div class="research">
+<div class="slidecontainer">
   <input type="range" min="1" max="100" value="50" class="slider" id="age">
   <p>age = <span id="age:"></span></p>
 </div>
-<div class="""slidecontainer">
+<div class="slidecontainer">
   <input type="range" min="0" max="100" value="50" class="slider" id="loc">
   <p>loc = <span id="loc:"></span></p>
 </div>
-<div class="""slidecontainer">
+<div class="slidecontainer">
   <input type="range" min="1" max="5" value="2" class="slider" id="tag">
   <p>tag = <span id="tag:"></span></p>
 </div>
-<div class="""slidecontainer">
+<div class="slidecontainer">
   <input type="range" min="1" max="10000" value="500" class="slider" id="pop">
   <p>pop = <span id="pop:"></span></p>
 </div>
-
+<div style="display:block "class="btn">
+    <input class="btntop" type="submit" value=" order by Age">
+    <input class="btntop" type="submit" value=" order by Loc">
+    <input class="btntop" type="submit" value=" order by tag">
+    <input class="btntop" type="submit" value=" order by pop">
+</div>
+</div>
 <script>
 var slider = document.getElementById("age");
 var output = document.getElementById("age:");

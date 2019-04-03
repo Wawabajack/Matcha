@@ -186,7 +186,6 @@ img {
     color: rgb(160, 20, 137);
     border-radius: 0.5rem;
     border: none;
-    padding-right: 3%;
 }
 
 #notif {
@@ -206,8 +205,11 @@ img {
 
 .slider {
     -webkit-appearance: none;
-    width: 100%;
+    display: block;
+    width: 80%;
     height: 15px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 1.5%;
     border-radius: 5px;   
     background: #d3d3d3;
@@ -233,4 +235,20 @@ img {
     border-radius: 50%;
     background: rgb(163, 112, 189);
     cursor: pointer;
+  }
+
+  .research{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: transparent;
+    border-radius: 7px;
+    margin-top: 3%;      
+  }
+
+  .slidecontainer{
+      display: block; 
+      margin-left: auto;
+      margin-right: auto;
+
   }
