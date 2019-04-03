@@ -65,7 +65,9 @@
         echo $menu;
         echo $profileBtn;
         echo $delogBtn;
+        /* transfrme la db en xml pour l envoyer a la map */
         sendpos($db);
+        /* recupere la loc via l ip */
         getloc($db);
     }
 
@@ -74,7 +76,7 @@
     
     if (isset($_SESSION['usr']->id)) {
         $i = 1;
-        //echo $map;
+        echo $map;
         //echo $map2;
         echo '<div class="container mini-profile">';
         while($i <= 10){
