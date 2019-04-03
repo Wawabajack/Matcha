@@ -39,10 +39,15 @@ if (isset($_SESSION['profile'])) {
     $image = "/img/401.png";
 }
 
-if (isset($_SESSION['prefs'])) {
-    $lfgender = $_SESSION['prefs']->gender;
-} else
-    $lfgender = "";
+if (isset($_SESSION[‘prefs’])) {
+        $lfgender = $_SESSION[‘prefs’]->gender;
+        $bio = $_SESSION[‘prefs’]->bio;
+   }
+    else {
+       $lfgender = “N”;
+       $bio = “”;
+   }
+    $profileV = ’<div class=“container emp-profile”>
 
 $profileV = '<div class="container emp-profile">
             <form method="post">
