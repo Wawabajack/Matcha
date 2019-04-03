@@ -42,9 +42,10 @@
                         $_SESSION['prefs'] = $prefs;
                     mapInit($db, $_SESSION['usr']->id);
                     $now = date("Y-m-d H:i:s");
-                    echo $now;
-                    //fieldUpdate($db, )
-	                //header('refresh:0;url=/index.php');
+                    // Updating online profile status
+                    fieldUpdate($db, $now, $_SESSION['usr']->id, 'lastseen', 'profiles');
+                    fieldUpdate($db, 1, $_SESSION['usr']->id, 'online', 'profiles');
+	                header('refresh:0;url=/index.php');
                 }
             }
             else {
