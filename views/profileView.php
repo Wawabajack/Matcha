@@ -1,54 +1,50 @@
 <?php
-	if (!isset($_SESSION))
-		session_start();
-	require_once($_SERVER["DOCUMENT_ROOT"] . '/config/db_connect.php');
-	/** Picture & Frame **/
+if (!isset($_SESSION))
+    session_start();
+require_once($_SERVER["DOCUMENT_ROOT"] . '/config/db_connect.php');
+/** Picture & Frame **/
 
-	$startFrame = '<center><div id="frame"><img id="img" src="';
-	$endFrame = '"></div></center><br/>';
+$startFrame = '<center><div id="frame"><img id="img" src="';
+$endFrame = '"></div></center><br/>';
 
-	/** User infos **/
+/** User infos **/
 
-	if (isset($_SESSION['usr'])) {
+if (isset($_SESSION['usr'])) {
 
-        $username = '' . ucfirst($_SESSION['usr']->username) . '</center><br/>';
-        $name = '' . $_SESSION['usr']->name . '<br/>';
-        $surname = '' . $_SESSION['usr']->surname . '<br/>';
-        $mail = '' . $_SESSION['usr']->mail . '<br/>';
+    $username = '' . ucfirst($_SESSION['usr']->username) . '</center><br/>';
+    $name = '' . $_SESSION['usr']->name . '<br/>';
+    $surname = '' . $_SESSION['usr']->surname . '<br/>';
+    $mail = '' . $_SESSION['usr']->mail . '<br/>';
+}
 
-	/** Profile infos **/
+/** Profile infos **/
 
-	if (isset($_SESSION['profile'])) {
-	    $gender = $_SESSION['profile']->gender;
-		if ($_SESSION['profile']->birthdate == "0000-00-00")
-			$_SESSION['profile']->birthdate = "1970-01-01";
-		$date = new DateTime($_SESSION['profile']->birthdate);
-		$now = new DateTime();
-		$interval = $now->diff($date);
-	    $age = $interval->y;
-	    $birth = explode('-', $_SESSION['profile']->birthdate);
-		$birth = $birth[2] . '/' . $birth[1] . '/' . $birth[0];
-		$location = "";
-		if ($_SESSION['profile']->city != "")
-	        $location = $_SESSION['profile']->city;
-	    $popScore = '' . $_SESSION['profile']->popularity . '<br/>';
-	    $image = $_SESSION['profile']->img;
-    }
-    else {
-	    $gender = "N";
-	    $birthDate = $age = $location = $image = $popScore = $birth = "";
-        $image = "/img/401.png";
-    }
+if (isset($_SESSION['profile'])) {
+    $gender = '' . $_SESSION['profile']->gender . '<br/>';
+    if ($_SESSION['profile']->birthdate == "0000-00-00")
+        $_SESSION['profile']->birthdate = "1970-01-01";
+    $date = new DateTime($_SESSION['profile']->birthdate);
+    $now = new DateTime();
+    $interval = $now->diff($date);
+    $age = $interval->y;
+    $birth = explode('-', $_SESSION['profile']->birthdate);
+    $birth = $birth[1] . '/' . $birth[2] . '/' . $birth[0];
+    $location = "";
+    if ($_SESSION['profile']->country != "")
+        $location = $_SESSION['profile']->city . ' ' . $_SESSION['profile']->region . ' ' . $_SESSION['profile']->country . '<br/>';
+    $popScore = '' . $_SESSION['profile']->popularity . '<br/>';
+    $image = $_SESSION['profile']->img;
+} else {
+    $gender = $birthDate = $age = $location = $image = $popScore = $birth = "";
+    $image = "/img/401.png";
+}
 
-	if (isset($_SESSION['prefs'])) {
-	    $lfgender = $_SESSION['prefs']->gender;
-		$bio = $_SESSION['prefs']->bio;
-    }
-	else {
-        $lfgender = "N";
-        $bio = "";
-    }
-	$profileV = '<div class="container emp-profile">
+if (isset($_SESSION['prefs'])) {
+    $lfgender = $_SESSION['prefs']->gender;
+} else
+    $lfgender = "";
+
+$profileV = '<div class="container emp-profile">
             <form method="post">
                 <div class="row">
                     <div class="col-md-4">
@@ -59,10 +55,10 @@
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>' .
-                                       $username . '
+    $username . '
                                     </h5>
                                     <h6>' .
-                                        $surname . '
+    $surname . '
                                     </h6>
                                     <p class="proile-rating">POPULARITY : <span>' . $popScore . '</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -112,7 +108,7 @@
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p> ' . $mail .'</p>
+                                                <p> ' . $mail . '</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -143,7 +139,7 @@
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>' . $bio . '</label>
+                                                <label>Jeune serviette connectée avec processeur de gestion du séchage cherche semblable pour s\'occuper de son fils gant de toilette</label>
                                             </div>
                                         </div>
                             </div>
@@ -154,7 +150,7 @@
         </div>';
 
 
-			// USERCP
+// USERCP
 
 $editprofileV = '<div class="container emp-profile">
             <form method="post" action="../controllers/useredit.php">
@@ -171,10 +167,10 @@ $editprofileV = '<div class="container emp-profile">
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <textarea style="resize: none; border: none; " name="username">' .
-										substr_replace($username, "", -14) . '
+    substr_replace($username, "", -14) . '
                                     </textarea>
                                     <textarea style="resize: none; border: none; "0 name="surname">' .
-										substr_replace($surname, "", -5) . '
+    substr_replace($surname, "", -5) . '
                                     </textarea>
                                     <p class="proile-rating">POPULARITY : <span>' . $popScore . '</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -224,7 +220,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea  style="resize: none; border: none; " name="mail" placeholder="exemple@gmail.com">' . substr_replace($mail, "", -5) .'</textarea>
+                                                <textarea  style="resize: none; border: none; " name="mail" placeholder="exemple@gmail.com">' . substr_replace($mail, "", -5) . '</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -240,7 +236,7 @@ $editprofileV = '<div class="container emp-profile">
                                                 <label>Ville</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="location">' . $location . '</textarea>
+                                                <textarea style="resize: none; border: none; " name="location">' . substr_replace($location, "", -5) . '</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -255,7 +251,7 @@ $editprofileV = '<div class="container emp-profile">
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="bio" placeholder="Mes centres d\'intérêt..."></textarea>
+                                                <textarea style="resize: none; border: none; " name="" placeholder="Mes centres d\'intérêt..."></textarea></textarea>
                                             </div>
                                         </div>
                             </div>
@@ -264,6 +260,62 @@ $editprofileV = '<div class="container emp-profile">
                 </div>
             </form>           
         </div>';
+
+$slider = '
+
+<div class="""slidecontainer">
+  <input type="range" min="1" max="100" value="50" class="slider" id="age">
+  <p>age = <span id="age:"></span></p>
+</div>
+<div class="""slidecontainer">
+  <input type="range" min="0" max="100" value="50" class="slider" id="loc">
+  <p>loc = <span id="loc:"></span></p>
+</div>
+<div class="""slidecontainer">
+  <input type="range" min="1" max="5" value="2" class="slider" id="tag">
+  <p>tag = <span id="tag:"></span></p>
+</div>
+<div class="""slidecontainer">
+  <input type="range" min="1" max="10000" value="500" class="slider" id="pop">
+  <p>pop = <span id="pop:"></span></p>
+</div>
+
+<script>
+var slider = document.getElementById("age");
+var output = document.getElementById("age:");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+</script>
+<script>
+var slider2 = document.getElementById("loc");
+var output2 = document.getElementById("loc:");
+output2.innerHTML = slider2.value;
+
+slider2.oninput = function() {
+  output2.innerHTML = this.value;
+}
+</script>
+<script>
+var slider3 = document.getElementById("tag");
+var output3 = document.getElementById("tag:");
+output3.innerHTML = slider3.value;
+
+slider3.oninput = function() {
+  output3.innerHTML = this.value;
+}
+</script>
+<script>
+var slider4 = document.getElementById("pop");
+var output4 = document.getElementById("pop:");
+output4.innerHTML = slider4.value;
+
+slider4.oninput = function() {
+  output4.innerHTML = this.value;
+}
+</script>';
 
 /****************  a bouger plus tard pour l'algo de march   **************************/
 
@@ -281,19 +333,19 @@ $match = '<div class="profile">
                     </div>
                     <div class="desc"> 
                         <h5>' .
-                            $age . '
-                        </h5>
-                    </div>
-                    <div class="desc"> 
-                        <h5>' . 
-                            $location . '
+    $age . '
                         </h5>
                     </div>
                     <div class="desc"> 
                         <h5>' .
-                            $gender . '
+    $location . '
+                        </h5>
+                    </div>
+                    <div class="desc"> 
+                        <h5>' .
+    $gender . '
                         </h5>   
                     </div>
                 </div>
             </div>';
-	}
+
