@@ -17,7 +17,7 @@
 
             // Creating new account
             $mailKey = random_str(30);
-            addUser($db, ucfirst(strtolower($_POST['username'])), $_POST['name'], $_POST['surname'], $_POST['mail'], password_hash($_POST['pwd'], 1), $mailKey);
+            addUser($db, ucfirst(strtolower($_POST['username'])), strtoupper($_POST['name']), ucfirst(strtolower($_POST['surname'])), $_POST['mail'], password_hash($_POST['pwd'], 1), $mailKey);
             $mailContent = 'Veuillez cliquer <a href="http://www.localhost:8008/controllers/activate.php?key=' . $mailKey . '"> ici </a> afin de confirmer votre inscription\n';
             $head = 'fwebmaster@MatchaWeeb.com';
 

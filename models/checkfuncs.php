@@ -58,18 +58,18 @@
     }
 
     function keyCheck($db, $userKey) {
-        if (filter_var($userKey, FILTER_SANITIZE_URL) != $userKey)
+        if (!filter_var($userKey, FILTER_SANITIZE_SPECIAL_CHARS))
             return 0;
         $user = getUserKey($db, $userKey);
         if (isset($user->id))
-            $key = getUserInfo($db, $user)->mail_key;
+            $key = getUserInfo($db, $user->id)->mail_key;
         if (isset($key) && $key == $userKey)
             return 1;
         return 0;
     }
 
     function strCheck($usr) {
-        if (filter_var($usr, FILTER_SANITIZE_SPECIAL_CHARS) !== $usr)
+        if (!filter_var($usr, FILTER_SANITIZE_SPECIAL_CHARS))
             return 0;
         return 1;
     }
