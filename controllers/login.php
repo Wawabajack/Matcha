@@ -41,7 +41,10 @@
                     if (isset($prefs->id))
                         $_SESSION['prefs'] = $prefs;
                     mapInit($db, $_SESSION['usr']->id);
-	                header('refresh:0;url=/index.php');
+                    $now = date("Y-m-d H:i:s");
+                    echo $now;
+                    //fieldUpdate($db, )
+	                //header('refresh:0;url=/index.php');
                 }
             }
             else {

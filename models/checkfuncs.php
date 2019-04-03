@@ -92,7 +92,8 @@
         return(lenCheck($db, $post));
     }
 
-    function checkUserEdit(&$post) {
+    function checkUserEdit($db, &$post, $file) {
+        checkImage($db, $file);
         $arr = array("username", "surname", "name", "gender", "mail", "birthdate", "location", "lf", "bio");
         foreach ($arr as $val) {
             if (isset($post[$val]) && $post[$val] = trim($post[$val])) {
@@ -127,9 +128,11 @@
                 mkdir($_SERVER["DOCUMENT_ROOT"] . '/img/'. lcfirst($_SESSION['usr']->username));
                 goto a;
             }
-        }
         fieldUpdate($db, '/img/' . lcfirst($_SESSION['usr']->username) . '/' . $namefile , $_SESSION['usr']->id, 'img', 'profiles');
         return 1;
+        }
+        else
+            return 0;
     }
 
     function profileUpdate($db, $elems, $uid)
