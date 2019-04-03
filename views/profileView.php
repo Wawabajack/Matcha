@@ -47,8 +47,7 @@ if (isset($_SESSION[‘prefs’])) {
        $lfgender = “N”;
        $bio = “”;
    }
-    $profileV = ’<div class=“container emp-profile”>
-
+   
 $profileV = '<div class="container emp-profile">
             <form method="post">
                 <div class="row">
