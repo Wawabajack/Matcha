@@ -38,7 +38,7 @@
 	}
 
 	function createProfile($db, $uid) {
-		$sql = "INSERT INTO `profiles` (`uid`, `img`, `gender`) VALUES (:uid, '/img/404.png', 'N')";
+		$sql = "INSERT INTO `profiles` (`uid`, `img`, `gender`) VALUES (:uid, '/img/blank.png', 'N')";
 		$res = $db->prepare($sql);
 		$res->bindParam(':uid', $uid);
 		$res->execute();
@@ -84,13 +84,11 @@
 	    $user = $res->fetch(PDO::FETCH_OBJ);
 	    return $user;
 	}
-	
+
 	function getUsermap($db) {
-		$sql = "SELECT * FROM markers";
+		$sql = "SELECT * FROM `profiles`";
 		$res = $db->prepare($sql);
-		//$res->bindParam(':uid', $uid);
 		$res->execute();
-		//$user = $res->fetch(PDO::FETCH_OBJ);
 		return $res;
 	}
 
@@ -119,9 +117,11 @@
     }
 	
 	function locupdate($db, $uid, $lat, $lng) {
-		$sql = "UPDATE `markers` SET `lat` = $lat, `lng` = $lng WHERE $uid = `uid`";
+		$sql = "UPDATE `profiles` SET `lat` = :lat, `lng` = :lng WHERE `uid` = :uid";
 		$res = $db->prepare($sql);
 		$res->bindParam(':uid', $uid);
+        $res->bindParam(':lat', $lat);
+        $res->bindParam(':lng', $lng);
 		$res->execute();
 		return 1;
 	}
