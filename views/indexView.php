@@ -45,6 +45,8 @@
 
     $regSuccess = '<p><b>Compte créé avec succès ! Merci de vérifier vos mails !</b></p>';
 
+    $regfail = '<p><b>Erreur lors de la création ducompte !</b></p>';
+
     $createProfileBtn = '<li><form method="post" action="/pages/profile.php">
         <input class="btntop" type="submit" value=" Créer mon profil "></form></li>';
 	$profileBtn = '<li><form method="post" action="/pages/profile.php">

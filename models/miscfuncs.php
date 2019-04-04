@@ -93,7 +93,7 @@ function getClientIP()
     }
     //var_dump($ip);
     if ($ip == "172.18.0.1")
-        $ip = "185.15.27.37";
+        $ip = "79.85.134.15";
     //var_dump($ip);
     return $ip;
 }

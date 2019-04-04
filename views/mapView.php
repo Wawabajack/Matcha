@@ -46,7 +46,7 @@
                 var infoWindow = new google.maps.InfoWindow;
 
                 // Change this depending on the name of your PHP or XML file
-                downloadUrl("./map.xml", function(data) {
+                downloadUrl("controllers/map.xml", function(data) {
                     var xml = data.responseXML;
                     var markers = xml.documentElement.getElementsByTagName("marker");
                     Array.prototype.forEach.call(markers, function(markerElem) {
@@ -108,4 +108,4 @@
     </html>
 </div>
 
-<?php $map = ob_get_clean();?>
+<?php $map = ob_get_clean(); ?>

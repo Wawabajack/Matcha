@@ -266,11 +266,11 @@ $editprofileV = '<div class="container emp-profile">
 $slider = '
 <div class="research">
 <div class="slidecontainer">
-  <input type="range" min="1" max="100" value="50" class="slider" id="agemin">
+  <input type="range" min="1" max="100" value="60" class="slider" id="agemin">
   <p>age max = <span id="agemini:"></span></p>
 </div>
 <div class="slidecontainer">
-  <input type="range" min="1" max="100" value="50" class="slider" id="agemax">
+  <input type="range" min="1" max="100" value="20" class="slider" id="agemax">
   <p>age min = <span id="agemaxi:"></span></p>
 </div>
 <div class="slidecontainer">
@@ -282,11 +282,11 @@ $slider = '
   <p>tag = <span id="tag:"></span></p>
 </div>
 <div class="slidecontainer">
-  <input type="range" min="1" max="10000" value="500" class="slider" id="popmin">
+  <input type="range" min="1" max="10000" value="4000" class="slider" id="popmin">
   <p>pop min = <span id="popmini:"></span></p>
 </div>
 <div class="slidecontainer">
-  <input type="range" min="1" max="10000" value="500" class="slider" id="popmax">
+  <input type="range" min="1" max="10000" value="6000" class="slider" id="popmax">
   <p>pop max = <span id="popmaxi:"></span></p>
 </div>
 <div style="display:block "class="btn">

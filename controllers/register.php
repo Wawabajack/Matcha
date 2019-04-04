@@ -23,7 +23,7 @@
 
             // Sending confirmation mail
             mail($_POST['mail'], 'MatchaWeeb - Inscription', $mailContent, $head);
-            unset($_SESSION['register']);
+            $_SESSION['register'] = 'success';
             header('refresh:0;url=../index.php');
         }
     }
