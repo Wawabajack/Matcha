@@ -98,26 +98,20 @@ function getClientIP()
     return $ip;
 }
 
-function geocode($lat, $lng)
+function getCity($lat, $lng)
 {
-    $details_url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" . $lat . ',' . $lng . "&sensor=false" . $;
+    $apiKey = "&key=AIzaSyBtlv6rYn6x-0tL53o99fUtZbUwm4zcCm0";
+    $details_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" . $lat . ',' . $lng . "&sensor=false" . $apiKey;
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $details_url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $geoloc = json_decode(curl_exec($ch), true);
-
-    $step1 = $geoloc['results'];
-    $step2 = $step1['geometry'];
-    $coords = $step2['location'];
-
-    print $coords['lat'];
-    print $coords['lng'];
-
+    $city = $geoloc['results'][0]['address_components'][2]['long_name'];
+    if (isset($city))
+        return $city;
+    return "";
 }
-
-    $apiKey = "&key=AIzaSyBtlv6rYn6x-0tL53o99fUtZbUwm4zcCm0";
-
 
 function getloc($db, $uid)
 {
@@ -129,7 +123,6 @@ function getloc($db, $uid)
     //echo "lng =  $lng ";
     $city = getCity($lat, $lng);
     //$city = "lol";
-    var_dump($city);
     if ($city != "")
         fieldUpdate($db,$city, $uid,'city', 'profiles');
     locupdate($db, $uid, $lat, $lng);
