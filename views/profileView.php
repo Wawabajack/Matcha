@@ -266,8 +266,12 @@ $editprofileV = '<div class="container emp-profile">
 $slider = '
 <div class="research">
 <div class="slidecontainer">
-  <input type="range" min="1" max="100" value="50" class="slider" id="age">
-  <p>age = <span id="age:"></span></p>
+  <input type="range" min="1" max="100" value="50" class="slider" id="agemin">
+  <p>age max = <span id="agemini:"></span></p>
+</div>
+<div class="slidecontainer">
+  <input type="range" min="1" max="100" value="50" class="slider" id="agemax">
+  <p>age min = <span id="agemaxi:"></span></p>
 </div>
 <div class="slidecontainer">
   <input type="range" min="0" max="100" value="50" class="slider" id="loc">
@@ -278,8 +282,12 @@ $slider = '
   <p>tag = <span id="tag:"></span></p>
 </div>
 <div class="slidecontainer">
-  <input type="range" min="1" max="10000" value="500" class="slider" id="pop">
-  <p>pop = <span id="pop:"></span></p>
+  <input type="range" min="1" max="10000" value="500" class="slider" id="popmin">
+  <p>pop min = <span id="popmini:"></span></p>
+</div>
+<div class="slidecontainer">
+  <input type="range" min="1" max="10000" value="500" class="slider" id="popmax">
+  <p>pop max = <span id="popmaxi:"></span></p>
 </div>
 <div style="display:block "class="btn">
     <input class="btntop" type="submit" value=" order by Age">
@@ -289,12 +297,21 @@ $slider = '
 </div>
 </div>
 <script>
-var slider = document.getElementById("age");
-var output = document.getElementById("age:");
+var slider = document.getElementById("agemin");
+var output = document.getElementById("agemini:");
 output.innerHTML = slider.value;
 
 slider.oninput = function() {
   output.innerHTML = this.value;
+}
+</script>
+<script>
+var slider5 = document.getElementById("agemax");
+var output5 = document.getElementById("agemaxi:");
+output5.innerHTML = slider5.value;
+
+slider5.oninput = function() {
+  output5.innerHTML = this.value;
 }
 </script>
 <script>
@@ -316,12 +333,21 @@ slider3.oninput = function() {
 }
 </script>
 <script>
-var slider4 = document.getElementById("pop");
-var output4 = document.getElementById("pop:");
+var slider4 = document.getElementById("popmin");
+var output4 = document.getElementById("popmini:");
 output4.innerHTML = slider4.value;
 
 slider4.oninput = function() {
   output4.innerHTML = this.value;
+}
+</script>
+<script>
+var slider6 = document.getElementById("popmax");
+var output6 = document.getElementById("popmaxi:");
+output6.innerHTML = slider6.value;
+
+slider6.oninput = function() {
+  output6.innerHTML = this.value;
 }
 </script>';
 
