@@ -351,7 +351,7 @@ slider6.oninput = function() {
 }
 </script>';
 
-/****************  a bouger plus tard pour l'algo de march   **************************/
+/****************  a bouger plus tard pour l'algo de match   **************************/
 
 $match = '<div class="profile">
                 <div class="profileheader">
