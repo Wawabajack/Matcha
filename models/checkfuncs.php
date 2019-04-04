@@ -29,7 +29,7 @@
         if ($val == "")
             return 1;
         // classic str check
-        if (($field == "username" || ($field == "surname" && $val = ucfirst(strtolower($val))) || ($field == "name" && $val = strtoupper($val))) && ctype_alpha($val) && strlen($val) < 11)
+        if ((((($field == "username" || $field == "surname") && $val = ucfirst(strtolower($val))) || ($field == "name" && $val = strtoupper($val)))) && ctype_alpha($val) && strlen($val) < 11)
             return 1;
         // location check
         else if ($field == "location" && strlen($val) < 51 && filter_var($val, FILTER_SANITIZE_SPECIAL_CHARS))
