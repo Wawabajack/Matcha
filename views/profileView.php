@@ -62,7 +62,7 @@ $profileV = '<div class="container emp-profile">
     $usr . '
                                     </h5>
                                     <h6>' .
-    $sur . '
+    $surname . '
                                     </h6>
                                     <p class="proile-rating">POPULARITY : <span>' . $popScore . '</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -170,9 +170,7 @@ $editprofileV = '<div class="container emp-profile">
             <div class="col-md-6">
                 <div class="profile-head">
                     <textarea style="resize: none; border: none; " name="username">' . $usr . '</textarea>
-                    <textarea style="resize: none; border: none; " 0 name="surname">' .
-    substr_replace($surname, "", -5) . '
-                                    </textarea>
+                    <textarea style="resize: none; border: none; " 0 name="surname">' . $surname . '</textarea>
                     <p class="proile-rating">POPULARITY : <span>' . $popScore . '</span></p>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
