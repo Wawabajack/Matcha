@@ -40,14 +40,13 @@ if (isset($_SESSION['profile'])) {
 }
 
 if (isset($_SESSION['prefs'])) {
-        $lfgender = $_SESSION['prefs']->gender;
-        $bio = $_SESSION['prefs']->bio;
-   }
-    else {
-       $lfgender = "N";
-       $bio = "";
-   }
-   
+    $lfgender = $_SESSION['prefs']->gender;
+    $bio = $_SESSION['prefs']->bio;
+} else {
+    $lfgender = "N";
+    $bio = "";
+}
+
 $profileV = '<div class="container emp-profile">
                 <div class="row">
                     <div class="col-md-4">
@@ -142,7 +141,7 @@ $profileV = '<div class="container emp-profile">
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>'. $bio .'</label>
+                                                <label>' . $bio . '</label>
                                             </div>
                                         </div>
                             </div>
@@ -155,231 +154,252 @@ $profileV = '<div class="container emp-profile">
 // USERCP
 
 $editprofileV = '<div class="container emp-profile">
-            <form method="post" action="../controllers/useredit.php" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-img">
-                            <img src="' . $image . '" alt=""/>
-                            <div class="file btn btn-lg btn-primary">
-                                Change Photo
-                                <input type="file" name="file"/>
-                            </div>
-                        </div>
+    <form method="post" action="../controllers/useredit.php" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img src="' . $image . '" alt="" />
+                    <div class="file btn btn-lg btn-primary">
+                        Change Photo
+                        <input type="file" name="file" />
                     </div>
-                    <div class="col-md-6">
-                        <div class="profile-head">
-                                    <textarea style="resize: none; border: none; " name="username">' .
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <textarea style="resize: none; border: none; " name="username">' .
     substr_replace($username, "", -14) . '
                                     </textarea>
-                                    <textarea style="resize: none; border: none; "0 name="surname">' .
+                    <textarea style="resize: none; border: none; " 0 name="surname">' .
     substr_replace($surname, "", -5) . '
                                     </textarea>
-                                    <p class="proile-rating">POPULARITY : <span>' . $popScore . '</span></p>
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Profil</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Bio</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" value="Finish"></input><br/>
-                    </div>	
+                    <p class="proile-rating">POPULARITY : <span>' . $popScore . '</span></p>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Profil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Bio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="mdp-tab" data-toggle="tab" href="#mdp" role="tab" aria-controls="profile" aria-selected="false">Mdp</a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-work">
-                            <p>Photos</p>
-                            <a href="../index.php">Accueil</a><br/>
-                            <a href="">link2</a><br/>
-                            <a href="">link3</a>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="tab-content profile-tab" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Nom</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="name" placeholder="20 lettres max.">' . substr_replace($name, "", -5) . '</textarea>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Genre</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="gender" placeholder="M / F / N">' . $gender . '</textarea>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Email</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <textarea  style="resize: none; border: none; " name="mail" placeholder="exemple@gmail.com">' . substr_replace($mail, "", -5) . '</textarea>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Date de naissance</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="birthdate" placeholder="JJ/MM/AAAA">' . $birth . '</textarea>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Ville</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="location">' . substr_replace($location, "", -5) . '</textarea>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                        	<div class="col-md-6">
-                                        		<label>Intéressé(e) par: </label>
-                                       		</div>	
-                                            <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="lf">' . $lfgender . '</textarea>
-                                            </div>
-                                        </div>
+            </div>
+            <div class="col-md-2">
+                <input type="submit" class="profile-edit-btn" value="Finish"></input><br />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-work">
+                    <p>Photos</p>
+                    <a href="../index.php">Accueil</a><br />
+                    <a href="">link2</a><br />
+                    <a href="">link3</a>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Nom</label>
                             </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <textarea style="resize: none; border: none; " name="bio" placeholder="Mes centres d\'intérêt..."></textarea>
-                                            </div>
-                                        </div>
+                            <div class="col-md-6">
+                                <textarea style="resize: none; border: none; " name="name" placeholder="20 lettres max.">' . substr_replace($name, "", -5) . '</textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Genre</label>
+                            </div>
+                            <div class="col-md-6">
+                                <textarea style="resize: none; border: none; " name="gender" placeholder="M / F / N">' . $gender . '</textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <textarea style="resize: none; border: none; " name="mail" placeholder="exemple@gmail.com">' . substr_replace($mail, "", -5) . '</textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Date de naissance</label>
+                            </div>
+                            <div class="col-md-6">
+                                <textarea style="resize: none; border: none; " name="birthdate" placeholder="JJ/MM/AAAA">' . $birth . '</textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Ville</label>
+                            </div>
+                            <div class="col-md-6">
+                                <textarea style="resize: none; border: none; " name="location">' . substr_replace($location, "", -5) . '</textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Intéressé(e) par: </label>
+                            </div>
+                            <div class="col-md-6">
+                                <textarea style="resize: none; border: none; " name="lf">' . $lfgender . '</textarea>
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>           
-        </div>';
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <textarea style="resize: none; border: none; " name="bio" placeholder="Mes centres d\'intérêt..."></textarea>
+                            </div>
+                        </div>
+    </form>
+    <form>
+</div>
+<div class="tab-pane fade" id="mdp" role="tabpanel" aria-labelledby="mdp-tab">
+    <div class="row">
+        <div class="col-md-6">
+            <label>Old Mdp</label>
+        </div>
+        <div class="col-md-6">
+            <textarea style="resize: none; border: none; " name="location" placeholder="Old pwd"></textarea>
+        </div>
+        <div class="col-md-6">
+            <label>New Mdp</label>
+        </div>
+        <div class="col-md-6">
+            <textarea style="resize: none; border: none; " name="location" placeholder="New pwd"></textarea>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</form>
+</div>';
 
 $slider = '
 <div class="research">
-<div class="slidecontainer">
-  <input type="range" min="1" max="100" value="60" class="slider" id="agemin">
-  <p>age max = <span id="agemini:"></span></p>
-</div>
-<div class="slidecontainer">
-  <input type="range" min="1" max="100" value="20" class="slider" id="agemax">
-  <p>age min = <span id="agemaxi:"></span></p>
-</div>
-<div class="slidecontainer">
-  <input type="range" min="0" max="100" value="50" class="slider" id="loc">
-  <p>loc = <span id="loc:"></span></p>
-</div>
-<div class="slidecontainer">
-  <input type="range" min="1" max="5" value="2" class="slider" id="tag">
-  <p>tag = <span id="tag:"></span></p>
-</div>
-<div class="slidecontainer">
-  <input type="range" min="1" max="10000" value="4000" class="slider" id="popmin">
-  <p>pop min = <span id="popmini:"></span></p>
-</div>
-<div class="slidecontainer">
-  <input type="range" min="1" max="10000" value="6000" class="slider" id="popmax">
-  <p>pop max = <span id="popmaxi:"></span></p>
-</div>
-<div style="display:block "class="btn">
-    <input class="btntop" type="submit" value=" order by Age">
-    <input class="btntop" type="submit" value=" order by Loc">
-    <input class="btntop" type="submit" value=" order by tag">
-    <input class="btntop" type="submit" value=" order by pop">
-</div>
+    <div class="slidecontainer">
+        <input type="range" min="1" max="100" value="60" class="slider" id="agemin">
+        <p>age max = <span id="agemini:"></span></p>
+    </div>
+    <div class="slidecontainer">
+        <input type="range" min="1" max="100" value="20" class="slider" id="agemax">
+        <p>age min = <span id="agemaxi:"></span></p>
+    </div>
+    <div class="slidecontainer">
+        <input type="range" min="0" max="100" value="50" class="slider" id="loc">
+        <p>loc = <span id="loc:"></span></p>
+    </div>
+    <div class="slidecontainer">
+        <input type="range" min="1" max="5" value="2" class="slider" id="tag">
+        <p>tag = <span id="tag:"></span></p>
+    </div>
+    <div class="slidecontainer">
+        <input type="range" min="1" max="10000" value="4000" class="slider" id="popmin">
+        <p>pop min = <span id="popmini:"></span></p>
+    </div>
+    <div class="slidecontainer">
+        <input type="range" min="1" max="10000" value="6000" class="slider" id="popmax">
+        <p>pop max = <span id="popmaxi:"></span></p>
+    </div>
+    <div style="display:block " class="btn">
+        <input class="btntop" type="submit" value=" order by Age">
+        <input class="btntop" type="submit" value=" order by Loc">
+        <input class="btntop" type="submit" value=" order by tag">
+        <input class="btntop" type="submit" value=" order by pop">
+    </div>
 </div>
 <script>
-var slider = document.getElementById("agemin");
-var output = document.getElementById("agemini:");
-output.innerHTML = slider.value;
+    var slider = document.getElementById("agemin");
+    var output = document.getElementById("agemini:");
+    output.innerHTML = slider.value;
 
-slider.oninput = function() {
-  output.innerHTML = this.value;
-}
+    slider.oninput = function() {
+        output.innerHTML = this.value;
+    }
 </script>
 <script>
-var slider5 = document.getElementById("agemax");
-var output5 = document.getElementById("agemaxi:");
-output5.innerHTML = slider5.value;
+    var slider5 = document.getElementById("agemax");
+    var output5 = document.getElementById("agemaxi:");
+    output5.innerHTML = slider5.value;
 
-slider5.oninput = function() {
-  output5.innerHTML = this.value;
-}
+    slider5.oninput = function() {
+        output5.innerHTML = this.value;
+    }
 </script>
 <script>
-var slider2 = document.getElementById("loc");
-var output2 = document.getElementById("loc:");
-output2.innerHTML = slider2.value;
+    var slider2 = document.getElementById("loc");
+    var output2 = document.getElementById("loc:");
+    output2.innerHTML = slider2.value;
 
-slider2.oninput = function() {
-  output2.innerHTML = this.value;
-}
+    slider2.oninput = function() {
+        output2.innerHTML = this.value;
+    }
 </script>
 <script>
-var slider3 = document.getElementById("tag");
-var output3 = document.getElementById("tag:");
-output3.innerHTML = slider3.value;
+    var slider3 = document.getElementById("tag");
+    var output3 = document.getElementById("tag:");
+    output3.innerHTML = slider3.value;
 
-slider3.oninput = function() {
-  output3.innerHTML = this.value;
-}
+    slider3.oninput = function() {
+        output3.innerHTML = this.value;
+    }
 </script>
 <script>
-var slider4 = document.getElementById("popmin");
-var output4 = document.getElementById("popmini:");
-output4.innerHTML = slider4.value;
+    var slider4 = document.getElementById("popmin");
+    var output4 = document.getElementById("popmini:");
+    output4.innerHTML = slider4.value;
 
-slider4.oninput = function() {
-  output4.innerHTML = this.value;
-}
+    slider4.oninput = function() {
+        output4.innerHTML = this.value;
+    }
 </script>
 <script>
-var slider6 = document.getElementById("popmax");
-var output6 = document.getElementById("popmaxi:");
-output6.innerHTML = slider6.value;
+    var slider6 = document.getElementById("popmax");
+    var output6 = document.getElementById("popmaxi:");
+    output6.innerHTML = slider6.value;
 
-slider6.oninput = function() {
-  output6.innerHTML = this.value;
-}
+    slider6.oninput = function() {
+        output6.innerHTML = this.value;
+    }
 </script>';
 
-/****************  a bouger plus tard pour l'algo de march   **************************/
+/**************** a bouger plus tard pour l'algo de march **************************/
 
 $match = '<div class="profile">
-                <div class="profileheader">
-                </div>
-                <div class="avatar img">
-                    <img src="../img/a.png" alt=""/>
-                </div>
-                <div class="info">
-                    <div class="title">
-                        <h6>
-                            <a href="" . $username>' . $username . '</a>
-                        </h6>
-                    </div>
-                    <div class="desc"> 
-                        <h5>' .
-    $age . '
-                        </h5>
-                    </div>
-                    <div class="desc"> 
-                        <h5>' .
-    $location . '
-                        </h5>
-                    </div>
-                    <div class="desc"> 
-                        <h5>' .
-    $gender . '
-                        </h5>   
-                    </div>
-                </div>
-            </div>';
-
+    <div class="profileheader">
+    </div>
+    <div class="avatar img">
+        <img src="../img/a.png" alt="" />
+    </div>
+    <div class="info">
+        <div class="title">
+            <h6>
+                <a href="" . $username>' . $username . '</a>
+            </h6>
+        </div>
+        <div class="desc">
+            <h5>' .
+                $age . '
+            </h5>
+        </div>
+        <div class="desc">
+            <h5>' .
+                $location . '
+            </h5>
+        </div>
+        <div class="desc">
+            <h5>' .
+                $gender . '
+            </h5>
+        </div>
+    </div>
+</div>';
