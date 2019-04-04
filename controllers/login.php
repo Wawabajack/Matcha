@@ -40,7 +40,6 @@
                         $_SESSION['profile'] = $profile;
                     if (isset($prefs->id))
                         $_SESSION['prefs'] = $prefs;
-                    mapInit($db, $_SESSION['usr']->id);
                     $now = date("Y-m-d H:i:s");
                     // Updating online profile status
                     fieldUpdate($db, $now, $_SESSION['usr']->id, 'lastseen', 'profiles');

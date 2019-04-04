@@ -98,6 +98,27 @@ function getClientIP()
     return $ip;
 }
 
+function geocode($lat, $lng)
+{
+    $details_url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" . $lat . ',' . $lng . "&sensor=false" . $;
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $details_url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $geoloc = json_decode(curl_exec($ch), true);
+
+    $step1 = $geoloc['results'];
+    $step2 = $step1['geometry'];
+    $coords = $step2['location'];
+
+    print $coords['lat'];
+    print $coords['lng'];
+
+}
+
+    $apiKey = "&key=AIzaSyBtlv6rYn6x-0tL53o99fUtZbUwm4zcCm0";
+
+
 function getloc($db, $uid)
 {
     $ipaddress = getClientIP();
@@ -106,6 +127,11 @@ function getloc($db, $uid)
     list($lat, $lng) = explode(",", $details['loc']);
     //echo "lat =  $lat ";
     //echo "lng =  $lng ";
+    $city = getCity($lat, $lng);
+    //$city = "lol";
+    var_dump($city);
+    if ($city != "")
+        fieldUpdate($db,$city, $uid,'city', 'profiles');
     locupdate($db, $uid, $lat, $lng);
 }
 
@@ -123,7 +149,7 @@ function sendpos($db)
         $node = $dom->createElement("marker");
         $newnode = $parnode->appendChild($node);
         $newnode->setAttribute("id", $row['id']);
-        $newnode->setAttribute("name", $row['name']);
+        $newnode->setAttribute("uid", $row['uid']);
         //$newnode->setAttribute("address", $row['address']);
         $newnode->setAttribute("lat", $row['lat']);
         $newnode->setAttribute("lng", $row['lng']);

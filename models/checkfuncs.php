@@ -1,6 +1,7 @@
 <?php
     require_once($_SERVER["DOCUMENT_ROOT"] . '/config/db_connect.php');
     require_once ('queryfuncs.php');
+    require_once ('miscfuncs.php');
 
     function lenCheck($db, $post) {
         $err = 0;
@@ -92,8 +93,7 @@
         return(lenCheck($db, $post));
     }
 
-    function checkUserEdit($db, &$post, $file) {
-        checkImage($db, $file);
+    function checkUserEdit(&$post) {
         $arr = array("username", "surname", "name", "gender", "mail", "birthdate", "location", "lf", "bio");
         foreach ($arr as $val) {
             if (isset($post[$val]) && $post[$val] = trim($post[$val])) {
@@ -114,20 +114,16 @@
             $try = file_get_contents($files['file']['tmp_name']);
             $namefile = $files['file']['name'];
             $i = 0;
-            a:
-            if (is_dir($_SERVER["DOCUMENT_ROOT"] . '/img/'. lcfirst($_SESSION['usr']->username))) {
-                if (file_exists($_SERVER["DOCUMENT_ROOT"] . '/img/' . lcfirst($_SESSION['usr']->username) . '/' . $namefile)) {
+            $imgUserPath = $_SERVER["DOCUMENT_ROOT"] . '/img/'. lcfirst($_SESSION['usr']->username);
+            if (is_dir($imgUserPath)) {
+                while (file_exists($imgUserPath . '/' . $namefile)) {
                     $namefile = $i . $namefile;
                     $i++;
-                    goto a;
                 }
-                file_put_contents($_SERVER["DOCUMENT_ROOT"] . '/img/'. lcfirst($_SESSION['usr']->username) . '/' . $namefile, $try);
+                file_put_contents($imgUserPath . '/' . $namefile, $try);
             }
             else
-            {
-                mkdir($_SERVER["DOCUMENT_ROOT"] . '/img/'. lcfirst($_SESSION['usr']->username));
-                goto a;
-            }
+                mkdir($imgUserPath);
         fieldUpdate($db, '/img/' . lcfirst($_SESSION['usr']->username) . '/' . $namefile , $_SESSION['usr']->id, 'img', 'profiles');
         return 1;
         }
@@ -135,7 +131,7 @@
             return 0;
     }
 
-    function profileUpdate($db, $elems, $uid)
+    function profileUpdate($db, $elems, $uid, $file)
     {
         $prefs = isThere($db, "uid", "preferences", $uid, "*");
         $profile = isThere($db, 'uid', 'profiles', $uid, '*');
@@ -143,6 +139,8 @@
             createProfile($db, $uid);
         if (!isset($prefs->id))
             createPrefs($db, $uid);
+        checkImage($db, $file);
+        mapInit($db, $uid);
         foreach ($elems as $key => $val) {
             //echo $key . ': ' . $val . '<br/>';
             /* Tables selector */
