@@ -54,8 +54,8 @@
         `birthdate` date NOT NULL,
         `popularity` int(11) NOT NULL,
         `city` varchar(64) NOT NULL,
-        `region` varchar(64) NOT NULL,
-        `country` varchar(64) NOT NULL,
+        `lat` float(10,6) NOT NULL,
+        `lng` float(10,6) NOT NULL,
         `lastseen` datetime NOT NULL,
         `online` int(11) NOT NULL
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
