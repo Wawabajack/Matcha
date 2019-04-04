@@ -11,10 +11,12 @@ $endFrame = '"></div></center><br/>';
 
 if (isset($_SESSION['usr'])) {
 
-    $username = '' . ucfirst($_SESSION['usr']->username) . '</center><br/>';
-    $name = '' . $_SESSION['usr']->name . '<br/>';
-    $surname = '' . $_SESSION['usr']->surname . '<br/>';
-    $mail = '' . $_SESSION['usr']->mail . '<br/>';
+    $usr = $_SESSION['usr']->username;
+    $username = '' . $usr . '</center><br/>';
+    $name = $_SESSION['usr']->name;
+    $surname = $_SESSION['usr']->surname;
+    $mail = $_SESSION['usr']->mail;
+
 }
 
 /** Profile infos **/
@@ -57,10 +59,10 @@ $profileV = '<div class="container emp-profile">
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>' .
-    $username . '
+    $usr . '
                                     </h5>
                                     <h6>' .
-    $surname . '
+    $sur . '
                                     </h6>
                                     <p class="proile-rating">POPULARITY : <span>' . $popScore . '</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -167,9 +169,7 @@ $editprofileV = '<div class="container emp-profile">
             </div>
             <div class="col-md-6">
                 <div class="profile-head">
-                    <textarea style="resize: none; border: none; " name="username">' .
-    substr_replace($username, "", -14) . '
-                                    </textarea>
+                    <textarea style="resize: none; border: none; " name="username">' . $usr . '</textarea>
                     <textarea style="resize: none; border: none; " 0 name="surname">' .
     substr_replace($surname, "", -5) . '
                                     </textarea>
@@ -208,7 +208,7 @@ $editprofileV = '<div class="container emp-profile">
                                 <label>Nom</label>
                             </div>
                             <div class="col-md-6">
-                                <textarea style="resize: none; border: none; " name="name" placeholder="20 lettres max.">' . substr_replace($name, "", -5) . '</textarea>
+                                <textarea style="resize: none; border: none; " name="name" placeholder="20 lettres max.">' . $name . '</textarea>
                             </div>
                         </div>
                         <div class="row">
@@ -224,7 +224,7 @@ $editprofileV = '<div class="container emp-profile">
                                 <label>Email</label>
                             </div>
                             <div class="col-md-6">
-                                <textarea style="resize: none; border: none; " name="mail" placeholder="exemple@gmail.com">' . substr_replace($mail, "", -5) . '</textarea>
+                                <textarea style="resize: none; border: none; " name="mail" placeholder="exemple@gmail.com">' . $mail . '</textarea>
                             </div>
                         </div>
                         <div class="row">
@@ -240,7 +240,7 @@ $editprofileV = '<div class="container emp-profile">
                                 <label>Ville</label>
                             </div>
                             <div class="col-md-6">
-                                <textarea style="resize: none; border: none; " name="location">' . substr_replace($location, "", -5) . '</textarea>
+                                <textarea style="resize: none; border: none; " name="location">' . $location . '</textarea>
                             </div>
                         </div>
                         <div class="row">
@@ -264,16 +264,16 @@ $editprofileV = '<div class="container emp-profile">
 <div class="tab-pane fade" id="mdp" role="tabpanel" aria-labelledby="mdp-tab">
     <div class="row">
         <div class="col-md-6">
-            <label>Old Mdp</label>
+            <label>Ancien mot de passe</label>
         </div>
         <div class="col-md-6">
-            <textarea style="resize: none; border: none; " name="location" placeholder="Old pwd"></textarea>
+            <input type="password" style="resize: none; border: none; " name="location" placeholder="••••••••••"></input>
         </div>
         <div class="col-md-6">
-            <label>New Mdp</label>
+            <label>Nouveau mot de passe</label>
         </div>
         <div class="col-md-6">
-            <textarea style="resize: none; border: none; " name="location" placeholder="New pwd"></textarea>
+            <input type="password" style="resize: none; border: none; " name="location" placeholder="••••••••••"></input>
         </div>
     </div>
 </div>
@@ -383,7 +383,7 @@ $match = '<div class="profile">
     <div class="info">
         <div class="title">
             <h6>
-                <a href="" . $username>' . $username . '</a>
+                <a href="" . $username>' . $usr . '</a>
             </h6>
         </div>
         <div class="desc">

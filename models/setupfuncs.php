@@ -75,7 +75,7 @@
 	{
 		$pwd = password_hash('admin', 1);
 		$sql = "INSERT INTO `users` (`username`, `name`, `surname`, `mail`, `password`, `warnings`, `mail_key`, `admin`, `inactive`)
-                VALUES ('admin', 'Robichon', 'Baptiste', 'brobicho@student.le-101.fr', :pwd, '0', '0', '1', '0');";
+                VALUES ('Admin', 'Robichon', 'Baptiste', 'brobicho@student.le-101.fr', :pwd, '0', '0', '1', '0');";
 		if (!isset($db))
 			return 0;
 		$res = $db->prepare($sql);
