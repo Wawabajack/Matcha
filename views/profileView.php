@@ -38,7 +38,7 @@ if (isset($_SESSION['profile'])) {
     $image = $_SESSION['profile']->img;
 } else {
     $gender = $birthDate = $age = $location = $image = $popScore = $birth = "";
-    $image = "/img/401.png";
+    $image = "/img/blank.png";
 }
 
 if (isset($_SESSION['prefs'])) {
@@ -71,6 +71,9 @@ $profileV = '<div class="container emp-profile">
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Bio</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="mdp-tab" data-toggle="tab" href="#mdp" role="tab" aria-controls="profile" aria-selected="false">Mdp</a>
                                 </li>
                             </ul>
                         </div>
@@ -146,11 +149,27 @@ $profileV = '<div class="container emp-profile">
                                                 <label>' . $bio . '</label>
                                             </div>
                                         </div>
+                             </div>
+                             <div class="tab-pane fade" id="mdp" role="tabpanel" aria-labelledby="mdp-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Ancien mot de passe</label>
+                                    </div>
+                                <div class="col-md-6">
+                                    <p>••••••••••</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Nouveau mot de passe</label>
+                                </div>
+                                <div class="col-md-6">
+                                   <p>••••••••••</p>
+                                </div>
                             </div>
-                        </div>
+                        </div> 
                     </div>
-                </div>       
-        </div>';
+                </div>
+          </div>       
+    </div>';
 
 
 // USERCP
@@ -256,29 +275,27 @@ $editprofileV = '<div class="container emp-profile">
                                 <textarea style="resize: none; border: none; " name="bio" placeholder="Mes centres d\'intérêt..."></textarea>
                             </div>
                         </div>
-    </form>
-    <form>
-</div>
-<div class="tab-pane fade" id="mdp" role="tabpanel" aria-labelledby="mdp-tab">
-    <div class="row">
-        <div class="col-md-6">
-            <label>Ancien mot de passe</label>
-        </div>
-        <div class="col-md-6">
-            <input type="password" style="resize: none; border: none; " name="location" placeholder="••••••••••"></input>
-        </div>
-        <div class="col-md-6">
-            <label>Nouveau mot de passe</label>
-        </div>
-        <div class="col-md-6">
-            <input type="password" style="resize: none; border: none; " name="location" placeholder="••••••••••"></input>
+                    </div>
+                    <div class="tab-pane fade" id="mdp" role="tabpanel" aria-labelledby="mdp-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Ancien mot de passe</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="password" style="resize: none; border: none; " name="oldpwd" placeholder="••••••••••"></input>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Nouveau mot de passe</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="password" style="resize: none; border: none; " name="newpwd" placeholder="••••••••••"></input>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
-</div>
-</div>
-</div>
 </form>
 </div>';
 

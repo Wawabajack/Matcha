@@ -24,9 +24,14 @@
         return $err;
     }
 
-    function isValid($field, &$val) {
+    function isValid($db, $field, &$val) {
         // $_POST[value] empty
         if ($val == "")
+            return 1;
+        if (($field == "oldpwd" && passwordCheck($db, $_SESSION['usr']->username, $val))
+            || ($field == "newpwd" && strlen($val) > 6 && !ctype_alnum($val)
+                && !ctype_lower($val) && !ctype_digit($val)
+                && !ctype_upper($val) && !empty($val) && strlen($val) < 30))
             return 1;
         // classic str check
         if ((((($field == "username" || $field == "surname") && $val = ucfirst(strtolower($val))) || ($field == "name" && $val = strtoupper($val)))) && ctype_alpha($val) && strlen($val) < 11)
@@ -93,13 +98,14 @@
         return(lenCheck($db, $post));
     }
 
-    function checkUserEdit(&$post) {
-        $arr = array("username", "surname", "name", "gender", "mail", "birthdate", "location", "lf", "bio");
+    function checkUserEdit($db, &$post) {
+        $arr = array("username", "surname", "name", "gender", "mail", "birthdate", "location", "lf", "bio", "file", "oldpwd", "newpwd");
         foreach ($arr as $val) {
             if (isset($post[$val]) && $post[$val] = trim($post[$val])) {
                 //echo 'checking $_POST[' . $val . '] : ' . $post[$val] . isValid($val, $post[$val]) . '<br/>';
-                if (!isValid($val, $post[$val]))
-                    $post[$val] = ""; //echo 'problem with ' . $post[$val] . ' = ' . $val . '<br/>';                        /*  Debug   */
+                if (!isValid($db, $val, $post[$val]))
+                    unset($post[$val]);
+                    //echo 'problem with ' . $post[$val] . ' = ' . $val . '<br/>';  }                      /*  Debug   */
                                                                                                                             /*          */
             }
         }
@@ -145,6 +151,10 @@
             //echo $key . ': ' . $val . '<br/>';
             /* Tables selector */
             $table = "users";
+            if ($key == "newpwd") {
+                $key = "password";
+               // $val = password_hash($val, 1);
+            }
             if ($key == "gender" || $key == "birthdate" || $key == "location") {
                 $table = "profiles";
                 if ($key == "location")
@@ -164,8 +174,10 @@
                 if (isset($there->$key))
                     $val = "";
             }
-            if ($key != "file" && $val != "")
-                fieldUpdate($db, $val, $uid, $key, $table); // echo 'updating ' . $val .': ' .
+            if (($key == "location" || $key == "username" || $key == "surname" || $key == "name" || $key == "gender"
+                    || $key == "mail" || $key == "birthdate" || $key == "location"
+                    || $key == "lf" || $key == "bio" || $key == "password" || $key == "newpwd") && $val != "")
+                    fieldUpdate($db, $val, $uid, $key, $table);//echo 'updating ' . $val .': ' .
         }
         return 1;
     }
