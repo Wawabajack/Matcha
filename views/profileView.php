@@ -17,39 +17,38 @@ if (isset($_SESSION['usr'])) {
     $surname = $_SESSION['usr']->surname;
     $mail = $_SESSION['usr']->mail;
 
-}
 
-/** Profile infos **/
+    /** Profile infos **/
 
-if (isset($_SESSION['profile'])) {
-    $gender = '' . $_SESSION['profile']->gender;
-    if ($_SESSION['profile']->birthdate == "0000-00-00")
-        $_SESSION['profile']->birthdate = "1970-01-01";
-    $date = new DateTime($_SESSION['profile']->birthdate);
-    $now = new DateTime();
-    $interval = $now->diff($date);
-    $age = $interval->y;
-    $birth = explode('-', $_SESSION['profile']->birthdate);
-    $birth = $birth[2] . '/' . $birth[1] . '/' . $birth[0];
-    $location = "";
-    if ($_SESSION['profile']->city != "")
-        $location = $_SESSION['profile']->city;
-    $popScore = '' . $_SESSION['profile']->popularity . '<br/>';
-    $image = $_SESSION['profile']->img;
-} else {
-    $gender = $birthDate = $age = $location = $image = $popScore = $birth = "";
-    $image = "/img/blank.png";
-}
+    if (isset($_SESSION['profile'])) {
+        $gender = '' . $_SESSION['profile']->gender;
+        if ($_SESSION['profile']->birthdate == "0000-00-00")
+            $_SESSION['profile']->birthdate = "1970-01-01";
+        $date = new DateTime($_SESSION['profile']->birthdate);
+        $now = new DateTime();
+        $interval = $now->diff($date);
+        $age = $interval->y;
+        $birth = explode('-', $_SESSION['profile']->birthdate);
+        $birth = $birth[2] . '/' . $birth[1] . '/' . $birth[0];
+        $location = "";
+        if ($_SESSION['profile']->city != "")
+            $location = $_SESSION['profile']->city;
+        $popScore = '' . $_SESSION['profile']->popularity . '<br/>';
+        $image = $_SESSION['profile']->img;
+    } else {
+        $gender = $birthDate = $age = $location = $image = $popScore = $birth = "";
+        $image = "/img/blank.png";
+    }
 
-if (isset($_SESSION['prefs'])) {
-    $lfgender = $_SESSION['prefs']->gender;
-    $bio = $_SESSION['prefs']->bio;
-} else {
-    $lfgender = "N";
-    $bio = "";
-}
+    if (isset($_SESSION['prefs'])) {
+        $lfgender = $_SESSION['prefs']->gender;
+        $bio = $_SESSION['prefs']->bio;
+    } else {
+        $lfgender = "N";
+        $bio = "";
+    }
 
-$profileV = '<div class="container emp-profile">
+    $profileV = '<div class="container emp-profile">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
@@ -59,10 +58,10 @@ $profileV = '<div class="container emp-profile">
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>' .
-    $usr . '
+        $usr . '
                                     </h5>
                                     <h6>' .
-    $surname . '
+        $surname . '
                                     </h6>
                                     <p class="proile-rating">POPULARITY : <span>' . $popScore . '</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -174,7 +173,7 @@ $profileV = '<div class="container emp-profile">
 
 // USERCP
 
-$editprofileV = '<div class="container emp-profile">
+    $editprofileV = '<div class="container emp-profile">
     <form method="post" action="../controllers/useredit.php" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-4">
@@ -299,30 +298,32 @@ $editprofileV = '<div class="container emp-profile">
 </form>
 </div>';
 
-$slider = '
+    $slider = '
+<form method="post" action="/pages/search.php">
 <div class="research">
     <div class="slidecontainer">
-        <input type="range" min="1" max="100" value="60" class="slider" id="agemin">
-        <p>age max = <span id="agemini:"></span></p>
-    </div>
-    <div class="slidecontainer">
-        <input type="range" min="1" max="100" value="20" class="slider" id="agemax">
+        <input type="range" min="1" max="100" value="20" class="slider" id="agemax" name="min_age">
         <p>age min = <span id="agemaxi:"></span></p>
     </div>
     <div class="slidecontainer">
-        <input type="range" min="0" max="100" value="50" class="slider" id="loc">
+        <input type="range" min="1" max="100" value="60" class="slider" id="agemin" name="max_age">
+        <p>age max = <span id="agemini:"></span></p>
+    </div>
+    
+    <div class="slidecontainer">
+        <input type="range" min="0" max="100" value="50" class="slider" id="loc" name="loc">
         <p>loc = <span id="loc:"></span></p>
     </div>
     <div class="slidecontainer">
-        <input type="range" min="1" max="5" value="2" class="slider" id="tag">
+        <input type="range" min="1" max="5" value="2" class="slider" id="tag" name="tag">
         <p>tag = <span id="tag:"></span></p>
     </div>
     <div class="slidecontainer">
-        <input type="range" min="1" max="10000" value="4000" class="slider" id="popmin">
+        <input type="range" min="1" max="10000" value="4000" class="slider" id="popmin" name="min_pop">
         <p>pop min = <span id="popmini:"></span></p>
     </div>
     <div class="slidecontainer">
-        <input type="range" min="1" max="10000" value="6000" class="slider" id="popmax">
+        <input type="range" min="1" max="10000" value="6000" class="slider" id="popmax" name="max_pop">
         <p>pop max = <span id="popmaxi:"></span></p>
     </div>
     <div style="display:block " class="btn">
@@ -332,6 +333,8 @@ $slider = '
         <input class="btntop" type="submit" value=" order by pop">
     </div>
 </div>
+<input type="submit" value="ok">
+</form>
 <script>
     var slider = document.getElementById("agemin");
     var output = document.getElementById("agemini:");
@@ -387,9 +390,9 @@ $slider = '
     }
 </script>';
 
-/**************** a bouger plus tard pour l'algo de march **************************/
+    /**************** a bouger plus tard pour l'algo de march **************************/
 
-$match = '<div class="profile">
+    $match = '<div class="profile">
     <div class="profileheader">
     </div>
     <div class="avatar img">
@@ -403,18 +406,19 @@ $match = '<div class="profile">
         </div>
         <div class="desc">
             <h5>' .
-                $age . '
+        $age . '
             </h5>
         </div>
         <div class="desc">
             <h5>' .
-                $location . '
+        $location . '
             </h5>
         </div>
         <div class="desc">
             <h5>' .
-                $gender . '
+        $gender . '
             </h5>
         </div>
     </div>
 </div>';
+}

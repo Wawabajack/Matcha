@@ -1,8 +1,6 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . '/config/db_connect.php');
 require_once('queryfuncs.php');
-if (!isset($_SESSION))
-    session_start();
 
 function error($code)
 {

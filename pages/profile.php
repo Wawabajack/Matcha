@@ -2,8 +2,7 @@
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/models/queryfuncs.php');
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/models/miscfuncs.php');
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/views/indexView.php');
-	if (!isset($_SESSION))
-		session_start();
+
 	if (isset($_SESSION['usr']))
 		require_once($_SERVER["DOCUMENT_ROOT"] . '/views/profileView.php');
 ?>

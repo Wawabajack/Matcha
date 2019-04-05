@@ -1,8 +1,7 @@
 <?php
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/views/registerView.php');
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/models/queryfuncs.php');
-	if (!isset($_SESSION))
-		session_start();
+
 ?>
 
 <html>

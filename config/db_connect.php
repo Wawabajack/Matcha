@@ -1,5 +1,7 @@
 <?php
     require_once("database.php");
+    if (!isset($_SESSION))
+        session_start();
 
     function db_connect($DB_dsn, $DB_user, $DB_password) {
         try {
