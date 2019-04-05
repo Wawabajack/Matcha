@@ -333,7 +333,6 @@ if (isset($_SESSION['usr'])) {
         <input class="btntop" type="submit" value=" order by pop">
     </div>
 </div>
-<input type="submit" value="ok">
 </form>
 <script>
     var slider = document.getElementById("agemin");
