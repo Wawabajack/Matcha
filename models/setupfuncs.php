@@ -54,8 +54,8 @@
 	{
 		$sql = "DROP TABLE IF EXISTS `tags`;
 		CREATE TABLE `tags` (
-			`id` int(11) NOT NULL,
-			`uid` int(11) NOT NULL,
+			`id` int(11) NOT NULL AUTO_INCREMENT,
+			`uid` int(11) NOT NULL UNIQUE,
 			`tag` varchar(64) NOT NULL
 		  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 		  if (!isset($db))
