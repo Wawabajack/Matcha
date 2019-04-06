@@ -116,8 +116,10 @@ function ft_compare($db, $arr, $tagnb)
     $myarr = getTags($db, $_SESSION['usr']->id)->tag;
     $myarr = explode('#', $myarr);
     //var_dump($arr);
-    $occ = count(array_intersect($arr, $myarr));
-    //echo '<br/>' . $occ . '<br/><br/>';
+    $int = array_intersect($arr, $myarr);
+    sort($int);
+    $occ = count($int);
+   // echo '<br/>' . $occ . '<br/><br/>';
     if ($occ >= $tagnb)
         return 1;
     return 0;
@@ -138,12 +140,11 @@ function filterTag($db, $results, $tagnb)
     $i = 0;
     $j = 0;
 
-    var_dump($res);
     $final = array();
     while ($i < count($res)) {                          // Tant qu'on a pas check tous les utilisateurs
         $tag[$i] = explode('#', $res[$i]);
-        array_shift($tag[$i]);
-        if (ft_compare($db, $tag[$i], $tagnb))         // return 0 si le nb d'occurence est <= $tagnb
+        //array_shift($tag[$i]);
+        if (ft_compare($db, $tag[$i], $tagnb))         // return 0 si le nb d'occurence est < $tagnb
         {
             $final[$j] = $results[$i];
             $j++;
