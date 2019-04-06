@@ -28,14 +28,14 @@
             // Array contenant la liste d'id des utilisateurs recherchés apres tri
 
             $users = $tagFilter;
-
+            $end = locateFilter($db, $tagFilter, $loclimit);
             // Exemple d'utilisation
 
             $i = 0;
-            while ($i < count($users)) {
-                $currentUser = getUserInfo($db, $users[$i]);
+            while ($i < count($end)) {
+                $currentUser = getUserInfo($db, $end[$i]);
                 if (isset($currentUser->username))                            // Pas necessaire en temps normal car l'user existe forcement
-                    echo getUserInfo($db, $users[$i])->username . '<br/>';
+                    echo getUserInfo($db, $end[$i])->username . '<br/>';
                 $i++;
             }
         }
@@ -44,7 +44,46 @@
         header('refresh:0;url=/pages/error401.html');
 
 
+    function dist($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo)
+    {
+        $rad = M_PI / 180;
+        //Calculate distance from latitude and longitude
+        $theta = $longitudeFrom - $longitudeTo;
+        $dist = sin($latitudeFrom * $rad)
+            * sin($latitudeTo * $rad) +  cos($latitudeFrom * $rad)
+            * cos($latitudeTo * $rad) * cos($theta * $rad);
 
+        return acos($dist) / $rad * 60 *  1.853;
+    }
+
+    function isInRange($db, $uid, $range)
+    {
+        $user = getUserProfile($db, $uid);
+        $cmpLat = $user->lat;
+        $cmplng = $user->lng;
+        $myLat = $_SESSION['profile']->lat;
+        $myLng = $_SESSION['profile']->lng;
+        $dist = dist($myLat, $myLng, $cmpLat, $cmplng);
+        if ($dist <= $range)
+            return 1;
+        return 0;
+    }
+
+    function locateFilter($db, $arr, $range)
+    {
+        $res = array();
+        $i = 0;
+        $j = 0;
+        while ($i < count($arr))
+        {
+            if (isInRange($db, $arr[$i], $range)) {
+                $res[$j] = $arr[$i];
+                $j++;
+            }
+            $i++;
+        }
+        return $res;
+    }
 
 
 
