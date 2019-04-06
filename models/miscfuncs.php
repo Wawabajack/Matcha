@@ -157,6 +157,7 @@ function filterTag($db, $results, $tagnb)
 
 function getloc($db, $uid)
 {
+
     $ipaddress = getClientIP();
     $details = ip_details($ipaddress);
     //echo $details['loc'];
@@ -168,6 +169,11 @@ function getloc($db, $uid)
     if ($city != "")
         fieldUpdate($db,$city, $uid,'city', 'profiles');
     locupdate($db, $uid, $lat, $lng);
+    echo '<script>navigator.geolocation.getCurrentPosition(function(location) {
+        console.log(location.coords.latitude);
+        console.log(location.coords.longitude);
+        console.log(location.coords.accuracy);
+    });</script>';
 }
 
 function sendpos($db)

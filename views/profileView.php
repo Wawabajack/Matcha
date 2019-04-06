@@ -308,8 +308,7 @@ if (isset($_SESSION['usr'])) {
     <div class="slidecontainer">
         <input type="range" min="1" max="100" value="60" class="slider" id="agemin" name="max_age">
         <p>age max = <span id="agemini:"></span></p>
-    </div> 
-    
+    </div>
     <div class="slidecontainer">
         <input type="range" min="0" max="100" value="50" class="slider" id="loc" name="loc">
         <p>loc = <span id="loc:"></span></p>
