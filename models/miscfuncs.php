@@ -169,11 +169,43 @@ function getloc($db, $uid)
     if ($city != "")
         fieldUpdate($db,$city, $uid,'city', 'profiles');
     locupdate($db, $uid, $lat, $lng);
-    echo '<script>navigator.geolocation.getCurrentPosition(function(location) {
-        console.log(location.coords.latitude);
-        console.log(location.coords.longitude);
-        console.log(location.coords.accuracy);
-    });</script>';
+    /*echo '<script>function sendLoc(lat, lng) {
+        var xhr = getXMLHttpRequest();
+        xhr.open("POST", "/controllers/loc.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("lat=" + lat + "&lng=" + lng);
+        alert("lat=" + lat + "&lng=" + lng);
+    }*/
+    echo '<script>
+        function getXMLHttpRequest() {
+        var xhr = null;
+        if (window.XMLHttpRequest || window.ActiveXObject) {
+            if (window.ActiveXObject) {
+                try {
+                    xhr = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch(e) {
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+            } else {
+                xhr = new XMLHttpRequest();
+            }
+        } else {
+            alert("Votre navigateur ne supporte pas l\'objet XMLHTTPRequest...");
+            return null;
+        }
+        return xhr;
+    }
+    navigator.geolocation.getCurrentPosition(function(location) {
+        var lat = location.coords.latitude;
+        var lng = location.coords.longitude;
+        var xhr = getXMLHttpRequest();
+        xhr.open("POST", "../controllers/loc.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("lat=" + lat + "&lng=" + lng);
+        alert("lat=" + lat + "&lng=" + lng);
+    });
+    
+    </script>';
 }
 
 function sendpos($db)
