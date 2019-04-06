@@ -50,6 +50,24 @@
 		return 0;
 	}
 
+	function create_tags_table($db)
+	{
+		$sql = "DROP TABLE IF EXISTS `tags`;
+		CREATE TABLE `tags` (
+			`id` int(11) NOT NULL,
+			`uid` int(11) NOT NULL,
+			`tag` varchar(64) NOT NULL
+		  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+		  if (!isset($db))
+			echo 'Erreur lors de la création de la table des profils, veuillez vérifier la connection avec le serveur SQL' . '<br/>';
+		else {
+			$res = $db->prepare($sql);
+			$res->execute();
+			return 1;
+		}
+		return 0;
+	}
+
 	function create_preferences_table($db)
 	{
 		$sql = "DROP TABLE IF EXISTS `preferences`;

@@ -22,7 +22,7 @@
 
             $popAgeFilter = array_intersect($age, $pop);
             sort($popAgeFilter);
-            $tagFilter = filterTag($db, $popAgeFilter,1);
+            $tagFilter = filterTag($db, $popAgeFilter,$taglimit);
             sort($tagFilter);
 
             // Array contenant la liste d'id des utilisateurs recherchés apres tri
