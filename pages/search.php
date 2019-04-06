@@ -22,6 +22,7 @@
             var_dump($pop);
             echo '<br/>';
             echo '<br/>';
+            //var_dump($age);
             $popAgeFilter = array_intersect($age, $pop);
             sort($popAgeFilter);
             $tagFilter = filterTag($db, $popAgeFilter);
@@ -60,11 +61,9 @@
         $i = 0;
         $res = array();
         while ($i < count($ret)) {
-            if (isset($res[$i]->uid))
-                $res[$i] = $ret[$i]->uid;
-            $i++;
+            $res[$i] = $ret[$i++]->uid;
         }
-            return $res;
+        return $res;
     }
 
     function filterTag($db, $results)
