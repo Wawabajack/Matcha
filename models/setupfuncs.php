@@ -54,12 +54,12 @@
 	{
 		$sql = "DROP TABLE IF EXISTS `tags`;
 		CREATE TABLE `tags` (
-			`id` int(11) NOT NULL AUTO_INCREMENT,
+			`id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
 			`uid` int(11) NOT NULL UNIQUE,
 			`tag` varchar(64) NOT NULL
-		  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-		  if (!isset($db))
-			echo 'Erreur lors de la création de la table des profils, veuillez vérifier la connection avec le serveur SQL' . '<br/>';
+		  	) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+		if (!isset($db))
+			echo 'Erreur lors de la création de la table des tags, veuillez vérifier la connection avec le serveur SQL' . '<br/>';
 		else {
 			$res = $db->prepare($sql);
 			$res->execute();
@@ -101,5 +101,3 @@
 		$res->execute();
 		return 1;
 	}
-
-	?>
