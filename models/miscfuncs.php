@@ -111,6 +111,49 @@ function getCity($lat, $lng)
     return "";
 }
 
+function ft_compare($db, $arr, $tagnb)
+{
+    $myarr = getTags($db, $_SESSION['usr']->id)->tag;
+    $myarr = explode('#', $myarr);
+    //var_dump($arr);
+    $occ = count(array_intersect($arr, $myarr));
+    //echo '<br/>' . $occ . '<br/><br/>';
+    if ($occ >= $tagnb)
+        return 1;
+    return 0;
+}
+
+function filterTag($db, $results, $tagnb)
+{
+    $i = 0;
+    $res = array();
+    $tag = array();
+
+    while ($i < count($results)) {
+        $tags = getTags($db, $results[$i]);
+        if (isset($tags->tag))
+            $res[$i] = $tags->tag;
+        $i++;
+    }
+    $i = 0;
+    $j = 0;
+
+    var_dump($res);
+    $final = array();
+    while ($i < count($res)) {                          // Tant qu'on a pas check tous les utilisateurs
+        $tag[$i] = explode('#', $res[$i]);
+        array_shift($tag[$i]);
+        if (ft_compare($db, $tag[$i], $tagnb))         // return 0 si le nb d'occurence est <= $tagnb
+        {
+            $final[$j] = $results[$i];
+            $j++;
+        }
+        $i++;
+    }
+
+    return $final;
+}
+
 function getloc($db, $uid)
 {
     $ipaddress = getClientIP();
@@ -149,6 +192,17 @@ function sendpos($db)
     //$dom->formatOutput = true; 
     //$dom->saveXML(); // put string in test1
     $dom->save('map.xml'); // save as file
+}
+
+function makeArray($ret) {
+    $i = 0;
+    $res = array();
+    while ($i < count($ret)) {
+        if (isset($ret[$i]->uid))
+            $res[$i] = $ret[$i]->uid;
+        $i++;
+    }
+    return $res;
 }
 
 function mapInit($db, $uid)

@@ -1,5 +1,7 @@
 <?php
     require_once($_SERVER["DOCUMENT_ROOT"] .'/config/db_connect.php');
+    require_once($_SERVER["DOCUMENT_ROOT"] . '/models/queryfuncs.php');
+    require_once($_SERVER["DOCUMENT_ROOT"] . '/models/miscfuncs.php');
 
     if (isset($_SESSION['usr']) && isset($_POST['min_age']) && isset($_POST['max_age']) && isset($_POST['min_pop']) && isset($_POST['max_pop']) && isset($_POST['loc']) && isset($_POST['tag']))
     {
@@ -17,74 +19,36 @@
             //echo 'SELECT uid from profiles WHERE (`birthdate` < ' . $now . '- INTERVAL ' . $max_age .'`birthdate` > ' . $min_age . '<br/>';
 
             //SEARCH
-            var_dump($age);
-            echo '<br/>';
-            var_dump($pop);
-            echo '<br/>';
-            echo '<br/>';
-            //var_dump($age);
+
             $popAgeFilter = array_intersect($age, $pop);
             sort($popAgeFilter);
-            $tagFilter = filterTag($db, $popAgeFilter);
+            $tagFilter = filterTag($db, $popAgeFilter,1);
             sort($tagFilter);
-            var_dump($tagFilter);
+
+            // Array contenant la liste d'id des utilisateurs recherchés apres tri
+
+            $users = $tagFilter;
+
+            // Exemple d'utilisation
+
+            $i = 0;
+            while ($i < count($users)) {
+                $currentUser = getUserInfo($db, $users[$i]);
+                if (isset($currentUser->username))                            // Pas necessaire en temps normal car l'user existe forcement
+                    echo getUserInfo($db, $users[$i])->username . '<br/>';
+                $i++;
+            }
         }
     }
     else
         header('refresh:0;url=/pages/error401.html');
 
-    function filterAge($db, $minAge, $maxAge) {
-        $date = date('Y-m-d H:i:s');
-        $sql = "SELECT uid FROM `profiles` WHERE `birthdate` <= :now - INTERVAL :min_age YEAR AND `birthdate` >= :now - INTERVAL :max_age YEAR AND `uid` != :me";
-        $res = $db->prepare($sql);
-        $res->bindParam(':max_age', $maxAge);
-        $res->bindParam(':min_age', $minAge);
-        $res->bindParam(':now', $date);
-        $res->bindParam(':me', $_SESSION['usr']->id);
-        $res->execute();
-        $ret = $res->fetchAll(PDO::FETCH_OBJ);
-        return makeArray($ret);
-    }
 
-    function filterPop($db, $minPop, $maxPop) {
-        $sql = "SELECT uid FROM `profiles` WHERE `popularity` >= :minPop AND `popularity` <= :maxPop AND `uid` != :me";
-        $res = $db->prepare($sql);
-        $res->bindParam(':minPop', $minPop);
-        $res->bindParam(':maxPop', $maxPop);
-        $res->bindParam(':me', $_SESSION['usr']->id);
-        $res->execute();
-        $ret = $res->fetchAll(PDO::FETCH_OBJ);
-        return makeArray($ret);
-    }
 
-    function makeArray($ret) {
-        $i = 0;
-        $res = array();
-        while ($i < count($ret)) {
-            $res[$i] = $ret[$i++]->uid;
-        }
-        return $res;
-    }
 
-    function filterTag($db, $results)
-    {
-        $i = 0;
-        $res = array();
-        //while ($i < count($results)) {
-            $tags = getTags($db, $results[$i]);
-            if (isset($tags->tag))
-                $res[$i] = $tags->tag;
-      //      $i++;
-       // }
-        return $res;
-    }
 
-    function getTags($db, $uid)
-    {
-        $sql = 'SELECT `tag` FROM `tags` WHERE `uid` = :uid';
-        $res = $db->prepare($sql);
-        $res->bindParam(':uid', $uid);
-        $res->execute();
-        $ret = $res->fetch(PDO::FETCH_OBJ);
-        return ($ret);
-    }
+
+
+
+
+
