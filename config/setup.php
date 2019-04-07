@@ -4,7 +4,7 @@
 
                                     /* TABLES SETUP */
 
-    if (!create_users_table($db) || !create_profiles_table($db) || !create_tags_table($db) || !create_preferences_table($db))
+    if (!create_users_table($db) || !create_friends_table($db) || !create_profiles_table($db) || !create_tags_table($db) || !create_preferences_table($db))
         echo 'Une ou plusieurs erreurs liées à la connection sont survenues.<br/>';
 	else if (!add_admin($db))
 		echo 'La création du compte admin a échoué.<br/>';

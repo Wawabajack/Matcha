@@ -50,6 +50,25 @@
 		return 0;
 	}
 
+	function create_friends_table($db)
+	{
+		$sql = "DROP TABLE IF EXISTS `friends`;
+		CREATE TABLE `friends` (
+			`id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+			`source` int(11) NOT NULL,
+			`dest` int(11) NOT NULL,
+			`value` int(11) NOT NULL
+		  ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;";
+		if (!isset($db))
+			echo 'Erreur lors de la création de la table des friends, veuillez vérifier la connection avec le serveur SQL' . '<br/>';
+		else {
+			$res = $db->prepare($sql);
+			$res->execute();
+			return 1;
+		}
+		return 0;
+	}
+
 	function create_tags_table($db)
 	{
 		$sql = "DROP TABLE IF EXISTS `tags`;
