@@ -108,4 +108,8 @@
     </html>
 </div>
 
-<?php $map = ob_get_clean(); ?>
+<?php $map = ob_get_clean();
+    if (isset($_SESSION['reload']))
+        echo '<script>initMap();</script>';
+?>
+

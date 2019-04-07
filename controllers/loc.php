@@ -8,4 +8,5 @@
         $lng = floatval($_POST['lng']);
         locupdate($db, $_SESSION['usr']->id, $lat, $lng);
         mapInit($db, $_SESSION['usr']->id);
+        $_SESSION['reload'] = 1;
     }
