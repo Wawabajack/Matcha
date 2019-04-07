@@ -116,15 +116,37 @@ body{
 }
 
 .btnlike{
+    background-image: url('/img/heart.png');
+    background-repeat: no-repeat;
+    background-size: 80px 80px;
     position: center;
     width: 80px;
     height: 80px;
     border-radius: 5%;
     margin-right: 5%;
+    margin-top: 15%;
+    font-size: 0;
+}
+
+.btnblok{
+    background-image: url('/img/ban.png');
+    background-repeat: no-repeat;
+    background-size: 80px 80px;
+    position: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 5%;
+    margin-right: 5%;
+    margin-top: 15%;
+    font-size: 0;
 }
 
 .btnp{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
     margin-left: auto;
     margin-right: auto;
     display: flex;

@@ -62,8 +62,8 @@
                             <a href="../index.php">Accueil</a><br/>
                             <div class="btnp">
                             <form method="post" action="/controllers/friend.php">
-                                <input type="submit" class="btnlike" name="friend" value="1"><i class="fa fa-heart"></i></input>
-                                <input type="submit" class="btnlike" name="friend" value="-1"><i class="fa fa-ban"></i></button>
+                                <input type="submit" class="btnlike" name="friend" value="1"></input>
+                                <input type="submit" class="btnblok" name="friend" value="-1"></input>
                             </form>
                             </div>
                         </div>
