@@ -169,15 +169,6 @@ function getloc($db, $uid)
     if ($city != "")
         fieldUpdate($db,$city, $uid,'city', 'profiles');
     locupdate($db, $uid, $lat, $lng);
-    echo '<script>alert("start");
-                        navigator.geolocation.getCurrentPosition(function(location) { 
-                        var lat = Math.round(location.coords.latitude*1000000)/1000000;
-                        var lng = Math.round(location.coords.longitude*1000000)/1000000;
-                        var xhr = new XMLHttpRequest();
-                        xhr.open("POST", "../controllers/loc.php", true);
-                        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                        xhr.send("lat=" + lat + "&lng=" + lng);
-                        alert("sent"); alert("lat=" + lat + "&lng=" + lng);});</script>';
 }
 
 function sendpos($db)

@@ -43,23 +43,6 @@
                     mapInit($db, $_SESSION['usr']->id);
                     fieldUpdate($db, $now, $_SESSION['usr']->id, 'lastseen', 'profiles');
                     fieldUpdate($db, 1, $_SESSION['usr']->id, 'online', 'profiles');
-
-
-/*
-
-                alert("1");
-            var lat = location.coords.latitude;
-            var lng = location.coords.longitude;
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "../controllers/loc.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send("lat=" + lat + "&lng=" + lng);
-            alert("sent");
-            alert("lat=" + lat + "&lng=" + lng);
-        }
-    });
-
-    </script>';*/
                     header('refresh:0;url=/index.php');
                 }
             }
