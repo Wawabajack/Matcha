@@ -3,6 +3,7 @@
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/models/miscfuncs.php');
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/views/indexView.php');
     $profileV = "";
+    $profileS = "";
 	if (isset($_SESSION['usr']))
 		require_once($_SERVER["DOCUMENT_ROOT"] . '/views/profileView.php');
 ?>
@@ -40,7 +41,8 @@ if (isset($_SESSION['usr'])){
 	echo $menu;
 	echo $home;
 	echo $delogBtn;
-	echo $profileV;
+	if (empty($_GET['user']))
+	    echo $profileV;
 
 	if (isset($_SESSION['profile']->id) && isset($_SESSION['prefs']->id)
         && isset($_GET['user']) && $_GET['user'] != "" && ctype_alnum($_GET['user']))
@@ -49,6 +51,7 @@ if (isset($_SESSION['usr'])){
         if (isset($search->id)) {
             $_SESSION['search'] = $search->id;
             require($_SERVER["DOCUMENT_ROOT"] . '/views/searchView.php');
+            echo $profileS;
         }
         else
             echo '<script>window.location.replace("/pages/error404.html")</script>';
