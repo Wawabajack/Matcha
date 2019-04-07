@@ -117,7 +117,15 @@
 	    $res = $db->prepare($sql);
 	    $res->bindParam(':uid', $uid);
 	    $res->execute();
+    }
 
+    function addFriend($db, $uid)
+    {
+        $sql = "INSERT INTO `friends` (`source`, `dest`, `value`) VALUES (:me, :uid, 1)";
+        $res = $db->prepare($sql);
+        $res->bindParam(':me', $_SESSION['usr']->id);
+        $res->bindParam(':uid', $uid);
+        $res->execute();
     }
 
     function getUserProfile($db, $uid) {

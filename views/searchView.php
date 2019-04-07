@@ -62,8 +62,10 @@
                             <p>Photos</p>
                             <a href="../index.php">Accueil</a><br/>
                             <div class="btnp">
-                            <button class="btnlike"><i class="fa fa-heart"></i></button>
-                            <button class="btnlike"><i class="fa fa-ban"></i></button>
+                            <form method="post" action="/controllers/friend.php">
+                                <input type="submit" class="btnlike" name="friend" value="1"><i class="fa fa-heart"></i></input>
+                                <input type="submit" class="btnlike" name="friend" value="-1"><i class="fa fa-ban"></i></button>
+                            </form>
                             </div>
                         </div>
                     </div>
