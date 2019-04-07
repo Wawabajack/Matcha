@@ -17,4 +17,5 @@
         else
             header('refresh:0;url=/index.php');
     }
-    header('refresh:0;url=/pages/error401.html');
+    else
+        header('refresh:0;url=/pages/error401.html');
