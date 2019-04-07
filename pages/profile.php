@@ -2,7 +2,7 @@
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/models/queryfuncs.php');
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/models/miscfuncs.php');
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/views/indexView.php');
-
+    $profileV = "";
 	if (isset($_SESSION['usr']))
 		require_once($_SERVER["DOCUMENT_ROOT"] . '/views/profileView.php');
 ?>
@@ -41,7 +41,21 @@ if (isset($_SESSION['usr'])){
 	echo $home;
 	echo $delogBtn;
 	echo $profileV;
+
+	if (isset($_SESSION['profile']->id) && isset($_SESSION['prefs']->id)
+        && isset($_GET['user']) && $_GET['user'] != "" && ctype_alnum($_GET['user']))
+    {
+        $search = isThere($db, 'username', 'users', $_GET['user'], 'id');
+        if (isset($search->id)) {
+            $_SESSION['search'] = $search->id;
+            require($_SERVER["DOCUMENT_ROOT"] . '/views/searchView.php');
+        }
+        else
+            echo '<script>window.location.replace("/pages/error404.html")</script>';
+    }
 }
+
+
 
 else
 	header('refresh:0;url=/pages/error401.html');

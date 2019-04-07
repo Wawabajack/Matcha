@@ -1,6 +1,4 @@
 <?php
-    if (!isset($_SESSION))
-        session_start();
     require_once('views/indexView.php');
     require_once('models/miscfuncs.php');
     require_once('views/mapView.php');

@@ -1,6 +1,4 @@
 <?php
-if (!isset($_SESSION))
-    session_start();
 require_once($_SERVER["DOCUMENT_ROOT"] . '/config/db_connect.php');
 /** Picture & Frame **/
 
@@ -22,14 +20,15 @@ if (isset($_SESSION['usr'])) {
 
     if (isset($_SESSION['profile'])) {
         $gender = '' . $_SESSION['profile']->gender;
-        if ($_SESSION['profile']->birthdate == "0000-00-00")
-            $_SESSION['profile']->birthdate = "1970-01-01";
+        if ($_SESSION['profile']->birthdate != "0000-00-00") {
         $date = new DateTime($_SESSION['profile']->birthdate);
         $now = new DateTime();
         $interval = $now->diff($date);
         $age = $interval->y;
         $birth = explode('-', $_SESSION['profile']->birthdate);
-        $birth = $birth[2] . '/' . $birth[1] . '/' . $birth[0];
+        $birth = $birth[2] . '/' . $birth[1] . '/' . $birth[0]; }
+        else
+            $age = "";
         $location = "";
         if ($_SESSION['profile']->city != "")
             $location = $_SESSION['profile']->city;
