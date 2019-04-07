@@ -85,11 +85,9 @@ if (isset($_SESSION['usr'])) {
                         <div class="profile-work">
                             <a href="../index.php">Accueil</a><br/>
                         </div>
-                        <div class="btnlike">
+                        <div class="btnp">
                         <button class="btnlike"><i class="fa fa-heart"></i></button>
-                        </div>
-                        <div class="btnblok">
-                        <button class="btnblok"><i class="fa fa-ban"></i></button>
+                        <button class="btnlike"><i class="fa fa-ban"></i></button>
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -214,8 +212,6 @@ if (isset($_SESSION['usr'])) {
                 <div class="profile-work">
                     <p>Photos</p>
                     <a href="../index.php">Accueil</a><br />
-                    <a href="">link2</a><br />
-                    <a href="">link3</a>
                 </div>
             </div>
             <div class="col-md-8">
