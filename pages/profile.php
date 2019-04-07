@@ -52,6 +52,9 @@ if (isset($_SESSION['usr'])){
             $_SESSION['search'] = $search->id;
             require($_SERVER["DOCUMENT_ROOT"] . '/views/searchView.php');
             echo $profileS;
+            $isFriend = isBlocked($db, $_SESSION['search']);
+            if (isset($isFriend->value) && $isFriend->value == "1")
+                echo '<script>document.getElementById("btnlike").style.backgroundImage="url(/img/fullheart.png)"; document.getElementById("btnlike").value = "0"</script>';
         }
         else
             echo '<script>window.location.replace("/pages/error404.html")</script>';

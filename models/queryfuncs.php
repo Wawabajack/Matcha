@@ -29,7 +29,7 @@
 	}
 
 	function isBlocked($db, $usr) {
-        $sql = "SELECT `value` from `friends` WHERE `source` = :uid AND `dest` = :me";
+        $sql = "SELECT `value` from `friends` WHERE `source` = :me AND `dest` = :uid";
         $res = $db->prepare($sql);
         $res->bindParam(':uid', $usr);
         $res->bindParam(':me', $_SESSION['usr']->id);
@@ -119,12 +119,23 @@
 	    $res->execute();
     }
 
-    function addFriend($db, $uid)
+    function insertFriend($db, $uid, $val)
     {
-        $sql = "INSERT INTO `friends` (`source`, `dest`, `value`) VALUES (:me, :uid, 1)";
+        $sql = "INSERT INTO `friends` (`source`, `dest`, `value`) VALUES (:me, :uid, :val)";
         $res = $db->prepare($sql);
         $res->bindParam(':me', $_SESSION['usr']->id);
         $res->bindParam(':uid', $uid);
+        $res->bindParam(':val', $val);
+        $res->execute();
+    }
+
+    function updateFriend($db, $uid, $val)
+    {
+        $sql = "UPDATE `friends` SET `value` = :val WHERE `source` = :me AND `dest` = :uid";
+        $res = $db->prepare($sql);
+        $res->bindParam(':me', $_SESSION['usr']->id);
+        $res->bindParam(':uid', $uid);
+        $res->bindParam(':val', $val);
         $res->execute();
     }
 
