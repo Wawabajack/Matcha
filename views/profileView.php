@@ -144,6 +144,11 @@ if (isset($_SESSION['usr'])) {
                                                 <label>' . $bio . '</label>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                        <div class="col-md-6">
+                                            <label> tag </label>
+                                        </div>
+                                    </div>
                              </div>
                              <div class="tab-pane fade" id="mdp" role="tabpanel" aria-labelledby="mdp-tab">
                                 <div class="row">
@@ -265,6 +270,9 @@ if (isset($_SESSION['usr'])) {
                         <div class="row">
                             <div class="col-md-6">
                                 <textarea style="resize: none; border: none; " name="bio" placeholder="Mes centres d\'intérêt..."></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <textarea style="resize: none; border: none; " name="tag" placeholder="Mes tags #weebs #poneys..."></textarea>
                             </div>
                         </div>
                     </div>
