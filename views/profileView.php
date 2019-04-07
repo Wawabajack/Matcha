@@ -83,10 +83,13 @@ if (isset($_SESSION['usr'])) {
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-work">
-                            <p>Photos</p>
                             <a href="../index.php">Accueil</a><br/>
-                            <a href="">link2</a><br/>
-                            <a href="">link3</a>
+                        </div>
+                        <div class="btnlike">
+                        <button class="btnlike"><i class="fa fa-heart"></i></button>
+                        </div>
+                        <div class="btnblok">
+                        <button class="btnblok"><i class="fa fa-ban"></i></button>
                         </div>
                     </div>
                     <div class="col-md-8">
