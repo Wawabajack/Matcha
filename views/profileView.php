@@ -85,10 +85,6 @@ if (isset($_SESSION['usr'])) {
                         <div class="profile-work">
                             <a href="../index.php">Accueil</a><br/>
                         </div>
-                        <div class="btnp">
-                        <button class="btnlike"><i class="fa fa-heart"></i></button>
-                        <button class="btnlike"><i class="fa fa-ban"></i></button>
-                        </div>
                     </div>
                     <div class="col-md-8">
                         <div class="tab-content profile-tab" id="myTabContent">

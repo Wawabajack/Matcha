@@ -114,6 +114,23 @@ body{
     font-weight: 600;
     color: #0062cc;
 }
+
+.btnlike{
+    position: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 5%;
+    margin-right: 5%;
+}
+
+.btnp{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+}
+
 /********  mini profile index *********/
 
 .mini-profile{
