@@ -280,7 +280,7 @@ if (isset($_SESSION['usr'])) {
                                 <label>Nouveau mot de passe</label>
                             </div>
                             <div class="col-md-6">
-                                <input type="password" style="resize: none; border: none; " name="newpwd" placeholder="••git pulll••••••••"></input>
+                                <input type="password" style="resize: none; border: none; " name="newpwd" placeholder="••••••••••"></input>
                             </div>
                         </div>
                     </div> 
