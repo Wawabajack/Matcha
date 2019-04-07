@@ -61,8 +61,10 @@
                         <div class="profile-work">
                             <p>Photos</p>
                             <a href="../index.php">Accueil</a><br/>
-                            <a href="">link2</a><br/>
-                            <a href="">link3</a>
+                            <div class="btnp">
+                            <button class="btnlike"><i class="fa fa-heart"></i></button>
+                            <button class="btnlike"><i class="fa fa-ban"></i></button>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-8">
