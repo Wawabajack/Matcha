@@ -90,7 +90,6 @@ body{
 }
 .profile-work{
     padding: 14%;
-    margin-top: -15%;
 }
 .profile-work p{
     font-size: 12px;
@@ -98,6 +97,7 @@ body{
     font-weight: 600;
     margin-top: 10%;
 }
+
 .profile-work a{
     text-decoration: none;
     color: #495057;
@@ -118,10 +118,10 @@ body{
 .btnlike{
     background-image: url('/img/heart.png');
     background-repeat: no-repeat;
-    background-size: 80px 80px;
+    background-size: 60px 60px;
     position: center;
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     border-radius: 5%;
     margin-right: 5%;
     margin-top: 15%;
@@ -131,10 +131,10 @@ body{
 .btnblok{
     background-image: url('/img/ban.png');
     background-repeat: no-repeat;
-    background-size: 80px 80px;
+    background-size: 60px 60px;
     position: center;
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     border-radius: 5%;
     margin-right: 5%;
     margin-top: 15%;
@@ -144,10 +144,10 @@ body{
 .btnreport{
     background-image: url('/img/report.png');
     background-repeat: no-repeat;
-    background-size: 40px 40px;
+    background-size: 60px 60px;
     position: center;
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 5%;
     margin-right: 5%;
     margin-top: 15%;
@@ -155,7 +155,7 @@ body{
 }
 
 .btnp{
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;

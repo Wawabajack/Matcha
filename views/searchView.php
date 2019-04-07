@@ -60,16 +60,18 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-work">
-                            <a href="../index.php">Accueil</a><br/>
                             <div class="btnp">
                             <form method="post" action="/controllers/friend.php">
+                            <div>
                                 <input type="submit" id="btnlike" class="btnlike" name="friend" value="1"></input>
+                            </div> 
+                            <div>   
                                 <input type="submit" id="btnblock" class="btnblok" name="block" value=""></input>
-                            </form>
                             </div>
                             <div>
-                            <form method="post" action="/controllers/friend.php">
                                 <input type="submit" id="btnreport" class="btnreport" name="report" value=""></input>
+                            </div>
+                            </form>
                             </div>
                         </div>
                     </div>
