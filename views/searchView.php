@@ -6,7 +6,8 @@
         $prefs = getUserPrefs($db, $_SESSION['search']);
         $profile = getUserProfile($db, $_SESSION['search']);
         //var_dump($profile);
-        if (isset($profile->id) && isset($prefs->id))
+        $isFriend = isBlocked($db, $user->id);
+        if (isset($profile->id) && isset($prefs->id) && isset($isFriend->value) && $isFriend->value != -1)
         {
             $image = $profile->img;
             $usr = $user->username;
@@ -36,13 +37,12 @@
                             <img src="' . $image . '" alt=""/>
                         </div>
                     </div>
+                    
                     <div class="col-md-6">
                         <div class="profile-head">
-                                    <h5>' .
-            $usr . '
+                                    <h5>' . $usr . '
                                     </h5>
-                                    <h6>' .
-            $surname . '
+                                    <h6>' . $surname . '
                                     </h6>
                                     <p class="proile-rating">POPULARITY : <span>' . $popScore . '</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">

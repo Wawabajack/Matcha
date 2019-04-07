@@ -28,6 +28,16 @@
 		return $user;
 	}
 
+	function isBlocked($db, $usr) {
+        $sql = "SELECT `value` from `friends` WHERE `source` = :uid AND `dest` = :me";
+        $res = $db->prepare($sql);
+        $res->bindParam(':uid', $usr);
+        $res->bindParam(':me', $_SESSION['usr']->id);
+        $res->execute();
+        $user = $res->fetch(PDO::FETCH_OBJ);
+        return $user;
+    }
+
 	function getUserKey($db, $key) {
 		$sql = "SELECT `id` from `users` WHERE `mail_key` = :mkey";
 		$res = $db->prepare($sql);
