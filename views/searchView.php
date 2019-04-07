@@ -6,25 +6,27 @@
         $prefs = getUserPrefs($db, $_SESSION['search']);
         $profile = getUserProfile($db, $_SESSION['search']);
         //var_dump($profile);
-        $image = $profile->img;
-        $usr = $user->username;
-        $surname = $user->surname;
-        $popScore = $profile->popularity;
-        $name = $user->name;
-        $gender = $profile->gender;
-        $mail = $user->mail;
-        if ($profile->birthdate != "0000-00-00") {
-            $date = new DateTime($_SESSION['profile']->birthdate);
-            $now = new DateTime();
-            $interval = $now->diff($date);
-            $age = $interval->y;
-            $birth = explode('-', $_SESSION['profile']->birthdate);
-            $birth = $birth[2] . '/' . $birth[1] . '/' . $birth[0]; }
-        else
-            $age = "";
-        $location = $profile->city;
-        $lfgender = $prefs->gender;
-        $bio = $prefs->bio;
+        if (isset($profile->id) && isset($prefs->id))
+        {
+            $image = $profile->img;
+            $usr = $user->username;
+            $surname = $user->surname;
+            $popScore = $profile->popularity;
+            $name = $user->name;
+            $gender = $profile->gender;
+            $mail = $user->mail;
+            if ($profile->birthdate != "0000-00-00") {
+                $date = new DateTime($_SESSION['profile']->birthdate);
+                $now = new DateTime();
+                $interval = $now->diff($date);
+                $age = $interval->y;
+                $birth = explode('-', $_SESSION['profile']->birthdate);
+                $birth = $birth[2] . '/' . $birth[1] . '/' . $birth[0]; }
+            else
+                $age = "";
+            $location = $profile->city;
+            $lfgender = $prefs->gender;
+            $bio = $prefs->bio;
 
 
         $profileS = '<div class="container emp-profile">
@@ -128,3 +130,8 @@
           </div>       
     </div>';
     }
+        else
+            header('refresh:0;url=/pages/error404.html');
+    }
+    else
+        header('refresh:0;url=/pages/error401.html');
