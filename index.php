@@ -39,19 +39,21 @@
 
 <?php
 
-    if (isset($_SESSION['usr']->id))
+    if (isset($_SESSION['usr']->id) && !isset($_SESSION['loc']))
     {
         echo '<script>
-                function ft_pushinfo(lat, long) { 
+                function ft_pushInfo(lat, long) { 
+                                alert("Localisation en cours, veuillez patienter...");
                                 var xhr = new XMLHttpRequest();
                                 lat = Number(lat.toFixed(6));
                                 long = Number(long.toFixed(6));
                                 xhr.open("POST", "controllers/loc.php", true);
                                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                                 xhr.send("lat=" + lat + "&lng=" + long);
-                                alert(lat + " " + long);
+                                alert("Localisation terminée !")
                 }
-                navigator.geolocation.getCurrentPosition(function(location) { ft_pushinfo(location.coords.latitude, location.coords.longitude)})</script>';
+                navigator.geolocation.getCurrentPosition(function(location) { ft_pushInfo(location.coords.latitude, location.coords.longitude)})</script>';
+        $_SESSION['loc'] = 1;
     }
 
 
