@@ -59,7 +59,6 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-work">
-                            <p>Photos</p>
                             <a href="../index.php">Accueil</a><br/>
                             <div class="btnp">
                             <form method="post" action="/controllers/friend.php">
