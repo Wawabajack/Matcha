@@ -58,11 +58,10 @@ if (isset($_SESSION['usr'])){
         }
         else
             echo '<script>window.location.replace("/pages/error404.html")</script>';
-    }
+	}
+	else
+		header('refresh:0;url=/pages/error404.html');
 }
-
-
-
 else
 	header('refresh:0;url=/pages/error401.html');
 ?>
