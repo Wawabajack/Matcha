@@ -67,6 +67,10 @@
                                 <input type="submit" id="btnblock" class="btnblok" name="block" value=""></input>
                             </form>
                             </div>
+                            <div>
+                            <form method="post" action="/controllers/friend.php">
+                                <input type="submit" id="btnreport" class="btnreport" name="report" value=""></input>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-8">

@@ -141,6 +141,19 @@ body{
     font-size: 0;
 }
 
+.btnreport{
+    background-image: url('/img/report.png');
+    background-repeat: no-repeat;
+    background-size: 40px 40px;
+    position: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 5%;
+    margin-right: 5%;
+    margin-top: 15%;
+    font-size: 0;
+}
+
 .btnp{
     display: flex;
     justify-content: center;
