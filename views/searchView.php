@@ -66,7 +66,7 @@
                                 <input type="submit" id="btnlike" class="btnlike" name="friend" value="1"></input>
                             </div> 
                             <div>   
-                                <input type="submit" id="btnblock" class="btnblok" name="block" value=""></input>
+                                <input type="submit" id="btnblock" class="btnblok" name="block" value="1"></input>
                             </div>
                             <div>
                                 <input type="submit" id="btnreport" class="btnreport" name="report" value=""></input>

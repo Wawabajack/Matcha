@@ -57,8 +57,8 @@ if (isset($_SESSION['usr'])){
                 echo '<script>document.getElementById("btnlike").style.backgroundImage="url(/img/fullheart.png)"; document.getElementById("btnlike").value = "0"</script>';
         }
         else
-            echo '<script>window.location.replace("/pages/error404.html")</script>';
-	}
+            header('refresh:0;url=/pages/error404.html');
+    }
 }
 else
 	echo '<script>window.location.replace("/pages/error401.html")</script>';
