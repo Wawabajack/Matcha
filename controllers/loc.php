@@ -7,5 +7,5 @@
         $lat = floatval($_POST['lat']);
         $lng = floatval($_POST['lng']);
         locupdate($db, $_SESSION['usr']->id, $lat, $lng);
-        getloc($db, $_SESSION['usr']->id);
+        mapInit($db, $_SESSION['usr']->id);
     }
