@@ -206,7 +206,6 @@ if (isset($_SESSION['usr'])) {
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-work">
-                    <p>Photos</p>
                     <a href="../index.php">Accueil</a><br />
                 </div>
             </div>
