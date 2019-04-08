@@ -148,10 +148,11 @@
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $geoloc = json_decode(curl_exec($ch), true);
         $coords = array();
-        $coords[0] = $geoloc['results'][0]['geometry']['location']['lat'];
-        $coords[1] = $geoloc['results'][0]['geometry']['location']['lng'];
-        if (isset($coords[0]) && isset($coords[1]))
+        if (isset($geoloc['results'][0]['geometry']['location'])) {
+            $coords[0] = $geoloc['results'][0]['geometry']['location']['lat'];
+            $coords[1] = $geoloc['results'][0]['geometry']['location']['lng'];
             return $coords;
+        }
         return 0;
     }
 
