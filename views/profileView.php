@@ -81,7 +81,7 @@ if (isset($_SESSION['usr']->id)) {
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <a class="profile-edit-btn" href="../pages/usercp.php">' . $edit . '</a><br/>
+                        <a class="profile-edit-btn" href="/pages/usercp.php">' . $edit . '</a><br/>
                     </div>
                 </div>
                 <div class="row">
@@ -179,7 +179,7 @@ if (isset($_SESSION['usr']->id)) {
     // USERCP
 
     $editprofileV = '<div class="container emp-profile">
-    <form method="post" action="../controllers/useredit.php" enctype="multipart/form-data">
+    <form method="post" action="/controllers/useredit.php" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
@@ -304,7 +304,7 @@ if (isset($_SESSION['usr']->id)) {
 </div>';
 
     $slider = '
-<form method="post" action="/pages/search.php">
+<form method="post" action="/controllers/search.php">
 <div class="research">
     <div class="slidecontainer">
         <input type="range" min="1" max="100" value="1" class="slider" id="agemax" name="min_age">
