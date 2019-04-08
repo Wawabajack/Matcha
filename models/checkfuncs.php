@@ -37,10 +37,10 @@
         if ((((($field == "username" || $field == "surname") && $val = ucfirst(strtolower($val))) || ($field == "name" && $val = strtoupper($val)))) && ctype_alpha($val) && strlen($val) < 11)
             return 1;
         // location check
-        else if ($field == "location" && strlen($val) < 51 && filter_var($val, FILTER_SANITIZE_SPECIAL_CHARS))
+        else if ($field == "location" && strlen($val) < 51 && filter_var($val, FILTER_SANITIZE_SPECIAL_CHARS) === $val)
             return 1;
         //bio check
-        else if ($field == "bio" && strlen($val) < 1000 && filter_var($val, FILTER_SANITIZE_SPECIAL_CHARS))
+        else if ($field == "bio" && strlen($val) < 1000 && filter_var($val, FILTER_SANITIZE_SPECIAL_CHARS) === $val)
             return 1;
         // mail check
         else if ($field == "mail" && filter_var($val, FILTER_VALIDATE_EMAIL))
@@ -63,7 +63,7 @@
     }
 
     function keyCheck($db, $userKey) {
-        if (!filter_var($userKey, FILTER_SANITIZE_SPECIAL_CHARS))
+        if (filter_var($userKey, FILTER_SANITIZE_SPECIAL_CHARS) !== $userKey)
             return 0;
         $user = getUserKey($db, $userKey);
         if (isset($user->id))
@@ -74,7 +74,7 @@
     }
 
     function strCheck($usr) {
-        if (!filter_var($usr, FILTER_SANITIZE_SPECIAL_CHARS))
+        if (filter_var($usr, FILTER_SANITIZE_SPECIAL_CHARS) !== $usr)
             return 0;
         return 1;
     }
@@ -102,7 +102,7 @@
         $arr = array("username", "surname", "name", "gender", "mail", "birthdate", "location", "lf", "bio", "file", "oldpwd", "newpwd");
         foreach ($arr as $val) {
             if (isset($post[$val]) && $post[$val] = trim($post[$val])) {
-                //echo 'checking $_POST[' . $val . '] : ' . $post[$val] . isValid($val, $post[$val]) . '<br/>';
+                echo 'checking $_POST[' . $val . '] : ' . $post[$val] . isValid($db, $val, $post[$val]) . '<br/>';
                 if (!isValid($db, $val, $post[$val]))
                     unset($post[$val]);
                     //echo 'problem with ' . $post[$val] . ' = ' . $val . '<br/>';  }                      /*  Debug   */
