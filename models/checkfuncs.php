@@ -137,6 +137,24 @@
             return 0;
     }
 
+
+    function getCityCoords($city, $country)
+    {
+        $apiKey = "&key=AIzaSyBtlv6rYn6x-0tL53o99fUtZbUwm4zcCm0";
+        $details_url = "https://maps.googleapis.com/maps/api/geocode/json?components=locality:" . $city . '|' . $country . $apiKey;
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $details_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $geoloc = json_decode(curl_exec($ch), true);
+        $coords = array();
+        $coords[0] = $geoloc['results'][0]['geometry']['location']['lat'];
+        $coords[1] = $geoloc['results'][0]['geometry']['location']['lng'];
+        if (isset($coords[0]) && isset($coords[1]))
+            return $coords;
+        return 0;
+    }
+
     function profileUpdate($db, $elems, $uid, $file)
     {
         $prefs = isThere($db, "uid", "preferences", $uid, "*");
@@ -157,8 +175,14 @@
             }
             if ($key == "gender" || $key == "birthdate" || $key == "location") {
                 $table = "profiles";
-                if ($key == "location")
-                    $key = "city";
+                if ($key == "location" && $val != "")
+                {
+                    $loc = getCityCoords($val, 'FR');
+                    var_dump($loc);
+                    if (isset($loc[0])) {
+                        locupdate($db, $_SESSION['usr']->id, $loc[0], $loc[1]);
+                    fieldUpdate($db, $val, $_SESSION['usr']->id, 'city', 'profiles'); }
+                }
             }
             if ($key == "lf" || $key == "bio") {
                 $table = "preferences";
@@ -174,9 +198,9 @@
                 if (isset($there->$key))
                     $val = "";
             }
-            if (($key == "location" || $key == "username" || $key == "surname" || $key == "name" || $key == "gender"
-                    || $key == "mail" || $key == "birthdate" || $key == "location"
-                    || $key == "lf" || $key == "bio" || $key == "password" || $key == "newpwd") && $val != "")
+            if (($key == "username" || $key == "surname" || $key == "name" || $key == "gender"
+                    || $key == "mail" || $key == "birthdate" || $key == "lf"
+                    || $key == "bio" || $key == "password" || $key == "newpwd") && $val != "")
                     fieldUpdate($db, $val, $uid, $key, $table);//echo 'updating ' . $val .': ' .
         }
         return 1;
