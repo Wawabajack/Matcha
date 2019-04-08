@@ -101,7 +101,7 @@
             }
         }
         else {
-            echo '<center><a href="/pages/profile.php"><button>Créer mon profil</button></a></center>';
+            echo '<center><a href="/pages/profile.php"><button class="btntop">Créer mon profil</button></a></center>';
         }
         echo '</div>';
     }
