@@ -105,7 +105,7 @@ function getCity($lat, $lng)
     curl_setopt($ch, CURLOPT_URL, $details_url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $geoloc = json_decode(curl_exec($ch), true);
-    $city = $geoloc['results'][0]['address_components'][2]['long_name'];
+    $city = $geoloc['results'][0]['address_components'][0]['long_name'];
     if (isset($city))
         return $city;
     return "";
