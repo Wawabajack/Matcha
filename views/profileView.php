@@ -319,7 +319,7 @@ if (isset($_SESSION['usr']->id)) {
         <p>loc = <span id="loc:"></span></p>
     </div>
     <div class="slidecontainer">
-        <input type="range" min="1" max="5" value="1" class="slider" id="tag" name="tag">
+        <input type="range" min="0" max="5" value="0" class="slider" id="tag" name="tag">
         <p>tag = <span id="tag:"></span></p>
     </div>
     <div class="slidecontainer">
