@@ -79,7 +79,8 @@
 
     else {
         echo $menu;
-        echo $profileBtn;
+	    if (isset($_SESSION['profile']->id) && isset($_SESSION['prefs']->id))
+            echo $profileBtn;
         echo $delogBtn;
     }
 
@@ -88,12 +89,19 @@
     
     if (isset($_SESSION['usr']->id)) {
         $i = 1;
-        echo $map;
-        echo $slider;
-        echo '<div class="container mini-profile">';
-        while($i <= 10){
-            $i++;
-        echo $match;
+        //Profile and pref check
+        if (isset($_SESSION['profile']->id) && isset($_SESSION['prefs']->id))
+        {
+	        echo $map;
+            echo $slider;
+            echo '<div class="container mini-profile">';
+            while($i <= 10) {
+	            $i++;
+	        echo $match;
+            }
+        }
+        else {
+            echo '<center><a href="/pages/profile.php"><button>Créer mon profil</button></a></center>';
         }
         echo '</div>';
     }

@@ -4,10 +4,10 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/config/db_connect.php');
 
 $startFrame = '<center><div id="frame"><img id="img" src="';
 $endFrame = '"></div></center><br/>';
-
+$edit = "Editer mon profil";
 /** User infos **/
 
-if (isset($_SESSION['usr'])) {
+if (isset($_SESSION['usr']->id)) {
 
     $usr = $_SESSION['usr']->username;
     $username = '' . $usr . '</center><br/>';
@@ -18,7 +18,8 @@ if (isset($_SESSION['usr'])) {
 
     /** Profile infos **/
 
-    if (isset($_SESSION['profile'])) {
+    if (isset($_SESSION['profile']->id)) {
+	    $edit = "Editer mon profil";
         $gender = '' . $_SESSION['profile']->gender;
         if ($_SESSION['profile']->birthdate != "0000-00-00") {
         $date = new DateTime($_SESSION['profile']->birthdate);
@@ -35,14 +36,17 @@ if (isset($_SESSION['usr'])) {
         $popScore = '' . $_SESSION['profile']->popularity . '<br/>';
         $image = $_SESSION['profile']->img;
     } else {
+    	$edit = "Créer mon profil";
         $gender = $birthDate = $age = $location = $image = $popScore = $birth = "";
         $image = "/img/blank.png";
     }
 
-    if (isset($_SESSION['prefs'])) {
+    if (isset($_SESSION['prefs']->id)) {
+	    $edit = "Editer mon profil";
         $lfgender = $_SESSION['prefs']->gender;
         $bio = $_SESSION['prefs']->bio;
     } else {
+	    $edit = "Créer mon profil";
         $lfgender = "N";
         $bio = "";
     }
@@ -77,7 +81,7 @@ if (isset($_SESSION['usr'])) {
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <a class="profile-edit-btn" href="../pages/usercp.php">Edit profil</a><br/>
+                        <a class="profile-edit-btn" href="../pages/usercp.php">' . $edit . '</a><br/>
                     </div>
                 </div>
                 <div class="row">
