@@ -102,7 +102,7 @@
         $arr = array("username", "surname", "name", "gender", "mail", "birthdate", "location", "lf", "bio", "file", "oldpwd", "newpwd");
         foreach ($arr as $val) {
             if (isset($post[$val]) && $post[$val] = trim($post[$val])) {
-                echo 'checking $_POST[' . $val . '] : ' . $post[$val] . isValid($db, $val, $post[$val]) . '<br/>';
+                //echo 'checking $_POST[' . $val . '] : ' . $post[$val] . isValid($db, $val, $post[$val]) . '<br/>';
                 if (!isValid($db, $val, $post[$val]))
                     unset($post[$val]);
                     //echo 'problem with ' . $post[$val] . ' = ' . $val . '<br/>';  }                      /*  Debug   */
@@ -179,9 +179,10 @@
                 if ($key == "location" && $val != "")
                 {
                     $loc = getCityCoords($val, 'FR');
-                    var_dump($loc);
+                    //var_dump($loc);
                     if (isset($loc[0])) {
                         locupdate($db, $_SESSION['usr']->id, $loc[0], $loc[1]);
+                        $val = getCity($loc[0], $loc[1]);
                     fieldUpdate($db, $val, $_SESSION['usr']->id, 'city', 'profiles'); }
                 }
             }
