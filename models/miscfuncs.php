@@ -6,7 +6,7 @@ function error($code)
 {
     switch ($code) {
         case 1:
-            echo '<script>var erreur = document.getElementById("notif"); erreur.style.disp lay = "block"; erreur.innerHTML = "nom d\'utilisateur inconnu";</script>';
+            echo '<script>var erreur = document.getElementById("notif"); erreur.style.display = "block"; erreur.innerHTML = "nom d\'utilisateur inconnu";</script>';
             break;
         case 2:
             echo '<script>var erreur = document.getElementById("notif"); erreur.style.display = "block"; erreur.innerHTML = "Mot de passe incorrect";</script>';
