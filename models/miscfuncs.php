@@ -113,20 +113,18 @@ function getCity($lat, $lng)
 
 function ft_compare($db, $arr, $tagnb)
 {
-    $myarr = getTags($db, $_SESSION['usr']->id);
-    if (isset($myarr->tag))
-        $res = explode('#', $myarr->tag);
+	$user = getTags($db, $_SESSION['usr']->id);
+    if (isset($user->tag))
+        $res = explode('#', $user->tag);
     else
-    {
-    	$i = 0;
-    	while ($i < count($arr)){
-	    	$res[$i] = "";
-    	    $i++;
-    	}
-    }
-    //var_dump($arr);
-	    $int = array_intersect($arr, $res);
+    	return 1;
+    //var_dump($res);
+        if (isset($empty) && $empty == 1)
+        	$int = $res;
+        else
+	        $int = array_intersect($arr, $res);
 	    sort($int);
+	    var_dump($int);
 	    $occ = count($int);
 	    // echo '<br/>' . $occ . '<br/><br/>';
 	    if ($occ >= $tagnb)
@@ -136,17 +134,18 @@ function ft_compare($db, $arr, $tagnb)
 
 function filterTag($db, $results, $tagnb)
 {
-    $i = 0;
+	$i = 0;
     $res = array();
     $tag = array();
 
     while ($i < count($results)) {
-        $tags = getTags($db, $results[$i]);
-        if (isset($tags->tag))
-            $res[$i] = $tags->tag;
+        $user = getTags($db, $results[$i]);
+        if (isset($user->tag))
+            $res[$i] = $user->tag;
         $i++;
     }
-    var_dump($res);
+    if (!isset($res[0]))
+    	return $results;
     $i = 0;
     $j = 0;
 

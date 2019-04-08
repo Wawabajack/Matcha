@@ -18,10 +18,9 @@
 			$popAgeFilter = array_intersect($age, $pop);
 			sort($popAgeFilter);
 			$tagFilter = filterTag($db, $popAgeFilter,$taglimit);
-			var_dump($tagFilter);
+			//var_dump($tagFilter);
 			sort($tagFilter);
 			// Array contenant la liste d'id des utilisateurs recherchés apres tri
-			$users = $tagFilter;
 			$end = locateFilter($db, $tagFilter, $loclimit);
 			// Exemple d'utilisation
 			$i = 0;
@@ -35,6 +34,7 @@
 	}
 	else
 		header('refresh:0;url=/pages/error401.html');
+
 	function dist($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo)
 	{
 		$rad = M_PI / 180;
@@ -57,6 +57,7 @@
 			return 1;
 		return 0;
 	}
+
 	function locateFilter($db, $arr, $range)
 	{
 		$res = array();
