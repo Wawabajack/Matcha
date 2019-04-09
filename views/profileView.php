@@ -19,7 +19,12 @@ if (isset($_SESSION['usr']->id)) {
     /** Profile infos **/
 
     if (isset($_SESSION['profile']->id)) {
-	    $edit = "Editer mon profil";
+        $usor = isThere($db, 'uid', 'tags', $_SESSION['usr']->id, '*');
+        if (isset($usor->tag))
+            $tags = $usor->tag;
+        else
+        $tags = "";
+        $edit = "Editer mon profil";
         $gender = '' . $_SESSION['profile']->gender;
         if ($_SESSION['profile']->birthdate != "0000-00-00") {
         $date = new DateTime($_SESSION['profile']->birthdate);
@@ -150,7 +155,7 @@ if (isset($_SESSION['usr']->id)) {
                                         </div>
                                         <div class="row">
                                         <div class="col-md-6">
-                                            <label> tag </label>
+                                            <label> ' . $tags . ' </label>
                                         </div>
                                     </div>
                              </div>
