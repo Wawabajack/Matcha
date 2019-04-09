@@ -98,8 +98,18 @@
         return(lenCheck($db, $post));
     }
 
+    function createTags($db, $uid){
+        $sql = "INSERT INTO `tags` (`uid`, `tag`) VALUES (:uid, '')";
+        $res = $db->prepare($sql);
+        $res->bindParam(':uid', $uid);
+        $res->execute();
+    }
+
     function tagUpdate($db, $tags)
     {
+        $usr = isThere($db, 'uid', 'tags', $_SESSION['usr']->id, '*');
+        if (!isset($usr->tag))
+            createTags($db, $_SESSION['usr']->id);
         if (filter_var($tags, FILTER_SANITIZE_EMAIL) !== $tags) {
             $i = 1;
             $arr = preg_split('@(?=#)@', $tags);
