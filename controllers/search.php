@@ -38,12 +38,14 @@
 
 	function blockFilter($db, $arr)
     {
+        sort($arr);
 	    $res = array();
 	    $i = 0;
 	    while ($i < count($arr))
         {
             $user = isBlocked($db, $arr[$i]);
-            if (!isset($user->value) || $user->value != -1)
+            $me = hasBlocked($db, $arr[$i]);
+            if ((!isset($user->value) || $user->value != -1) && (!isset($me->value) || $me->value != -1))
                 $res[$i] = $arr[$i];
             $i++;
         }

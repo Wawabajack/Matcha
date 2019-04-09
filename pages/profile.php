@@ -53,7 +53,8 @@ if (isset($_SESSION['usr'])){
                 header('refresh:0;url=/pages/profile.php');
             $_SESSION['search'] = $search->id;
             $isFriend = isBlocked($db, $_SESSION['search']);
-            if (isset($isFriend->value) && $isFriend->value == -1)
+            $other = hasBlocked($db, $_SESSION['search']);
+            if ((isset($isFriend->value) && $isFriend->value == -1) || (isset($other->value) && $other->value == -1))
                 header('refresh:0;url=/pages/error404.html');
             else {
                 addPop($db, $_SESSION['search'], 1); // Adding popularity to profile
@@ -73,7 +74,7 @@ if (isset($_SESSION['usr'])){
                 }
                 require($_SERVER["DOCUMENT_ROOT"] . '/views/searchView.php');
                 echo $profileS;
-                if (isset($isFriend->value) && $isFriend->value == "1")
+                if (isset($isFriend->value) && $isFriend->value == "1" && isset($other->value) && $other->value == 1)
                     echo '<script>document.getElementById("btnlike").style.backgroundImage="url(/img/fullheart.png)"; document.getElementById("btnlike").value = "0"</script>';
             }
         }
