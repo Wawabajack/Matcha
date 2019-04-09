@@ -3,7 +3,7 @@
     $forgot = '
     <div class="container" class="regform">
         <div class="d-flex justify-content-center h-100">
-            <div class="card2">
+            <div class="card3">
                 <div class="card-header">
                     <h3>Mot de passe oublié</h3>
                 </div>

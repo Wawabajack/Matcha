@@ -31,7 +31,7 @@
                         <a href="/pages/register.php">Créer un nouveau compte</a>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <a href="#">Mot de passe oublié ?</a>
+                        <a href="/pages/forgot.php">Mot de passe oublié ?</a>
                     </div>
                 </div>
             </div>
