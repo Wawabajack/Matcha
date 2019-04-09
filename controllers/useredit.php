@@ -14,7 +14,7 @@
 			$_SESSION['prefs'] = $prefs;
 		if (isset($profile->uid))
 			$_SESSION['profile'] = $profile;
-		//header('refresh:0;url=/pages/profile.php');
+		header('refresh:0;url=/pages/profile.php');
 	}
 	else
 		header('refresh:0;url=/pages/profile.php');
