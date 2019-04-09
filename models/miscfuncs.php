@@ -124,22 +124,35 @@ function getCity($lat, $lng)
 
 function ft_compare($db, $arr, $tagnb)
 {
-	$user = getTags($db, $_SESSION['usr']->id);
+    $user = getTags($db, $_SESSION['usr']->id);
     if (isset($user->tag))
         $res = explode('#', $user->tag);
     else
     	return 1;
     //var_dump($res);
-        if (isset($empty) && $empty == 1)
-        	$int = $res;
-        else
-	        $int = array_intersect($arr, $res);
-	    sort($int);
-	    //var_dump($int);
-	    $occ = count($int);
+    //echo '<br/>';
+    //var_dump($arr);
+    //echo '<br/>';
+    array_shift($res);
+    $i = 0;
+    while ($i < count($res))
+    {
+        $res[$i]=trim($res[$i]);
+        $i++;
+    }
+    $i = 0;
+    while ($i < count($arr))
+    {
+        $arr[$i] = trim($arr[$i]);
+        $i++;
+    }
+    $int = array_intersect($arr, $res);
+    sort($int);
+    //var_dump($int);
+    $occ = count($int);
 	    // echo '<br/>' . $occ . '<br/><br/>';
-	    if ($occ >= $tagnb)
-	        return 1;
+    if ($occ >= $tagnb)
+        return 1;
     return 0;
 }
 
