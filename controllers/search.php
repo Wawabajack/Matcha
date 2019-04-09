@@ -15,11 +15,12 @@
 			//SEARCH
 			$popAgeFilter = array_intersect($age, $pop);
 			sort($popAgeFilter);
+			//var_dump($popAgeFilter);
 			$tagFilter = filterTag($db, $popAgeFilter,$taglimit);
-			//var_dump($tagFilter);
 			sort($tagFilter);
 			// Array contenant la liste d'id des utilisateurs recherchés apres tri
 			$end = locateFilter($db, $tagFilter, $loclimit);
+
 			// Exemple d'utilisation
 			$i = 0;
 			while ($i < count($end)) {
@@ -51,6 +52,7 @@
 		$myLat = $_SESSION['profile']->lat;
 		$myLng = $_SESSION['profile']->lng;
 		$dist = dist($myLat, $myLng, $cmpLat, $cmplng);
+		//echo 'dist: '. $dist . '<br/>' . 'range: '. $range. '<br/><br/>';
 		if ($dist <= $range)
 			return 1;
 		return 0;

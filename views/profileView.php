@@ -315,19 +315,19 @@ if (isset($_SESSION['usr']->id)) {
         <p>age max = <span id="agemini:"></span></p>
     </div>
     <div class="slidecontainer">
-        <input type="range" min="0" max="100" value="100" class="slider" id="loc" name="loc">
-        <p>loc = <span id="loc:"></span></p>
+        <input type="range" min="0" max="10000" value="10000" class="slider" id="loc" name="loc">
+        <p>loc (km)= <span id="loc:"></span></p>
     </div>
     <div class="slidecontainer">
         <input type="range" min="0" max="5" value="0" class="slider" id="tag" name="tag">
         <p>tag = <span id="tag:"></span></p>
     </div>
     <div class="slidecontainer">
-        <input type="range" min="1" max="2000" value="1" class="slider" id="popmin" name="min_pop">
+        <input type="range" min="-500" max="2000" value="-500" class="slider" id="popmin" name="min_pop">
         <p>pop min = <span id="popmini:"></span></p>
     </div>
     <div class="slidecontainer">
-        <input type="range" min="1" max="2000" value="2000" class="slider" id="popmax" name="max_pop">
+        <input type="range" min="-500" max="2000" value="2000" class="slider" id="popmax" name="max_pop">
         <p>pop max = <span id="popmaxi:"></span></p>
     </div>
     <div style="display:block " class="btn">

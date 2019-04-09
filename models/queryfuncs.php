@@ -63,7 +63,7 @@
 
     function filterAge($db, $minAge, $maxAge) {
         $date = date('Y-m-d H:i:s');
-        $sql = "SELECT uid FROM `profiles` WHERE `birthdate` <= :now - INTERVAL :min_age YEAR AND `birthdate` >= :now - INTERVAL :max_age YEAR AND `uid` != :me";
+        $sql = "SELECT uid FROM `profiles` WHERE `birthdate` <= :now - INTERVAL :min_age YEAR AND `birthdate` >= :now - INTERVAL :max_age + 1 YEAR AND `uid` != :me";
         $res = $db->prepare($sql);
         $res->bindParam(':max_age', $maxAge);
         $res->bindParam(':min_age', $minAge);

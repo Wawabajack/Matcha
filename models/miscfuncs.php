@@ -135,7 +135,7 @@ function ft_compare($db, $arr, $tagnb)
         else
 	        $int = array_intersect($arr, $res);
 	    sort($int);
-	    var_dump($int);
+	    //var_dump($int);
 	    $occ = count($int);
 	    // echo '<br/>' . $occ . '<br/><br/>';
 	    if ($occ >= $tagnb)
