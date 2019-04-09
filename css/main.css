@@ -125,3 +125,10 @@ p {
     display: center;
     text-align: center
 }
+
+.btntop{
+    background-color: white;
+    color: rgb(160, 20, 137);
+    border-radius: 0.5rem;
+    border: none;
+}

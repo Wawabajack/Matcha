@@ -47,4 +47,8 @@
             </div>
         </div>
     </div>';
+
+$retour = '<li><form method="post" action="/index.php">
+    <input class="btntop" type="submit" value=" Home "></form></li>';
+
 ?>

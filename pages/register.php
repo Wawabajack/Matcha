@@ -36,6 +36,7 @@
 	        unset($_SESSION['error']);
             unset($_SESSION['register']);
         }
-    }
+	}
+	echo $retour;
     echo $regForm;
     ?>
