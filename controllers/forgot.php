@@ -1,9 +1,9 @@
 <?php
     require_once($_SERVER["DOCUMENT_ROOT"] . '/models/checkfuncs.php');
-
+    var_dump($_POST['mail']);
     if (isset($_POST['mail']) && filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL) === $_POST['mail'])
     {
-        $user = isThere($db, 'mail', 'users', $_POST['email'], '*');
+        $user = isThere($db, 'mail', 'users', $_POST['mail'], '*');
         if (isset($user->mail))
         {
             $str = random_str(30);
@@ -17,7 +17,8 @@
             mail($user->mail, 'MatchaWeeb - Vérification de sécurité', $mailContent, $head);
         }
         else
-            header('refresh:0;url=/pages/error404.html');
+            echo "3";   
+            //header('refresh:0;url=/pages/error404.html');
     }
     else if (isset($_GET['key']) && ctype_alnum($_GET['key']))
     {
@@ -37,7 +38,9 @@
             mail($key->mail, 'MatchaWeeb - Nouveau mot de passe', $mailContent, $head);
         }
         else
-            header('refresh:0;url=/pages/error401.html');
+            //header('refresh:0;url=/pages/error401.html');
+            echo "2";
     }
     else
-        header('refresh:0;url=/pages/error401.html');
+        //header('refresh:0;url=/pages/error401.html');
+        echo "1";
