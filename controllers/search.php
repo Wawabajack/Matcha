@@ -19,20 +19,63 @@
 			$tagFilter = filterTag($db, $popAgeFilter,$taglimit);
 			sort($tagFilter);
 			// Array contenant la liste d'id des utilisateurs recherchés apres tri
-			$end = locateFilter($db, $tagFilter, $loclimit);
-
+			$locate = locateFilter($db, $tagFilter, $loclimit);
+            $gender = genderFilter($db, $locate);
+            $end = blockFilter($db, $gender);
+    var_dump($end);
 			// Exemple d'utilisation
-			$i = 0;
+			/*$i = 0;
 			while ($i < count($end)) {
 				$currentUser = getUserInfo($db, $end[$i]);
 				if (isset($currentUser->username))                            // Pas necessaire en temps normal car l'user existe forcement
 					echo getUserInfo($db, $end[$i])->username . '<br/>';
 				$i++;
-			}
+			}*/
 		}
 	}
 	else
 		header('refresh:0;url=/pages/error401.html');
+
+	function blockFilter($db, $arr)
+    {
+        sort($arr);
+	    $res = array();
+	    $i = 0;
+	    while ($i < count($arr))
+        {
+            $user = isBlocked($db, $arr[$i]);
+            $me = hasBlocked($db, $arr[$i]);
+            if ((!isset($user->value) || $user->value != -1) && (!isset($me->value) || $me->value != -1))
+                $res[$i] = $arr[$i];
+            $i++;
+        }
+        return $res;
+    }
+
+	function isCompatible($db, $match, $me)
+    {
+        $otherprofile = getUserProfile($db, $match);
+        $otherprefs = getUserPrefs($db, $match);
+        $myprofile = getUserProfile($db, $me);
+        $myprefs = getUserPrefs($db, $me);
+        if (isset($myprefs->gender) && isset($myprofile->gender)
+            && isset($otherprefs->gender) && isset($otherprofile->gender) && $myprefs->gender == $otherprofile->gender)
+            return 1;
+        return 0;
+    }
+
+	function genderFilter($db, $locate)
+    {
+        $res = array();
+        $i = 0;
+        while ($i < count($locate))
+        {
+            if (isCompatible($db, $locate[$i], $_SESSION['usr']->id))
+                $res[$i] = $locate[$i];
+            $i++;
+        }
+        return $res;
+    }
 
 	function dist($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo)
 	{

@@ -7,13 +7,14 @@
         $profile = getUserProfile($db, $_SESSION['search']);
         //var_dump($profile);
         $isFriend = isBlocked($db, $user->id);
+        $other = hasBlocked($db, $user->id);
             $image = $profile->img;
             $usr = $user->username;
             $surname = $user->surname;
             $popScore = $profile->popularity;
             $name = $user->name;
             $gender = $profile->gender;
-            if (isset($isFriend->value) && $isFriend->value == "1")
+            if (isset($isFriend->value) && $isFriend->value == "1" && isset($other->value) && $other->value == 1)
                 $mail = $user->mail;
             else
                 $mail = "";
