@@ -98,7 +98,36 @@
         return(lenCheck($db, $post));
     }
 
+    function tagUpdate($db, $tags)
+    {
+        if (filter_var($tags, FILTER_SANITIZE_EMAIL) !== $tags) {
+            $i = 1;
+            $arr = preg_split('@(?=#)@', $tags);
+            sort($arr);
+            // STR STANDARD FORMAT CONVERSION
+            while ($i < count($arr))
+            {
+                $arr[$i] = trim($arr[$i]);
+                //echo $arr[$i][0];
+                if (isset($arr[$i][0]) && $arr[$i][0] != '#')
+                    return;
+                $i++;
+            }
+            $i = 1;
+            $res = "";
+            while ($i < count($arr))
+            {
+                $res = $res . ' ' .$arr[$i];
+                $i++;
+            }
+            fieldUpdate($db, $tags, $_SESSION['usr']->id, 'tag','tags');
+        }
+        return;
+    }
+
     function checkUserEdit($db, &$post) {
+        if (isset($post['tag']))
+            tagUpdate($db, $post['tag']);
         $arr = array("username", "surname", "name", "gender", "mail", "birthdate", "location", "lf", "bio", "file", "oldpwd", "newpwd");
         foreach ($arr as $val) {
             if (isset($post[$val]) && $post[$val] = trim($post[$val])) {
