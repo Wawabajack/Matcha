@@ -56,6 +56,21 @@ if (isset($_SESSION['usr'])){
             if (isset($isFriend->value) && $isFriend->value == -1)
                 header('refresh:0;url=/pages/error404.html');
             else {
+                addPop($db, $_SESSION['search'], 1); // Adding popularity to profile
+
+                /**        PROFILE VISIT HANDLER              **/
+
+                $prefs = isThere($db, 'first', 'preferences', $_SESSION['search'], '*');
+                if (!isset($prefs))
+                    $prefs = isThere($db, 'second', 'preferences', $_SESSION['search'], '*');
+                if (!isset($prefs->first))
+                    fieldUpdate($db,$_SESSION['usr']->id, $search->id,'first','preferences');
+                else if (!isset($prefs->second))
+                    fieldUpdate($db,$_SESSION['usr']->id, $search->id,'second','preferences');
+                else {
+                    fieldUpdate($db,$prefs->second, $search->id,'first','preferences');
+                    fieldUpdate($db,$_SESSION['usr']->id, $search->id,'second','preferences');
+                }
                 require($_SERVER["DOCUMENT_ROOT"] . '/views/searchView.php');
                 echo $profileS;
                 if (isset($isFriend->value) && $isFriend->value == "1")

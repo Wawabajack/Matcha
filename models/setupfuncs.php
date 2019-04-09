@@ -12,6 +12,7 @@
         `password` varchar(64) NOT NULL,
         `warnings` int(11) NOT NULL,
         `mail_key` varchar(64),
+        `forgot_key` varchar(64),
         `admin` int(11),
         `inactive` int(11) NOT NULL
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
@@ -95,8 +96,8 @@
             `uid` int(11) NOT NULL UNIQUE,
             `bio` MEDIUMTEXT NOT NULL,
             `gender` varchar(64) NOT NULL,
-            `age_min` int(11) NOT NULL,
-            `age_max` int(11) NOT NULL
+            `first` int(11) NOT NULL,
+            `second` int(11) NOT NULL
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 		if (!isset($db))
 			echo 'Erreur lors de la création de la table des préférences, veuillez vérifier la connection avec le serveur SQL' . '<br/>';

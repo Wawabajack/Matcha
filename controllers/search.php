@@ -1,7 +1,5 @@
 <?php
-	require_once($_SERVER["DOCUMENT_ROOT"] .'/config/db_connect.php');
-	require_once($_SERVER["DOCUMENT_ROOT"] . '/models/queryfuncs.php');
-	require_once($_SERVER["DOCUMENT_ROOT"] . '/models/miscfuncs.php');
+	require_once($_SERVER["DOCUMENT_ROOT"] . '/models/checkfuncs.php');
 	if (isset($_SESSION['usr']) && isset($_POST['min_age']) && isset($_POST['max_age']) && isset($_POST['min_pop']) && isset($_POST['max_pop']) && isset($_POST['loc']) && isset($_POST['tag']))
 	{
 		if (is_numeric($_POST['min_age']) && is_numeric($_POST['max_age']) && is_numeric($_POST['min_pop']) && is_numeric($_POST['max_pop']) && is_numeric($_POST['loc']) && is_numeric($_POST['tag'])) {

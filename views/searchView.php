@@ -13,7 +13,10 @@
             $popScore = $profile->popularity;
             $name = $user->name;
             $gender = $profile->gender;
-            $mail = $user->mail;
+            if (isset($isFriend->value) && $isFriend->value == "1")
+                $mail = $user->mail;
+            else
+                $mail = "";
             if ($profile->birthdate != "0000-00-00") {
                 $date = new DateTime($_SESSION['profile']->birthdate);
                 $now = new DateTime();

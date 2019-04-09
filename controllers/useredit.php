@@ -1,5 +1,4 @@
 <?php
-	require_once($_SERVER["DOCUMENT_ROOT"] . '/config/db_connect.php');
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/models/checkfuncs.php');
 
 	if (isset($_SESSION['usr']) && ((isset($_POST['username']) || isset($_POST['surname']) || isset($_POST['name'])

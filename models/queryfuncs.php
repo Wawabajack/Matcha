@@ -95,9 +95,17 @@
         return ($ret);
     }
 
+    function resetForgotKey($db, $uid)
+    {
+        $sql = "UPDATE `users` SET `forgot_key` = 0 WHERE `id` = :uid";
+        $res = $db->prepare($sql);
+        $res->bindParam(':uid', $uid);
+        $res->execute();
+    }
+
     function addUser($db, $username, $name, $surname, $mail, $pwd, $mailKey) {
-        $sql = "INSERT INTO `users` (`username`, `name`, `surname`, `mail`, `password`, `warnings`, `mail_key`, `admin`, `inactive`)
-                VALUES (:usr, :nom, :surname, :mail, :pwd, '0', :mail_key, '0', '1')";
+        $sql = "INSERT INTO `users` (`username`, `name`, `surname`, `mail`, `password`, `warnings`, `mail_key`, `forgot_key`, `admin`, `inactive`)
+                VALUES (:usr, :nom, :surname, :mail, :pwd, '0', :mail_key, '0','0','1')";
         $res = $db->prepare($sql);
         $res->bindParam(':usr', $username);
         $res->bindParam(':nom', $name);
