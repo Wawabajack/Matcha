@@ -20,7 +20,11 @@
         }
         else
             insertFriend($db, $_SESSION['search'], $post);
-        if (isset($_SESSION['search']))
+        if ($val == 1)
+            addPop($db, $_SESSION['search'], 5);
+        else
+            subPop($db, $_SESSION['search'], 5);
+        if (isset($_SESSION['search']) && $val != -1)
         {
             $username = getUserInfo($db, $_SESSION['search']);
             header('refresh:0;url=/pages/profile.php?user=' . strtolower($username->username));

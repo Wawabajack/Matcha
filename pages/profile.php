@@ -49,12 +49,18 @@ if (isset($_SESSION['usr'])){
     {
         $search = isThere($db, 'username', 'users', $_GET['user'], 'id');
         if (isset($search->id)) {
+            if ($search->id == $_SESSION['usr']->id)
+                header('refresh:0;url=/pages/profile.php');
             $_SESSION['search'] = $search->id;
-            require($_SERVER["DOCUMENT_ROOT"] . '/views/searchView.php');
-            echo $profileS;
             $isFriend = isBlocked($db, $_SESSION['search']);
-            if (isset($isFriend->value) && $isFriend->value == "1")
-                echo '<script>document.getElementById("btnlike").style.backgroundImage="url(/img/fullheart.png)"; document.getElementById("btnlike").value = "0"</script>';
+            if (isset($isFriend->value) && $isFriend->value == -1)
+                header('refresh:0;url=/pages/error404.html');
+            else {
+                require($_SERVER["DOCUMENT_ROOT"] . '/views/searchView.php');
+                echo $profileS;
+                if (isset($isFriend->value) && $isFriend->value == "1")
+                    echo '<script>document.getElementById("btnlike").style.backgroundImage="url(/img/fullheart.png)"; document.getElementById("btnlike").value = "0"</script>';
+            }
         }
         else
             header('refresh:0;url=/pages/error404.html');

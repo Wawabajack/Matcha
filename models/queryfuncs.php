@@ -119,6 +119,26 @@
 	    $res->execute();
     }
 
+    function addPop($db, $uid, $val)
+    {
+        $v = getUserProfile($db, $_SESSION['search'])->popularity + $val;
+        $sql = "UPDATE `profiles` SET `popularity` = :val WHERE `uid` = :uid";
+        $res = $db->prepare($sql);
+        $res->bindParam(':uid', $uid);
+        $res->bindParam(':val', $v);
+        $res->execute();
+    }
+
+    function subPop($db, $uid, $val)
+    {
+        $v = getUserProfile($db, $_SESSION['search'])->popularity - $val;
+        $sql = "UPDATE `profiles` SET `popularity` = :val WHERE `uid` = :uid";
+        $res = $db->prepare($sql);
+        $res->bindParam(':uid', $uid);
+        $res->bindParam(':val', $v);
+        $res->execute();
+    }
+
     function insertFriend($db, $uid, $val)
     {
         $sql = "INSERT INTO `friends` (`source`, `dest`, `value`) VALUES (:me, :uid, :val)";

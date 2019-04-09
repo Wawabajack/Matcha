@@ -7,10 +7,6 @@
         $profile = getUserProfile($db, $_SESSION['search']);
         //var_dump($profile);
         $isFriend = isBlocked($db, $user->id);
-        if (isset($profile->id) && isset($prefs->id))
-        {
-            if (isset($isFriend->value) && $isFriend->value == -1)
-                header('refresh:0;url=/pages/error404.html');
             $image = $profile->img;
             $usr = $user->username;
             $surname = $user->surname;
@@ -63,13 +59,13 @@
                             <div class="btnp">
                             <form method="post" action="/controllers/friend.php">
                             <div>
-                                <input type="submit" id="btnlike" name="friend" value="1"></input>
+                                <input type="submit" id="btnlike" class="btnlike" name="friend" value="1"></input>
                             </div> 
                             <div>   
-                                <input type="submit" id="btnblock" name="block" value="1"></input>
+                                <input type="submit" id="btnblock" class="btnblok" name="block" value="1"></input>
                             </div>
                             <div>
-                                <input type="submit" id="btnreport" name="report" value=""></input>
+                                <input type="submit" id="btnreport" class="btnreport" name="report" value=""></input>
                             </div>
                             </form>
                             </div>
@@ -139,9 +135,6 @@
                 </div>
           </div>       
     </div>';
-    }
-        else
-            header('refresh:0;url=/pages/error404.html');
     }
     else
         header('refresh:0;url=/pages/error401.html');
