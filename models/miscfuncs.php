@@ -57,13 +57,18 @@ function error($code)
     return 1;
 }
 
-function logout()
-{if(isset($_SESSION['usr']->id)){
-	
-    unset($_SESSION);
-	$sql = "UPDATE profiles SET online = 0 WHERE uid = :uid";$res = $db->prepare($sql);$res->bindParam(':uid', $_SESSION['usr']->id);$res->execute();
-    session_destroy();
-    header('refresh:0;url=/index.php');}
+function logout($db)
+{
+    if (isset($_SESSION['usr']->id))
+    {
+        $sql = "UPDATE profiles SET online = 0 WHERE uid = :uid";
+        $res = $db->prepare($sql);
+        $res->bindParam(':uid', $_SESSION['usr']->id);
+        $res->execute();
+        unset($_SESSION);
+        session_destroy();
+        header('refresh:0;url=/index.php');
+    }
 }
 
 function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')

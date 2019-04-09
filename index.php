@@ -85,7 +85,7 @@
     }
 
     if (isset($_POST['logout']) || (isset($_GET['logout']) && $_GET['logout'] == "1"))
-        logout();
+        logout($db);
     
     if (isset($_SESSION['usr']->id)) {
         $i = 1;
