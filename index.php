@@ -92,7 +92,6 @@
         //Profile and pref check
         if (isset($_SESSION['profile']->id) && isset($_SESSION['prefs']->id))
         {
-	        echo match($db);
             echo $map;
             echo $slider;
             echo '<div class="container mini-profile">';
