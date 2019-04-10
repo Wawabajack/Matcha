@@ -5,6 +5,7 @@
         $user = getUserInfo($db, $_SESSION['search']);
         $prefs = getUserPrefs($db, $_SESSION['search']);
         $profile = getUserProfile($db, $_SESSION['search']);
+        $tag = getUsertag($db, $_SESSION['search']);
         //var_dump($profile);
         $isFriend = isBlocked($db, $user->id);
         $other = hasBlocked($db, $user->id);
@@ -30,6 +31,7 @@
             $location = $profile->city;
             $lfgender = $prefs->gender;
             $bio = $prefs->bio;
+            $tagU = $tag->tag;
 
         $profileS = '<div class="container emp-profile">
                 <div class="row">
@@ -128,11 +130,16 @@
                                         </div>
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>' . $bio . '</label>
-                                            </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>' . $bio . '</label>
                                         </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label> ' . $tagU . ' </label>
+                                        </div>
+                                    </div>
                              </div> 
                         </div> 
                     </div>

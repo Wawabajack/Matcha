@@ -19,6 +19,15 @@
         return $user;
     }
 
+    function getUsertag($db, $uid) {
+        $sql = "SELECT * from `tags` WHERE `id` = :uid";
+        $res = $db->prepare($sql);
+        $res->bindParam(':uid', $uid);
+        $res->execute();
+        $user = $res->fetch(PDO::FETCH_OBJ);
+        return $user;
+    }
+
 	function loadUserInfo($db, $usr) {
 		$sql = "SELECT * from `users` WHERE `username` = :usr";
 		$res = $db->prepare($sql);
