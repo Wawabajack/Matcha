@@ -16,6 +16,7 @@ if (isset($_SESSION['usr']->id)) {
     $mail = $_SESSION['usr']->mail;
     $tags = "";
     $birth = "";
+    $onlin = '<img src="/img/green.png" style="width:3%">';
 
     /** Profile infos **/
 
@@ -67,7 +68,7 @@ if (isset($_SESSION['usr']->id)) {
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>' .
-        $usr . '
+        $usr . ' ' .  $onlin .'
                                     </h5>
                                     <h6>' .
         $surname . '
@@ -400,11 +401,13 @@ if (isset($_SESSION['usr']->id)) {
 
     if (isset($_SESSION['results'])) {
 
+    
     $matchLnk = '<div class="profile">
     <div class="profileheader">
     </div>
     <div class="avatar img">
-        <img src="../img/404.png" alt="" />
+        <img src="'; 
+        $image = '"> alt="" />
     </div>
     <div class="info">
         <div class="title">

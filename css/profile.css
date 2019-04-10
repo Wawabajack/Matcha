@@ -212,11 +212,12 @@ img {
     background: #fff;
 }
 .desc {
+    font-size: 15px;
     color: #9617bd
 }
 .title a{
-    padding-bottom: 5%;
-    font-size: 30px;
+    padding-bottom: 7%;
+    font-size: 16px;
     color: black;
 }
 

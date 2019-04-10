@@ -32,7 +32,16 @@
             $lfgender = $prefs->gender;
             $bio = $prefs->bio;
             $tagU = $tag->tag;
-
+            $lastconnect = "";
+            if (isset($user->online))
+                $on = $user->online;
+            if (isset($on) && $on == 1)
+                $online = '<img src="/img/green.png" style="width:3%">';
+            else {
+                $online = '<img src="/img/red.png" style="width:3%">';
+                if ($profile->lastseen != "0000-00-00 00:00:00")
+                    $lastconnect = $profile->lastseen;
+            }
         $profileS = '<div class="container emp-profile">
                 <div class="row">
                     <div class="col-md-4">
@@ -43,7 +52,7 @@
                     
                     <div class="col-md-6">
                         <div class="profile-head">
-                                    <h5>' . $usr . '
+                                    <h5>' . $usr . " " . $online . ' ' . $lastconnect . '
                                     </h5>
                                     <h6>' . $surname . '
                                     </h6>
@@ -71,7 +80,7 @@
                                 <input type="submit" id="btnblock" class="btnblok" name="block" value="1"></input>
                             </div>
                             <div>
-                                <input type="submit" id="btnreport" class="btnreport" name="report" value=""></input>
+                                <input type="submit" id="btnreport" class="btnreport" name="report" value="1"></input>
                             </div>
                             </form>
                             </div>

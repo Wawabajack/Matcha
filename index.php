@@ -111,7 +111,7 @@
                         $loc = $userProfile->city;
                         $gender = $userProfile->gender;
                         $link = '/pages/profile.php?user=' . $user->username;
-                        echo $matchLnk . $link . $matchName . $user->username . $matchAge . $age . $matchLoc . $loc . $matchGender . $gender . $endFrame;
+                        echo $matchLnk . $userProfile->img . $image . $link . $matchName . $user->username . $matchAge . $age . $matchLoc . $loc . $matchGender . $gender . $endFrame;
                     }
                     $i++;
                 }

@@ -9,10 +9,13 @@
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $res = json_decode(curl_exec($ch), true);
         $fake = $res['results'][0];
-        if (isset($fake['gender'][0]))
-            $gender = ucfirst($fake['gender'])[0];
-        else
+        $rand = rand(1, 100);
+        if ($rand < 10)
             $gender = "N";
+        else if ($rand < 61)
+            $gender = "M";
+        else
+            $gender = "F";
         $username = ucfirst(strtolower($fake['login']['username']));
         $name = strtoupper($fake['name']['last']);
         $surname = ucfirst(strtolower($fake['name']['first']));
@@ -45,7 +48,7 @@
         $city = ucfirst($fake['location']['city']);
         $lat = $fake['location']['coordinates']['latitude'] . '00';
         $lng = $fake['location']['coordinates']['longitude'] . '00';
-        $rand = rand(1, 30);
+        $rand = rand(1, 100);
         if ($rand < 10)
             $genderpref = "N";
         else if ($rand < 61)
@@ -69,4 +72,4 @@
         }
 }
 
-ft_hydrate($db, 50);
+ft_hydrate($db, 500);
