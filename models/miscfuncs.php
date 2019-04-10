@@ -252,9 +252,44 @@ function mapInit($db, $uid)
     getloc($db, $uid);
 }
 
-function reorder($uid_array, $dist_array, $tags_array, $pop_array)
+function valswap(&$dist_array, $i)
 {
+    $tmpdist = $dist_array['dist'][$i];
+    $tmpuid = $dist_array['uid'][$i];
+    $tmptags = $dist_array['tags'][$i];
+    $tmppop = $dist_array['pop'][$i];
+    $dist_array['dist'][$i] = $dist_array['dist'][$i + 1];
+    $dist_array['dist'][$i + 1] = $tmpdist;
+    $dist_array['uid'][$i] = $dist_array['uid'][$i + 1];
+    $dist_array['uid'][$i + 1] = $tmpuid;
+    $dist_array['tags'][$i] = $dist_array['tags'][$i + 1];
+    $dist_array['tags'][$i + 1] = $tmptags;
+    $dist_array['pop'][$i] = $dist_array['pop'][$i + 1];
+    $dist_array['pop'][$i + 1] = $tmppop;
+}
 
+function reorder($dist_array)
+{
+    //var_dump($dist_array);
+    $arraySize = count($dist_array['dist']);
+   $i = 0;
+   while ($i < $arraySize - 1)
+   {
+        if ($dist_array['dist'][$i] > $dist_array['dist'][$i + 1])
+            valswap($dist_array, $i);
+        if ($dist_array['dist'][$i] == $dist_array['dist'][$i + 1])
+        {
+            if ($dist_array['tags'][$i] > $dist_array['tags'][$i + 1])
+                valswap($dist_array, $i);
+            if ($dist_array['tags'][$i] == $dist_array['tags'][$i + 1])
+            {
+                if ($dist_array['pop'][$i] > $dist_array['pop'][$i + 1])
+                    valswap($dist_array, $i);
+            }
+        }
+        $i++;
+   }
+   return $dist_array;
 }
 
 function match($db)
@@ -279,9 +314,6 @@ function match($db)
     if (!isset($res))
         return 0;
     $i = 0;
-    $dist = array();
-    $tags = array();
-    $pop = array();
     while ($i < count($res))
     {
         $matchUsr = getUserInfo($db, $res[$i]);
@@ -290,11 +322,13 @@ function match($db)
         $matchPrefs = getUserPrefs($db, $res[$i]);
         if ($matchPrefs->gender != "N" && $matchPrefs->gender != $_SESSION['profile']->gender)
             return 0;
-        $dist[$i] = dist($_SESSION['profile']->lat, $_SESSION['profile']->lng, $matchProfile->lat, $matchProfile->lng);
-        $tags[$i] = getCommonTags($db, explode('#', $matchTags->tag));
-        $pop[$i] = $matchProfile->popularity;
-        return reorder($res, $dist, $tags, $pop);
+        $dist['dist'][$i] = dist($_SESSION['profile']->lat, $_SESSION['profile']->lng, $matchProfile->lat, $matchProfile->lng);
+        $dist['uid'][$i] = $res[$i];
+        $dist['tags'][$i] = getCommonTags($db, explode('#', $matchTags->tag));
+        $dist['pop'][$i]  = $matchProfile->popularity;
+        $i++;
     }
+    return reorder($dist);
     // echo '<script>alert("minAge: ' . $minAge . ' maxAge: ' . $maxAge. ' $minPop: '. $minPop .' $maxPop:' . $maxPop .'");</script>';
 }
 
