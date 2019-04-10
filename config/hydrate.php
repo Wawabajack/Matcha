@@ -13,7 +13,7 @@
         if ($rand < 10)
             $gender = "N";
         else if ($rand < 61)
-            $gender = "M";
+            $gender = "H";
         else
             $gender = "F";
         $username = ucfirst(strtolower($fake['login']['username']));
@@ -52,7 +52,7 @@
         if ($rand < 10)
             $genderpref = "N";
         else if ($rand < 61)
-            $genderpref = "M";
+            $genderpref = "H";
         else
             $genderpref = "F";
         addRdomUser($db, $username, $name, $surname, $mail, $pwd, '0');
