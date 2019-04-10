@@ -336,10 +336,7 @@ if (isset($_SESSION['usr']->id)) {
         <p>pop max = <span id="popmaxi:"></span></p>
     </div>
     <div style="display:block " class="btn">
-        <input class="btntop" type="submit" value=" order by Age">
-        <input class="btntop" type="submit" value=" order by Loc">
-        <input class="btntop" type="submit" value=" order by tag">
-        <input class="btntop" type="submit" value=" order by pop">
+        <input class="btntop" type="submit" value=" Recherche ">
     </div>
 </div>
 </form>
