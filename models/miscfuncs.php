@@ -245,3 +245,8 @@ function mapInit($db, $uid)
     sendpos($db);
     getloc($db, $uid);
 }
+
+function match($db, $uid)
+{
+
+}

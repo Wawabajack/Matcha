@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"] . '/config/db_connect.php');
+require_once($_SERVER["DOCUMENT_ROOT"] . '/models/miscfuncs.php');
 /** Picture & Frame **/
 
 $startFrame = '<center><div id="frame"><img id="img" src="';
@@ -23,7 +23,7 @@ if (isset($_SESSION['usr']->id)) {
         if (isset($usor->tag))
             $tags = $usor->tag;
         else
-        $tags = "";
+            $tags = "";
         $edit = "Editer mon profil";
         $gender = '' . $_SESSION['profile']->gender;
         if ($_SESSION['profile']->birthdate != "0000-00-00") {
@@ -400,7 +400,9 @@ if (isset($_SESSION['usr']->id)) {
 
     /**************** a bouger plus tard pour l'algo de march **************************/
 
-    $match = '<div class="profile">
+    if (isset($_SESSION['results'])) {
+
+    $matchLnk = '<div class="profile">
     <div class="profileheader">
     </div>
     <div class="avatar img">
@@ -409,24 +411,26 @@ if (isset($_SESSION['usr']->id)) {
     <div class="info">
         <div class="title">
             <h6>
-                <a href="" . $username>' . $usr . '</a>
+                <a href="'; //. $username// . $usr .
+        $matchName = '">';
+        $matchAge = '</a>
             </h6>
         </div>
         <div class="desc">
-            <h5>' .
-        $age . '
+            <h5>'; //. $age .
+        $matchLoc = '
             </h5>
         </div>
         <div class="desc">
-            <h5>' .
-        $location . '
-            </h5>
+            <h5>';// .$location .
+        $matchGender = '</h5>
         </div>
         <div class="desc">
-            <h5>' .
-        $gender . '
+            <h5>';// .$gender .
+        $endFrame = '
             </h5>
         </div>
     </div>
 </div>';
+    }
 }

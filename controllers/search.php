@@ -9,20 +9,16 @@
 			$max_pop = (int)$_POST['max_pop'];
 			$taglimit = (int)$_POST['tag'];
 			$loclimit = (int)$_POST['loc'];
-			$age = filterAge($db, $min_age, $max_age);
-			$pop = filterPop($db, $min_pop, $max_pop);
+			$_SESSION['results'] = search($db, $min_age, $max_age, $min_pop, $max_pop, $taglimit, $loclimit);
+			header('refresh:0;url=/index.php');
 			//echo 'SELECT uid from profiles WHERE (`birthdate` < ' . $now . '- INTERVAL ' . $max_age .'`birthdate` > ' . $min_age . '<br/>';
 			//SEARCH
-			$popAgeFilter = array_intersect($age, $pop);
-			sort($popAgeFilter);
+
 			//var_dump($popAgeFilter);
-			$tagFilter = filterTag($db, $popAgeFilter,$taglimit);
-			sort($tagFilter);
+
 			// Array contenant la liste d'id des utilisateurs recherchés apres tri
-			$locate = locateFilter($db, $tagFilter, $loclimit);
-            $gender = genderFilter($db, $locate);
-            $end = blockFilter($db, $gender);
-    var_dump($end);
+
+            var_dump($res);
 			// Exemple d'utilisation
 			/*$i = 0;
 			while ($i < count($end)) {
@@ -35,6 +31,21 @@
 	}
 	else
 		header('refresh:0;url=/pages/error401.html');
+
+	function search($db, $minAge, $maxAge, $minPop, $maxPop, $tagReq, $locLimit)
+    {
+        $age = filterAge($db, $minAge, $maxAge);
+        $pop = filterPop($db, $minPop, $maxPop);
+        $popAgeFilter = array_intersect($age, $pop);
+        sort($popAgeFilter);
+        $tagFilter = filterTag($db, $popAgeFilter,$tagReq);
+        sort($tagFilter);
+        $locate = locateFilter($db, $tagFilter, $locLimit);
+        $gender = genderFilter($db, $locate);
+        $res = blockFilter($db, $gender);
+        sort($res);
+        return $res;
+    }
 
 	function blockFilter($db, $arr)
     {

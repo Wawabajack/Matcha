@@ -88,16 +88,29 @@
         logout($db);
     
     if (isset($_SESSION['usr']->id)) {
-        $i = 1;
+
         //Profile and pref check
         if (isset($_SESSION['profile']->id) && isset($_SESSION['prefs']->id))
         {
 	        echo $map;
             echo $slider;
             echo '<div class="container mini-profile">';
-            while($i <= 10) {
-	            $i++;
-	        echo $match;
+            if (isset($_SESSION['results'])) {
+                //var_dump($_SESSION['results']);
+                $i = 0;
+                while ($i < count($_SESSION['results'])) {
+                    $userPrefs = getUserPrefs($db, $_SESSION['results'][$i]);
+                    $userProfile = getUserProfile($db, $_SESSION['results'][$i]);
+                    $user = getUserInfo($db, $_SESSION['results'][$i]);
+                    $date = new DateTime();
+                    $birth = new DateTime($userProfile->birthdate);
+                    $age = $date->diff($birth)->y . " ans";
+                    $loc = $userProfile->city;
+                    $gender = $userProfile->gender;
+                    $link = $_SERVER["DOCUMENT_ROOT"] . '/pages/profile.php?user=' . $user->username;
+                    echo $matchLnk . $link . $matchName . $user->username . $matchAge . $age . $matchLoc . $loc . $matchGender . $gender . $endFrame;
+                    $i++;
+                }
             }
         }
         else {

@@ -1,7 +1,5 @@
 <?php
 
-if (!isset($_SESSION))
-session_start();
 require_once($_SERVER["DOCUMENT_ROOT"] . '/config/db_connect.php');
     
 
