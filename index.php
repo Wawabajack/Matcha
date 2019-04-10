@@ -98,22 +98,25 @@
             if (isset($_SESSION['search'])) {
                 //var_dump($_SESSION['results']);
                 $i = 0;
-                while ($i < count($_SESSION['search'])) {
-                    $isblocked= isBlocked($db, $_SESSION['search'][$i]);
-                    $hasblocked = hasBlocked($db, $_SESSION['search'][$i]);
-                    if (!((isset($isblocked->value) && $isblocked->value == -1) || (isset($hasblocked->value) && $hasblocked->value == -1))) {
-                        $userPrefs = getUserPrefs($db, $_SESSION['search'][$i]);
-                        $userProfile = getUserProfile($db, $_SESSION['search'][$i]);
-                        $user = getUserInfo($db, $_SESSION['search'][$i]);
-                        $date = new DateTime();
-                        $birth = new DateTime($userProfile->birthdate);
-                        $age = $date->diff($birth)->y . " ans";
-                        $loc = $userProfile->city;
-                        $gender = $userProfile->gender;
-                        $link = '/pages/profile.php?user=' . $user->username;
-                        echo $matchLnk . $userProfile->img . $image . $link . $matchName . $user->username . $matchAge . $age . $matchLoc . $loc . $matchGender . $gender . $endFrame;
+                if (isset($_SESSION['match'])) {
+                    //var_dump($_SESSION['match']);
+                    while ($i < $_SESSION['match']) {
+                        $isblocked= isBlocked($db, $_SESSION['search'][$i]);
+                        $hasblocked = hasBlocked($db, $_SESSION['search'][$i]);
+                        if (!((isset($isblocked->value) && $isblocked->value == -1) || (isset($hasblocked->value) && $hasblocked->value == -1))) {
+                            $userPrefs = getUserPrefs($db, $_SESSION['search'][$i]);
+                            $userProfile = getUserProfile($db, $_SESSION['search'][$i]);
+                            $user = getUserInfo($db, $_SESSION['search'][$i]);
+                            $date = new DateTime();
+                            $birth = new DateTime($userProfile->birthdate);
+                            $age = $date->diff($birth)->y . " ans";
+                            $loc = $userProfile->city;
+                            $gender = $userProfile->gender;
+                            $link = '/pages/profile.php?user=' . $user->username;
+                            echo $matchLnk . $userProfile->img . $image . $link . $matchName . $user->username . $matchAge . $age . $matchLoc . $loc . $matchGender . $gender . $endFrame;
+                        }
+                        $i++;
                     }
-                    $i++;
                 }
             }
         }

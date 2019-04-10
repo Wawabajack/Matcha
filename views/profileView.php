@@ -280,7 +280,7 @@ if (isset($_SESSION['usr']->id)) {
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="row">
                             <div class="col-md-6">
-                                <textarea style="resize: none; border: none; " name="bio" placeholder="Mes centres d\'intérêt..."></textarea>
+                                <textarea style="resize: none; border: none; " name="bio" placeholder="Moi en quelques mots"></textarea>
                             </div>
                             <div class="col-md-6">
                                 <textarea style="resize: none; border: none; " name="tag" placeholder="Mes tags #weebs #poneys..."></textarea>

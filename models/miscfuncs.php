@@ -338,8 +338,9 @@ function match($db)
         }  
     }
     $dist = reorder($dist);
-    $inutile = array_splice($dist, 0, 3);
-    return $inutile;
+    //$ret = array_splice($dist, 0, 3);
+    //sort($dist);
+    return $dist;
     // echo '<script>alert("minAge: ' . $minAge . ' maxAge: ' . $maxAge. ' $minPop: '. $minPop .' $maxPop:' . $maxPop .'");</script>';
 }
 

@@ -7,15 +7,20 @@
 			$match = match($db);
 			$res = array();
 			$i = 0;
-			while ($i < count($match))
+			//ar_dump($match);
+			//var_dump(count($match['dist']));
+			while ($i < count($match['dist']))
 			{
 				$res[$i] = $match['uid'][$i];
 				$i++;
 			}
 			//var_dump($res);
+			
 			//unset($_SESSION['search']);
 			$_SESSION['search'] = $res;
-			//var_dump($res);
+			
+			count($res) > 3 ? $_SESSION['match'] = 3 : $_SESSION['match'] = count($res);
+						//var_dump($res);
 			header('refresh:0;url=/index.php');
 		}
 	
@@ -29,6 +34,7 @@
 			$taglimit = (int)$_POST['tag'];
 			$loclimit = (int)$_POST['loc'];
 			$_SESSION['search'] = search($db, $min_age, $max_age, $min_pop, $max_pop, $taglimit, $loclimit);
+			$_SESSION['match'] = count($_SESSION['search'] );
 			//var_dump($_SESSION['results']);
 			header('refresh:0;url=/index.php');
 			//echo 'SELECT uid from profiles WHERE (`birthdate` < ' . $now . '- INTERVAL ' . $max_age .'`birthdate` > ' . $min_age . '<br/>';
