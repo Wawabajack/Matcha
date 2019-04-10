@@ -74,8 +74,10 @@ if (isset($_SESSION['usr'])){
                 }
                 require($_SERVER["DOCUMENT_ROOT"] . '/views/searchView.php');
                 echo $profileS;
-                if (isset($isFriend->value) && $isFriend->value == "1" && isset($other->value) && $other->value == 1)
+                if ((isset($isFriend->value) && $isFriend->value == "1")|| (isset($other->value) && $other->value == 1))
                     echo '<script>document.getElementById("btnlike").style.backgroundImage="url(/img/fullheart.png)"; document.getElementById("btnlike").value = "0"</script>';
+                if ((isset($isFriend->value) && $isFriend->value == "1") && (isset($other->value) && $other->value == 1))
+                    echo '<script>document.getElementById("btnlike").style.backgroundImage="url(/img/blueheart.png)"; document.getElementById("btnlike").value = "0"</script>';
             }
         }
         else
