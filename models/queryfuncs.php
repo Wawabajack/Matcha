@@ -126,6 +126,55 @@
         $res->execute();
     }
 
+    function addRdomPrefs($db, $uid, $genderpref)
+    {
+        $bio = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut finibus sed felis sit amet placerat. Donec lobortis est ut libero eleifend venenatis. Vivamus sed elit erat. Integer consectetur volutpat erat ut bibendum. Nunc consectetur ligula ac felis euismod, pharetra tempor velit tincidunt. Aenean sed felis nisi. Duis et nibh sed nisi fermentum tincidunt.';
+        $sql = "INSERT INTO `preferences` (`uid`, `bio`, `gender`) VALUES (:uid, :bio, :gender)";
+        $res = $db->prepare($sql);
+        $res->bindParam(':uid', $uid);
+        $res->bindParam(':gender', $genderpref);
+        $res->bindParam(':bio', $bio);
+        $res->execute();
+    }
+
+    function addRdomTags($db, $uid, $tags)
+    {
+        $sql = "INSERT INTO `tags` (`uid`, `tag`) VALUES (:uid, :tags)";
+        $res = $db->prepare($sql);
+        $res->bindParam(':tags', $tags);
+        $res->bindParam(':uid', $uid);
+        $res->execute();
+    }
+
+    function addRdomProfile($db, $uid, $img, $gender, $birthdate, $pop, $city, $lat, $lng)
+    {
+        $sql = "INSERT INTO `profiles` (`uid`, `img`, `gender`, `birthdate`, `popularity`, `city`, `lat`, `lng`, `lastseen`, `online`)
+                VALUES (:uid, :img, :gender, :bod, :pop, :city, :lat, :lng, '0', '0')";
+        $res = $db->prepare($sql);
+        $res->bindParam(':uid', $uid);
+        $res->bindParam(':img', $img);
+        $res->bindParam(':gender', $gender);
+        $res->bindParam(':bod', $birthdate);
+        $res->bindParam(':pop', $pop);
+        $res->bindParam(':city', $city);
+        $res->bindParam(':lat', $lat);
+        $res->bindParam(':lng', $lng);
+        $res->execute();
+    }
+
+function addRdomUser($db, $username, $name, $surname, $mail, $pwd, $mailKey) {
+    $sql = "INSERT INTO `users` (`username`, `name`, `surname`, `mail`, `password`, `warnings`, `mail_key`, `forgot_key`, `admin`, `inactive`)
+                VALUES (:usr, :nom, :surname, :mail, :pwd, '0', :mail_key, '0','0','0')";
+    $res = $db->prepare($sql);
+    $res->bindParam(':usr', $username);
+    $res->bindParam(':nom', $name);
+    $res->bindParam(':surname', $surname);
+    $res->bindParam(':mail', $mail);
+    $res->bindParam(':pwd', $pwd);
+    $res->bindParam(':mail_key', $mailKey);
+    $res->execute();
+}
+
     function activateUser($db, $uid) {
     	$sql = "UPDATE `users` SET inactive = 0 WHERE `id` = :uid";
     	$res = $db->prepare($sql);
