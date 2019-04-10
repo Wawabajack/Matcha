@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"] . '/config/db_connect.php');
+
 require_once('queryfuncs.php');
 
 function error($code)
@@ -122,13 +122,13 @@ function getCity($lat, $lng)
     return "";
 }
 
-function ft_compare($db, $arr, $tagnb)
+function getCommonTags($db, $arr)
 {
     $user = getTags($db, $_SESSION['usr']->id);
     if (isset($user->tag))
         $res = explode('#', $user->tag);
     else
-    	return 1;
+        return 1;
     //var_dump($res);
     //echo '<br/>';
     //var_dump($arr);
@@ -150,7 +150,13 @@ function ft_compare($db, $arr, $tagnb)
     sort($int);
     //var_dump($int);
     $occ = count($int);
-	    // echo '<br/>' . $occ . '<br/><br/>';
+    return $occ;
+}
+
+function ft_compare($db, $arr, $tagnb)
+{
+    $occ = getCommonTags($db, $arr);
+    // echo '<br/>' . $occ . '<br/><br/>';
     if ($occ >= $tagnb)
         return 1;
     return 0;
@@ -246,7 +252,144 @@ function mapInit($db, $uid)
     getloc($db, $uid);
 }
 
-function match($db, $uid)
+function reorder($uid_array, $dist_array, $tags_array, $pop_array)
 {
 
+}
+
+function match($db)
+{
+    //search($db, $minAge, $maxAge, $minPop, $maxPop, $tagReq, $locLimit);
+    $date = new DateTime();
+    $birth = new DateTime($_SESSION['profile']->birthdate);
+    $age = $date->diff($birth)->y;
+    //$minAge = round($age - (0.15*$age));
+    //$maxAge = round($age + (0.15*$age));
+    //var_dump($_SESSION['profile']->popularity);
+
+    //$minPop = round($_SESSION['profile']->popularity - (0.15*$_SESSION['profile']->popularity));
+    //$maxPop = round($_SESSION['profile']->popularity + (0.30*$_SESSION['profile']->popularity));
+    $minAge = 18;
+    $maxAge = 100;
+    $minPop = -500;
+    $maxPop = 2000;
+    $tagReq = 0;
+    $loclimit = 10000;
+    $res = search($db, $minAge, $maxAge, $minPop, $maxPop, $tagReq, $loclimit);
+    if (!isset($res))
+        return 0;
+    $i = 0;
+    $dist = array();
+    $tags = array();
+    $pop = array();
+    while ($i < count($res))
+    {
+        $matchUsr = getUserInfo($db, $res[$i]);
+        $matchTags = getTags($db, $matchUsr->id);
+        $matchProfile = getUserProfile($db, $res[$i]);
+        $matchPrefs = getUserPrefs($db, $res[$i]);
+        if ($matchPrefs->gender != "N" && $matchPrefs->gender != $_SESSION['profile']->gender)
+            return 0;
+        $dist[$i] = dist($_SESSION['profile']->lat, $_SESSION['profile']->lng, $matchProfile->lat, $matchProfile->lng);
+        $tags[$i] = getCommonTags($db, explode('#', $matchTags->tag));
+        $pop[$i] = $matchProfile->popularity;
+        return reorder($res, $dist, $tags, $pop);
+    }
+    // echo '<script>alert("minAge: ' . $minAge . ' maxAge: ' . $maxAge. ' $minPop: '. $minPop .' $maxPop:' . $maxPop .'");</script>';
+}
+
+function search($db, $minAge, $maxAge, $minPop, $maxPop, $tagReq, $locLimit)
+{
+    $age = filterAge($db, $minAge, $maxAge);
+    $pop = filterPop($db, $minPop, $maxPop);
+    $popAgeFilter = array_intersect($age, $pop);
+    sort($popAgeFilter);
+    $tagFilter = filterTag($db, $popAgeFilter,$tagReq);
+    sort($tagFilter);
+    $locate = locateFilter($db, $tagFilter, $locLimit);
+    $gender = genderFilter($db, $locate);
+    $res = blockFilter($db, $gender);
+    sort($res);
+    return $res;
+}
+
+function blockFilter($db, $arr)
+{
+    sort($arr);
+    $res = array();
+    $i = 0;
+    while ($i < count($arr))
+    {
+        $user = isBlocked($db, $arr[$i]);
+        $me = hasBlocked($db, $arr[$i]);
+        if ((!isset($user->value) || $user->value != -1) && (!isset($me->value) || $me->value != -1))
+            $res[$i] = $arr[$i];
+        $i++;
+    }
+    return $res;
+}
+
+function isCompatible($db, $match, $me)
+{
+    $otherprofile = getUserProfile($db, $match);
+    $otherprefs = getUserPrefs($db, $match);
+    $myprofile = getUserProfile($db, $me);
+    $myprefs = getUserPrefs($db, $me);
+    if (isset($myprefs->gender) && isset($myprofile->gender)
+        && isset($otherprefs->gender) && isset($otherprofile->gender) && $myprefs->gender == $otherprofile->gender)
+        return 1;
+    return 0;
+}
+
+function genderFilter($db, $locate)
+{
+    $res = array();
+    $i = 0;
+    while ($i < count($locate))
+    {
+        if (isCompatible($db, $locate[$i], $_SESSION['usr']->id))
+            $res[$i] = $locate[$i];
+        $i++;
+    }
+    return $res;
+}
+
+function dist($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo)
+{
+    $rad = M_PI / 180;
+    //Calculate distance from latitude and longitude
+    $theta = $longitudeFrom - $longitudeTo;
+    $dist = sin($latitudeFrom * $rad)
+        * sin($latitudeTo * $rad) +  cos($latitudeFrom * $rad)
+        * cos($latitudeTo * $rad) * cos($theta * $rad);
+    return acos($dist) / $rad * 60 *  1.853;
+}
+
+function isInRange($db, $uid, $range)
+{
+    $user = getUserProfile($db, $uid);
+    $cmpLat = $user->lat;
+    $cmplng = $user->lng;
+    $myLat = $_SESSION['profile']->lat;
+    $myLng = $_SESSION['profile']->lng;
+    $dist = dist($myLat, $myLng, $cmpLat, $cmplng);
+    //echo 'dist: '. $dist . '<br/>' . 'range: '. $range. '<br/><br/>';
+    if ($dist <= $range)
+        return 1;
+    return 0;
+}
+
+function locateFilter($db, $arr, $range)
+{
+    $res = array();
+    $i = 0;
+    $j = 0;
+    while ($i < count($arr)) {
+        if (isInRange($db, $arr[$i], $range)) {
+            $res[$j] = $arr[$i];
+            $j++;
+        }
+        $i++;
+    }
+    return $res;
 }
