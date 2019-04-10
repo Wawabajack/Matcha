@@ -59,14 +59,14 @@
         addRdomTags($db, $id, $str);
     }
 
-    function ft_hydrate($db)
+    function ft_hydrate($db, $usernb)
     {
         $i = 0;
-        while ($i < 500)
+        while ($i < $usernb)
         {
             addRandomUser($db);
             $i++;
         }
 }
 
-ft_hydrate($db);
+ft_hydrate($db, 50);

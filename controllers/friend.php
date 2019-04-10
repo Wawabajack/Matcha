@@ -5,6 +5,7 @@
     if (isset($_SESSION['search']) && isset($_SESSION['usr']->id) && isset($_SESSION['profile']->id) && isset($_SESSION['prefs']->id)
         && (isset($_POST['friend']) && ($_POST['friend'] == "1" || $_POST['friend'] == "-1" || $_POST['friend'] == "0")) || (isset($_POST['block']) && $_POST['block'] == "1"))
     {
+        $val = 0;
         if (isset($_POST['block']))
             $post = -1;
         else

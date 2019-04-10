@@ -14,7 +14,8 @@ if (isset($_SESSION['usr']->id)) {
     $name = $_SESSION['usr']->name;
     $surname = $_SESSION['usr']->surname;
     $mail = $_SESSION['usr']->mail;
-
+    $tags = "";
+    $birth = "";
 
     /** Profile infos **/
 
