@@ -20,11 +20,11 @@
             else
                 $mail = "";
             if ($profile->birthdate != "0000-00-00") {
-                $date = new DateTime($_SESSION['profile']->birthdate);
+                $date = new DateTime($profile->birthdate);
                 $now = new DateTime();
                 $interval = $now->diff($date);
                 $age = $interval->y;
-                $birth = explode('-', $_SESSION['profile']->birthdate);
+                $birth = explode('-', $profile->birthdate);
                 $birth = $birth[2] . '/' . $birth[1] . '/' . $birth[0]; }
             else
                 $age = "";
