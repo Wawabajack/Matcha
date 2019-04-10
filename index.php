@@ -99,17 +99,21 @@
                 //var_dump($_SESSION['results']);
                 $i = 0;
                 while ($i < count($_SESSION['results'])) {
-                    $userPrefs = getUserPrefs($db, $_SESSION['results'][$i]);
-                    $userProfile = getUserProfile($db, $_SESSION['results'][$i]);
-                    $user = getUserInfo($db, $_SESSION['results'][$i]);
-                    $date = new DateTime();
-                    $birth = new DateTime($userProfile->birthdate);
-                    $age = $date->diff($birth)->y . " ans";
-                    $loc = $userProfile->city;
-                    $gender = $userProfile->gender;
-                    $link = '/pages/profile.php?user=' . $user->username;
-                    echo $matchLnk . $link . $matchName . $user->username . $matchAge . $age . $matchLoc . $loc . $matchGender . $gender . $endFrame;
-                    $i++;
+                    $isblocked= isBlocked($db, $_SESSION['results'][$i]);
+                    $hasblocked = hasBlocked($db, $_SESSION['results'][$i]);
+                    if (!((isset($isblocked->value) && $isblocked->value == -1) || (isset($hasblocked->value) && $hasblocked->value == -1))) {
+                        $userPrefs = getUserPrefs($db, $_SESSION['results'][$i]);
+                        $userProfile = getUserProfile($db, $_SESSION['results'][$i]);
+                        $user = getUserInfo($db, $_SESSION['results'][$i]);
+                        $date = new DateTime();
+                        $birth = new DateTime($userProfile->birthdate);
+                        $age = $date->diff($birth)->y . " ans";
+                        $loc = $userProfile->city;
+                        $gender = $userProfile->gender;
+                        $link = '/pages/profile.php?user=' . $user->username;
+                        echo $matchLnk . $link . $matchName . $user->username . $matchAge . $age . $matchLoc . $loc . $matchGender . $gender . $endFrame;
+                        $i++;
+                    }
                 }
             }
         }
