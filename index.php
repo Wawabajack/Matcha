@@ -107,7 +107,7 @@
                     $age = $date->diff($birth)->y . " ans";
                     $loc = $userProfile->city;
                     $gender = $userProfile->gender;
-                    $link = $_SERVER["DOCUMENT_ROOT"] . '/pages/profile.php?user=' . $user->username;
+                    $link = '/pages/profile.php?user=' . $user->username;
                     echo $matchLnk . $link . $matchName . $user->username . $matchAge . $age . $matchLoc . $loc . $matchGender . $gender . $endFrame;
                     $i++;
                 }
