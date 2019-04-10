@@ -338,7 +338,8 @@ if (isset($_SESSION['usr']->id)) {
         <p>pop max = <span id="popmaxi:"></span></p>
     </div>
     <div style="display:block " class="btn">
-        <input class="btntop" type="submit" value=" Recherche ">
+        <input class="btntop" type="submit" value=" Recherche "></form>
+        <form method="post" action="/controllers/search.php"><button class="btntop" style="margin-top:5%" type="submit" name="match" value="1">Recommandations</button>
     </div>
 </div>
 </form>
@@ -399,7 +400,7 @@ if (isset($_SESSION['usr']->id)) {
 
     /**************** a bouger plus tard pour l'algo de march **************************/
 
-    if (isset($_SESSION['results'])) {
+    if (isset($_SESSION['search'])) {
 
     
     $matchLnk = '<div class="profile">
@@ -407,7 +408,7 @@ if (isset($_SESSION['usr']->id)) {
     </div>
     <div class="avatar img">
         <img src="'; 
-        $image = '"> alt="" />
+        $image = '"  />
     </div>
     <div class="info">
         <div class="title">

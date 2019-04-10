@@ -270,11 +270,17 @@ function valswap(&$dist_array, $i)
 
 function reorder($dist_array)
 {
-    //var_dump($dist_array);
+    sort($dist_array['dist']);
+    sort($dist_array['uid']);
+    sort($dist_array['pop']);
+    sort($dist_array['tags']);
     $arraySize = count($dist_array['dist']);
-   $i = 0;
-   while ($i < $arraySize - 1)
-   {
+    //var_dump($arraySize);
+    $i = 0;
+    while ($i < ($arraySize - 1))
+    {
+        //echo '<br/><br/>';    
+        //var_dump($dist_array['uid'][$i]);
         if ($dist_array['dist'][$i] > $dist_array['dist'][$i + 1])
             valswap($dist_array, $i);
         if ($dist_array['dist'][$i] == $dist_array['dist'][$i + 1])
@@ -321,14 +327,19 @@ function match($db)
         $matchProfile = getUserProfile($db, $res[$i]);
         $matchPrefs = getUserPrefs($db, $res[$i]);
         if ($matchPrefs->gender != "N" && $matchPrefs->gender != $_SESSION['profile']->gender)
-            return 0;
-        $dist['dist'][$i] = dist($_SESSION['profile']->lat, $_SESSION['profile']->lng, $matchProfile->lat, $matchProfile->lng);
-        $dist['uid'][$i] = $res[$i];
-        $dist['tags'][$i] = getCommonTags($db, explode('#', $matchTags->tag));
-        $dist['pop'][$i]  = $matchProfile->popularity;
-        $i++;
+            $i++;
+        else 
+        {
+            $dist['dist'][$i] = dist($_SESSION['profile']->lat, $_SESSION['profile']->lng, $matchProfile->lat, $matchProfile->lng);
+            $dist['uid'][$i] = $res[$i];
+            $dist['tags'][$i] = getCommonTags($db, explode('#', $matchTags->tag));
+            $dist['pop'][$i]  = $matchProfile->popularity;
+            $i++;
+        }  
     }
-    return reorder($dist);
+    $dist = reorder($dist);
+    $inutile = array_splice($dist, 0, 3);
+    return $inutile;
     // echo '<script>alert("minAge: ' . $minAge . ' maxAge: ' . $maxAge. ' $minPop: '. $minPop .' $maxPop:' . $maxPop .'");</script>';
 }
 
