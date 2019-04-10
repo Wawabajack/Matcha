@@ -337,7 +337,10 @@ function match($db)
             $i++;
         }  
     }
-    $dist = reorder($dist);
+    if (isset($dist))
+        $dist = reorder($dist);
+    else
+        return 0;
     //$ret = array_splice($dist, 0, 3);
     //sort($dist);
     return $dist;

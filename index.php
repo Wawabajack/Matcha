@@ -53,7 +53,9 @@
                 navigator.geolocation.getCurrentPosition(function(location) { ft_pushInfo(location.coords.latitude, location.coords.longitude)})</script>';
         $_SESSION['loc'] = 1;
     }
-
+    if (isset($_POST['home'])) {
+        unset($_SESSION['search']);
+    }
 
     /** Register welcome message **/
 

@@ -168,7 +168,14 @@
                 file_put_contents($imgUserPath . '/' . $namefile, $try);
             }
             else
+            {
                 mkdir($imgUserPath);
+                while (file_exists($imgUserPath . '/' . $namefile)) {
+                    $namefile = $i . $namefile;
+                    $i++;
+                }
+                file_put_contents($imgUserPath . '/' . $namefile, $try);
+            }
         fieldUpdate($db, '/img/' . lcfirst($_SESSION['usr']->username) . '/' . $namefile , $_SESSION['usr']->id, 'img', 'profiles');
         return 1;
         }

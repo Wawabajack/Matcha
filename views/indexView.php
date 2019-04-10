@@ -52,7 +52,7 @@
 	$profileBtn = '<li><form method="post" action="/pages/profile.php">
         <input class="btntop" type="submit" value=" Profil "></form></li>';
     $home = '<li><form method="post" action="/index.php">
-        <input class="btntop" type="submit" value=" Home "></form></li>';
+        <button class="btntop" type="submit" name="home" value="1"> Home </button></form></li>';
     $profil = '<li><form method="post" action="/pages/profile.php">
         <input class="btntop" type="submit" value=" Profile "></form></li>';
     $menu = '<div id="nav-a"><ul>';
