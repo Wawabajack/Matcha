@@ -5,7 +5,7 @@
         $user = getUserInfo($db, $_SESSION['search']);
         $prefs = getUserPrefs($db, $_SESSION['search']);
         $profile = getUserProfile($db, $_SESSION['search']);
-        $tag = getUsertag($db, $_SESSION['search']);
+        $tag = gettags($db, $_SESSION['search']);
         //var_dump($profile);
         $isFriend = isBlocked($db, $user->id);
         $other = hasBlocked($db, $user->id);
