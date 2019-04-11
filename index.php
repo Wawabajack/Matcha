@@ -38,9 +38,12 @@
 <?php
     if(isset($_POST['unset']))
         unset($_SESSION['search']);
-    if($_SESSION['verif'] == 0)
-        unset($_SESSION['search']);
-    //var_dump($_SESSION['verif']);
+    if(isset($_SESSION['verif']))
+    {
+        if($_SESSION['verif'] == 0)
+            unset($_SESSION['search']);
+    }
+        //var_dump($_SESSION['verif']);
     if (isset($_SESSION['usr']->id) && !isset($_SESSION['loc']))
     {
         echo '<script>
@@ -104,11 +107,11 @@
             //var_dump($_SESSION['search']);
             if (isset($_SESSION['search']) && $_SESSION['search'] != NULL) {
                 //var_dump($_SESSION['results']);
+                $_SESSION['verif'] = 0;
                 $i = 0;
                 if (isset($_SESSION['match'])) {
                     //var_dump($_SESSION['match']);
                     while ($i < $_SESSION['match']) {
-                        $_SESSION['verif'] = 0;
                         $isblocked= isBlocked($db, $_SESSION['search'][$i]);
                         $hasblocked = hasBlocked($db, $_SESSION['search'][$i]);
                         if (!((isset($isblocked->value) && $isblocked->value == -1) || (isset($hasblocked->value) && $hasblocked->value == -1))) {
