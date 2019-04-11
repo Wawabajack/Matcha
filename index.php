@@ -38,6 +38,7 @@
 <?php
     if(isset($_POST['unset']))
         unset($_SESSION['search']);
+    //var_dump($_SESSION['search']);
     if (isset($_SESSION['usr']->id) && !isset($_SESSION['loc']))
     {
         echo '<script>
