@@ -21,6 +21,7 @@
 			
 			count($res) > 3 ? $_SESSION['match'] = 3 : $_SESSION['match'] = count($res);
 						//var_dump($res);
+			$_SESSION['verif'] = 1;
 			header('refresh:0;url=/index.php');
 		}
 	
@@ -35,6 +36,7 @@
 			$loclimit = (int)$_POST['loc'];
 			$_SESSION['search'] = search($db, $min_age, $max_age, $min_pop, $max_pop, $taglimit, $loclimit);
 			$_SESSION['match'] = count($_SESSION['search'] );
+			$_SESSION['verif'] = 1;
 			//var_dump($_SESSION['results']);
 			header('refresh:0;url=/index.php');
 			//echo 'SELECT uid from profiles WHERE (`birthdate` < ' . $now . '- INTERVAL ' . $max_age .'`birthdate` > ' . $min_age . '<br/>';
