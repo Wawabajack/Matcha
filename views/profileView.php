@@ -93,9 +93,6 @@ if (isset($_SESSION['usr']->id)) {
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="profile-work">
-                            <a href="../index.php">Accueil</a><br/>
-                        </div>
                     </div>
                     <div class="col-md-8">
                         <div class="tab-content profile-tab" id="myTabContent">
@@ -221,9 +218,6 @@ if (isset($_SESSION['usr']->id)) {
         </div>
         <div class="row">
             <div class="col-md-4">
-                <div class="profile-work">
-                    <a href="../index.php">Accueil</a><br />
-                </div>
             </div>
             <div class="col-md-8">
                 <div class="tab-content profile-tab" id="myTabContent">
