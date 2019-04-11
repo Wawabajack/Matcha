@@ -20,6 +20,7 @@
                 updateFriend($db, $_SESSION['search'], -1);
             else
                 insertFriend($db, $_SESSION['search'], -1);
+            unset($_SESSION['search']);
             header('refresh:0;url=/index.php');
         }
         else {
@@ -46,11 +47,18 @@
             if (isset($_SESSION['search']) && $val != -1)
             {
                 $username = getUserInfo($db, $_SESSION['search']);
+                unset($_SESSION['search']);
                 header('refresh:0;url=/pages/profile.php?user=' . strtolower($username->username));
             }
             else
+            {
+                unset($_SESSION['search']);
                 header('refresh:0;url=/index.php');
             }
+        }
     }
     else
+    {
+        unset($_SESSION['search']);
         header('refresh:0;url=/pages/error401.html');
+    }
