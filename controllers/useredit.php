@@ -1,7 +1,6 @@
 <?php
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/models/checkfuncs.php');
 
-phpinfo();
 	if (isset($_SESSION['usr']) && ((isset($_POST['username']) || isset($_POST['surname']) || isset($_POST['name'])
 		|| isset($_POST['gender']) || isset($_POST['mail']) || isset($_POST['age'])
 		|| isset($_POST['location']) || isset($_POST['lf']) || isset($_POST['file']) || isset($_POST['bio']) || isset($_POST['oldpwd']) || isset($_POST['newpwd']))
