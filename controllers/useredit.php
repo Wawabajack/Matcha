@@ -1,6 +1,7 @@
 <?php
 	require_once($_SERVER["DOCUMENT_ROOT"] . '/models/checkfuncs.php');
 
+phpinfo();
 	if (isset($_SESSION['usr']) && ((isset($_POST['username']) || isset($_POST['surname']) || isset($_POST['name'])
 		|| isset($_POST['gender']) || isset($_POST['mail']) || isset($_POST['age'])
 		|| isset($_POST['location']) || isset($_POST['lf']) || isset($_POST['file']) || isset($_POST['bio']) || isset($_POST['oldpwd']) || isset($_POST['newpwd']))
@@ -14,8 +15,8 @@
 			$_SESSION['prefs'] = $prefs;
 		if (isset($profile->uid))
 			$_SESSION['profile'] = $profile;
-		header('refresh:0;url=/pages/profile.php');
+		//header('refresh:0;url=/pages/profile.php');
 	}
-	else
+	/*else
 		header('refresh:0;url=/pages/profile.php');
-
+*/

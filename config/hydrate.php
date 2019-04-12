@@ -16,11 +16,11 @@
             $gender = "H";
         else
             $gender = "F";
-        $username = ucfirst(strtolower($fake['login']['username']));
+        $username = ucfirst(strtolower($fake['login']['username'])) . rand(0, 99999);
         $name = strtoupper($fake['name']['last']);
         $surname = ucfirst(strtolower($fake['name']['first']));
-        $mail = $fake['email'];
-        $pwd = password_hash('user', 1);
+        $mail = $name . $username . rand(0, 99999) . '@matcha-mailserver' . rand(0, 1000) . '.com';
+        $pwd = '$2y$10$Hr/XpGPTP4PgKpBOeD30i..VGBVDtlUHjyQcHL2pbwhs6QxCYaJPm';
         $tags = array("#Natation", "#Cyclisme", "#Montagne", "#Cinema", "#Animes", "#Mangas", "#Gastronomie", "#Informatique", "#JeuxDeSociete", "#Condiments", "#Peche", "#Histoire", "#Ecologie", "#Musique", "#Parapente", "#Mode");
         $tag = array();
         $rand = rand(0, 20);
@@ -72,4 +72,6 @@
         }
 }
 
-ft_hydrate($db, 500);
+ft_hydrate($db, 20);
+//ft_hydrate($db, 200);
+//ft_hydrate($db, 200);

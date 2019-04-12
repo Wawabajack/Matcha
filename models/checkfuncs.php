@@ -153,7 +153,7 @@
 
     function checkImage($db, $files) {
         if (isset($files['file']) && isset($files['file']['type']) && substr($files['file']['type'], 0, 5) == "image"
-            && isset($files['file']['size']) && $files['file']['size'] < 3000000) {
+            && isset($files['file']['size']) && $files['file']['size'] < 2000001) {
             if (isset($files['file']['error']) && $files['file']['error'] != 0)
                 return 0;
             $try = file_get_contents($files['file']['tmp_name']);

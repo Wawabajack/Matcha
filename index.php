@@ -99,34 +99,39 @@
     if (isset($_SESSION['usr']->id)) {
 
         //Profile and pref check
-        if (isset($_SESSION['profile']->id) && isset($_SESSION['prefs']->id))
+        if (isset($_SESSION['profile']->id) && isset($_SESSION['prefs']->id) && $_SESSION['profile']->img != '/img/blank.png' && isset($_SESSION['profile']->birthdate))
         {
-            echo $map;
-            echo $slider;
-            echo '<div class="container mini-profile">';
-            //var_dump($_SESSION['search']);
-            if (isset($_SESSION['search']) && $_SESSION['search'] != NULL) {
-                //var_dump($_SESSION['results']);
-                $_SESSION['verif'] = 0;
-                $i = 0;
-                if (isset($_SESSION['match'])) {
-                    //var_dump($_SESSION['match']);
-                    while ($i < $_SESSION['match']) {
-                        $isblocked= isBlocked($db, $_SESSION['search'][$i]);
-                        $hasblocked = hasBlocked($db, $_SESSION['search'][$i]);
-                        if (!((isset($isblocked->value) && $isblocked->value == -1) || (isset($hasblocked->value) && $hasblocked->value == -1))) {
-                            $userPrefs = getUserPrefs($db, $_SESSION['search'][$i]);
-                            $userProfile = getUserProfile($db, $_SESSION['search'][$i]);
-                            $user = getUserInfo($db, $_SESSION['search'][$i]);
-                            $date = new DateTime();
-                            $birth = new DateTime($userProfile->birthdate);
-                            $age = $date->diff($birth)->y . " ans";
-                            $loc = $userProfile->city;
-                            $gender = $userProfile->gender;
-                            $link = '/pages/profile.php?user=' . $user->username;
-                            echo $matchLnk . $userProfile->img . $image . $link . $matchName . $user->username . $matchAge . $age . $matchLoc . $loc . $matchGender . $gender . $endFrame;
+            $date = new DateTime();
+            $birth = new DateTime($_SESSION['profile']->birthdate);
+            $age = $date->diff($birth)->y;
+            if ($age > 17) {       
+                echo $map;
+                echo $slider;
+                echo '<div class="container mini-profile">';
+                //var_dump($_SESSION['search']);
+                if (isset($_SESSION['search']) && $_SESSION['search'] != NULL) {
+                    //var_dump($_SESSION['results']);
+                    $_SESSION['verif'] = 0;
+                    $i = 0;
+                    if (isset($_SESSION['match'])) {
+                        //var_dump($_SESSION['match']);
+                        while ($i < $_SESSION['match']) {
+                            $isblocked= isBlocked($db, $_SESSION['search'][$i]);
+                            $hasblocked = hasBlocked($db, $_SESSION['search'][$i]);
+                            if (!((isset($isblocked->value) && $isblocked->value == -1) || (isset($hasblocked->value) && $hasblocked->value == -1))) {
+                                $userPrefs = getUserPrefs($db, $_SESSION['search'][$i]);
+                                $userProfile = getUserProfile($db, $_SESSION['search'][$i]);
+                                $user = getUserInfo($db, $_SESSION['search'][$i]);
+                                $date = new DateTime();
+                                $birth = new DateTime($userProfile->birthdate);
+                                $age = $date->diff($birth)->y . " ans";
+                                $loc = $userProfile->city;
+                                $gender = $userProfile->gender;
+                                $link = '/pages/profile.php?user=' . $user->username;
+                                echo $matchLnk . $userProfile->img . $image . $link . $matchName . $user->username . $matchAge . $age . $matchLoc . $loc . $matchGender . $gender . $endFrame;
+                            }
+                            $i++;
                         }
-                        $i++;
                     }
                 }
             }
