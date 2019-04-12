@@ -72,6 +72,6 @@
         }
 }
 
-ft_hydrate($db, 20);
+ft_hydrate($db, 500);
 //ft_hydrate($db, 200);
 //ft_hydrate($db, 200);
